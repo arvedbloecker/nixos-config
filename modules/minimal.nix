@@ -42,6 +42,7 @@
     nil
     nixfmt-rfc-style
     vim
+    tree
   ];
 
   environment.variables.EDITOR = "hx";

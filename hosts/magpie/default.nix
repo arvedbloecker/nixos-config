@@ -4,17 +4,14 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/minimal.nix
+    ../../modules/gnome.nix
   ];
 
   networking.hostName = "magpie";
   networking.networkmanager.enable = true;
 
+  # Keyboard Layout
   services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-
-    desktopManager.gnome.enable = true;
-
     xkb.layout = "us";
     xkb.variant = "altgr-intl";
   };
