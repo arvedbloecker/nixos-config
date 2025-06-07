@@ -3,43 +3,41 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/minimal.nix
+    ../../modules/minimal-desktop.nix
     ../../modules/gnome.nix
+    ../../modules/niri.nix
   ];
 
   networking.hostName = "magpie";
   networking.networkmanager.enable = true;
-
-  # Keyboard Layout
-  services.xserver = {
-    xkb.layout = "us";
-    xkb.variant = "altgr-intl";
-  };
 
   services.printing.enable = true;
 
   # Fingerprintreader
   services.fprintd.enable = true;
   
-  # Audio mit PipeWire
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
   users.users.arved = {
     isNormalUser = true;
     description = "Arved Bloecker";
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  programs.firefox.enable = true;
-
   nixpkgs.config.allowUnfree = true;
+
+  services.xserver = {
+    enable = true;
+    displayManager.startx.enable = true;
+  };
+
+  # Im Home-Manager oder Shell-Init:
+  programs.fish.interactiveShellInit = ''
+    if [ "$(tty)" = "/dev/tty1" ]; and ! pgrep -u $USER niri
+      exec niri
+    end
+  '';
+
+  home-manager.backupFileExtension = "backup";
+
 
   environment.systemPackages = with pkgs; [
     # Hier bei bedarf weitere Pakete
