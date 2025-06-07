@@ -12,6 +12,11 @@
     thunderbird
   ];
 
+  services.mako = {
+    enable = true;
+    defaultTimeout = 5000;
+  };
+
   home.stateVersion = "25.05";
 }
 
