@@ -1,7 +1,7 @@
 input {
     keyboard {
         xkb {
-            layout "us,de"
+            layout "us"
             // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
         }
     }
@@ -101,7 +101,7 @@ binds {
 
     // Tools
     Mod+E { spawn "ghostty"; }
-    Mod+P { spawn "firefox" "--private-window"; }
+    Mod+P { spawn "firefox"; }
     Mod+Return { spawn "wofi" "--show" "drun"; }
     // Super+Alt+L { spawn "swaylock"; }
 
@@ -113,10 +113,10 @@ binds {
     Mod+Ctrl+C { close-window; }
 
     // Movement
-    Mod+J             { focus-column-or-monitor-left; }
-    Mod+L             { focus-window-or-workspace-down; }
+    Mod+H             { focus-column-or-monitor-left; }
+    Mod+J             { focus-window-or-workspace-down; }
     Mod+K             { focus-window-or-workspace-up; }
-    Mod+semicolon     { focus-column-or-monitor-right; }
+    Mod+L             { focus-column-or-monitor-right; }
     Mod+Left          { focus-monitor-left; }
     Mod+Down          { focus-monitor-down; }
     Mod+Up            { focus-monitor-up; }
@@ -125,10 +125,10 @@ binds {
     Mod+End  { focus-column-last; }
 
     // Moving windows
-    Mod+Ctrl+J             { move-column-left-or-to-monitor-left; }
-    Mod+Ctrl+L             { move-window-down-or-to-workspace-down; }
+    Mod+Ctrl+H             { move-column-left-or-to-monitor-left; }
+    Mod+Ctrl+J             { move-window-down-or-to-workspace-down; }
     Mod+Ctrl+K             { move-window-up-or-to-workspace-up; }
-    Mod+Ctrl+semicolon     { move-column-right-or-to-monitor-right; }
+    Mod+Ctrl+L             { move-column-right-or-to-monitor-right; }
     Mod+Ctrl+Left          { move-column-to-monitor-left; }
     Mod+Ctrl+Down          { move-column-to-monitor-down; }
     Mod+Ctrl+Up            { move-column-to-monitor-up; }
