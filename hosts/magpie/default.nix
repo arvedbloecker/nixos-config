@@ -6,6 +6,7 @@
     ../../modules/minimal-desktop.nix
     ../../modules/gnome.nix
     ../../modules/niri.nix
+    ../../modules/tlp.nix
   ];
 
   networking.hostName = "magpie";
