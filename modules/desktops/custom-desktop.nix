@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  import = [
+    ./minimal-desktop.nix
+  ];
   # Installiere greetd + tuigreet (das ist der Login-Frontend)
   environment.systemPackages = with pkgs; [
     greetd.tuigreet

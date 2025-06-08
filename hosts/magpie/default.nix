@@ -3,9 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/minimal-desktop.nix
-    #../../modules/gnome.nix
-    ../../modules/custom-desktop.nix
+    ../../modules/desktops/gnome.nix # Choose only 1 from desktops
     ../../modules/niri.nix
     ../../modules/tlp.nix
   ];

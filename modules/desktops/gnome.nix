@@ -6,6 +6,9 @@
   ...
 }:
 {
+  imports = [
+    ./minimal-desktop.nix
+  ];
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   programs.xwayland.enable = true;

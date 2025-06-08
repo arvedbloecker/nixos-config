@@ -8,7 +8,7 @@
 {
   imports = [
     ./minimal.nix
-    ./fonts.nix
+    ../fonts.nix
   ];
 
   config = {
