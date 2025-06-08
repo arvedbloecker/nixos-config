@@ -6,7 +6,10 @@
   ...
 }:
 {
-  imports = [ ./minimal.nix ];
+  imports = [
+    ./minimal.nix
+    ./fonts.nix
+  ];
 
   config = {
     services.xserver.xkb = {
@@ -25,6 +28,10 @@
 
     programs.firefox.enable = true;
     environment.systemPackages = with pkgs; [
+      playerctl
+      networkmanager_dmenu
+      pamixer
+      brightnessctl
       cascadia-code
       ghostty
       starship

@@ -83,6 +83,8 @@ layout {
 
 spawn-at-startup "kanshi"
 spawn-at-startup "xwayland-satellite"
+spawn-at-startup "waybar"
+
 
 prefer-no-csd
 

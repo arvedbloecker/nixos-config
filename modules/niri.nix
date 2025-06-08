@@ -11,6 +11,7 @@
     kanshi
     wofi
     xwayland-satellite
+    waybar
   ];
 
   # Except xdgOpenUsePortal this is all set by the niri module anyway, but lets be explicit 

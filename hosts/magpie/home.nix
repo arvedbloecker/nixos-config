@@ -4,6 +4,7 @@
   imports = [
     ../../home/desktop.nix
     ../../home/niri/default.nix
+    ../../home/waybar/default.nix
   ];
   home.username = "arved";
   home.homeDirectory = "/home/arved";
