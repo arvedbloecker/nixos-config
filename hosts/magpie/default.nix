@@ -4,7 +4,8 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/minimal-desktop.nix
-    ../../modules/gnome.nix
+    #../../modules/gnome.nix
+    ../../modules/custom-desktop.nix
     ../../modules/niri.nix
     ../../modules/tlp.nix
   ];
