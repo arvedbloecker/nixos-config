@@ -9,9 +9,6 @@
   ];
 
   networking.hostName = "magpie";
-  networking.networkmanager.enable = true;
-
-  services.printing.enable = true;
 
   # Fingerprintreader
   services.fprintd.enable = true;
@@ -22,13 +19,6 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  nixpkgs.config.allowUnfree = true;
-
-  services.xserver = {
-    enable = true;
-    displayManager.startx.enable = true;
-  };
-
   # Im Home-Manager oder Shell-Init:
   programs.fish.interactiveShellInit = ''
     if [ "$(tty)" = "/dev/tty1" ]; and ! pgrep -u $USER niri
@@ -37,7 +27,6 @@
   '';
 
   home-manager.backupFileExtension = "backup";
-
 
   environment.systemPackages = with pkgs; [
     # Hier bei bedarf weitere Pakete

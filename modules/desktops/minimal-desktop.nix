@@ -12,6 +12,18 @@
   ];
 
   config = {
+
+    networking.networkmanager.enable = true;
+
+    services.printing.enable = true;
+
+    nixpkgs.config.allowUnfree = true;
+
+    services.xserver = {
+      enable = true;
+      displayManager.startx.enable = true;
+    };
+  
     services.xserver.xkb = {
       layout = "us";
       variant = "altgr-intl";
