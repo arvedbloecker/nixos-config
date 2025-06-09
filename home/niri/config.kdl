@@ -88,7 +88,7 @@ spawn-at-startup "waybar"
 
 prefer-no-csd
 
-screenshot-path "~/Pictures/Screenshots/Screenshot_from_%Y-%m-%d %H-%M-%S.png"
+screenshot-path "~/Pictures/Screenshots/%Y-%m-%d:%H-%M-%S-Screenshot.png"
 
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
@@ -105,8 +105,8 @@ binds {
     // Tools
     Mod+E { spawn "ghostty"; }
     Mod+P { spawn "firefox"; }
-    Mod+Return { spawn "wofi" "--show" "drun"; }
-    // Super+Alt+L { spawn "swaylock"; }
+    Mod+Return { spawn "fuzzel"; }
+    MOD+Shift+L { spawn "swaylock"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
@@ -117,7 +117,7 @@ binds {
     XF86MonBrightnessDown { spawn "brightnessctl" "set" "5%-"; }
 
     
-    Mod+Ctrl+C { close-window; }
+    Mod+X { close-window; }
 
     // Movement
     Mod+H             { focus-column-or-monitor-left; }

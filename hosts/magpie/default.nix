@@ -12,11 +12,17 @@
 
   # Fingerprintreader
   services.fprintd.enable = true;
+
+  environment.etc."pam.d/modules/pam_fprintd.so".source = "${pkgs.fprintd}/lib/security/pam_fprintd.so";
   
   users.users.arved = {
     isNormalUser = true;
     description = "Arved Bloecker";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "plugdev"
+    ];
   };
 
   # Im Home-Manager oder Shell-Init:
