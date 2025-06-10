@@ -14,7 +14,34 @@
   services.fprintd.enable = true;
 
   environment.etc."pam.d/modules/pam_fprintd.so".source = "${pkgs.fprintd}/lib/security/pam_fprintd.so";
-  
+
+  boot.resumeDevice = "/dev/disk/by-uuid/f846c05e-faa7-4275-8edc-8e8359a526c6";
+  boot.kernelParams = [ "resume=/dev/disk/by-uuid/f846c05e-faa7-4275-8edc-8e8359a526c6" ];
+
+  powerManagement.enable = true;
+  services.logind = {
+    lidSwitch = "suspend";
+    lidSwitchExternalPower = "suspend";
+    lidSwitchDocked = "ignore";
+  };
+
+  systemd.services.hibernate-on-lid = {
+    enable = true;
+    description = "suspend system on lid close";
+    wantedBy = [ "multi-user.target" ];
+    script = ''
+      while :; do
+        grep -q closed /proc/acpi/button/lid/LID/state && systemctl suspend
+        sleep 2
+      done
+    '';
+    serviceConfig = {
+      Restart = "always";
+      RestartSec = 5;
+    };
+  };
+
+
   users.users.arved = {
     isNormalUser = true;
     description = "Arved Bloecker";

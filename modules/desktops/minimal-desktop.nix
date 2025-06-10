@@ -13,6 +13,11 @@
 
   config = {
 
+    # Deep Sleep is more energy efficient
+    boot.kernelParams = [
+      "mem_sleep_default=deep"
+    ];
+
     networking.networkmanager.enable = true;
 
     services.printing.enable = true;

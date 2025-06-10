@@ -52,6 +52,10 @@
       # Runtime Power Management
       RUNTIME_PM_ON_AC = "on";
       RUNTIME_PM_ON_BAT = "auto";
+
+      # Keep Wlan on
+      WIFI_PWR_ON_BAT = "off";
+      WIFI_PWR_ON_AC = "off";
     };
   };
 
