@@ -47,27 +47,14 @@
 
     security.pam.services.swaylock = {
       text = ''
-        auth  [success=1 default=ignore] pam_fprintd.so
-        auth  sufficient pam_unix.so try_first_pass nullok
-        auth  required pam_deny.so
+        auth include login
         account include login
         password include login
         session include login
       '';
     };
 
-    security.pam.services.gtklock = {
-      text = ''
-        auth     sufficient pam_fprintd.so
-        auth     include login
-        account  include login
-        password include login
-        session  include login
-      '';
-    };
-    
     environment.systemPackages = with pkgs; [
-      gtklock
       swaylock
       playerctl
       networkmanager_dmenu
@@ -76,7 +63,7 @@
       cascadia-code
       ghostty
       fuzzel
-      starship
+      starship     
     ];
   };
 }

@@ -35,15 +35,32 @@
 
   programs.fish.enable = true;
   environment.systemPackages = with pkgs; [
-    usbutils
-    btop
+    # Shell
     fish
-    git
+    # Editor
     helix
+    vim
+    # Nix-Tools
     nil
     nixfmt-rfc-style
-    vim
+    # Network
+    dig
+    iftop
+    inetutils
+    lftp
+    tcpdump
+    whois
+    # File and Archive
+    binwalk
+    file
+    p7zip
     tree
+    unzip
+    # Documentation
+    man-pages
+    man-pages-posix
+    # Terminal
+    tmux
   ];
 
   environment.variables.EDITOR = "hx";
