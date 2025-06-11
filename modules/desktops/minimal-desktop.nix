@@ -55,9 +55,9 @@
     };
 
     environment.systemPackages = with pkgs; [
-      swaylock
       playerctl
       networkmanager_dmenu
+      networkmanagerapplet
       pamixer
       brightnessctl
       cascadia-code

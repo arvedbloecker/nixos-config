@@ -1,30 +1,21 @@
 { config, pkgs, ... }:
 
 {
-  import = [
+  imports = [
     ./minimal-desktop.nix
   ];
-  # Installiere greetd + tuigreet (das ist der Login-Frontend)
-  environment.systemPackages = with pkgs; [
-    greetd.tuigreet
-  ];
 
-  # Aktiviere greetd
-  services.greetd = {
-    enable = true;
+  
 
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd 'dbus-run-session niri'";
-        user = "arved";
-      };
-    };
-  };
+  # Activate LightDM
+  services.xserver.displayManager.lightdm.enable = true;
+  # Activate GTK-Greeter
+  services.xserver.displayManager.lightdm.greeters.gtk.enable = true;
 
-  # Optional: XWayland (falls nötig)
+  # XWayland (falls nötig)
   programs.xwayland.enable = true;
 
-  # Portale (z. B. für Flatpak, Dateiöffner, etc.)
+  # Portals (i. E. Flatpak, Filepicker, etc.)
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;

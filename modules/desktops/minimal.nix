@@ -53,6 +53,7 @@
     # File and Archive
     binwalk
     file
+    git
     p7zip
     tree
     unzip
