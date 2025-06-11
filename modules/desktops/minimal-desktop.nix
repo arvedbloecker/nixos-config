@@ -18,8 +18,6 @@
       "mem_sleep_default=deep"
     ];
 
-    networking.networkmanager.enable = true;
-
     services.printing.enable = true;
 
     nixpkgs.config.allowUnfree = true;
@@ -29,11 +27,6 @@
       displayManager.startx.enable = true;
     };
   
-    services.xserver.xkb = {
-      layout = "us";
-      variant = "altgr-intl";
-    };
-
     services.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services.pipewire = {
@@ -44,15 +37,6 @@
     };
 
     programs.firefox.enable = true;
-
-    security.pam.services.swaylock = {
-      text = ''
-        auth include login
-        account include login
-        password include login
-        session include login
-      '';
-    };
 
     environment.systemPackages = with pkgs; [
       playerctl
