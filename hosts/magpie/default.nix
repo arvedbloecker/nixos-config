@@ -3,7 +3,9 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/desktops/gnome.nix # Choose only 1 from desktops
+    #../../modules/desktops/gnome.nix # Choose only 1 from desktops
+    ../../modules/desktops/custom-desktop.nix
+    ../../modules/core
     ../../modules/niri.nix
     ../../modules/tlp.nix
   ];
@@ -34,6 +36,7 @@
 
   environment.systemPackages = with pkgs; [
     # Hier bei bedarf weitere Pakete
+    element-desktop
   ];
   system.stateVersion = "25.05";
 }

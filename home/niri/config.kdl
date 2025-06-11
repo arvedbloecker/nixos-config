@@ -106,7 +106,7 @@ binds {
     Mod+E { spawn "ghostty"; }
     Mod+P { spawn "firefox"; }
     Mod+Return { spawn "fuzzel"; }
-    MOD+Shift+L { spawn "swaylock"; }
+    Mod+Shift+L { spawn "dm-tool lock"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
