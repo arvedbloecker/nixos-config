@@ -17,8 +17,6 @@
       "mem_sleep_default=deep"
     ];
 
-    services.printing.enable = true;
-
     nixpkgs.config.allowUnfree = true;
 
     services.xserver = {
