@@ -8,7 +8,6 @@
 {
   imports = [
     ./minimal.nix
-    ../fonts.nix
   ];
 
   config = {
@@ -27,15 +26,6 @@
       displayManager.startx.enable = true;
     };
   
-    services.pulseaudio.enable = false;
-    security.rtkit.enable = true;
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
-
     programs.firefox.enable = true;
 
     environment.systemPackages = with pkgs; [

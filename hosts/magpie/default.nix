@@ -6,6 +6,8 @@
     #../../modules/desktops/gnome.nix # Choose only 1 from desktops
     ../../modules/desktops/custom-desktop.nix
     ../../modules/core
+    ../../modules/desktop
+    ../../modules/services
     ../../modules/niri.nix
     ../../modules/tlp.nix
   ];
