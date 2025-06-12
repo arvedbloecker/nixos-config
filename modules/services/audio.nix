@@ -7,7 +7,6 @@
 {
   config = {
     services.pulseaudio.enable = false;
-    security.rtkit.enable = true; # doesnt truly belong in Audio (Security)
     services.pipewire = {
       enable = true;
       alsa.enable = true;
