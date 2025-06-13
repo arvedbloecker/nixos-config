@@ -324,17 +324,23 @@
                 { proportion = 2.0 / 3.0; }
                 { proportion = 1.0; }
               ];
-
-              border.enable = false;
-
-              focus-ring = {
+              
+              border = {
                 enable = true;
                 width = 2;
+                
+                active = { color = "#A8E6A1"; }; # Light green
+                inactive = { color = "#E8F5E9"; }; # Nearly white 
+              };
+
+              focus-ring = {
+                enable = false;
+                width = 2;
                 active = {
-                  color = "#e0e0e0ff";
+                  color = "#8EDBAA";
                 };
                 inactive = {
-                  color = "#00000000";
+                  color = "#E8F7F0";
                 };
               };
 
