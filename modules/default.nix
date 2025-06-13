@@ -10,6 +10,6 @@
     ./desktop
     ./services
 
-    ./desktops/custom-desktop.nix
+    #./desktops/custom-desktop.nix
   ];
 }
