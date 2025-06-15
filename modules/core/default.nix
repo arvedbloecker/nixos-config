@@ -9,5 +9,6 @@
     ../../pkgs/system-packages.nix
   ];
 
+  nixpkgs.config.allowUnfree = true;
   programs.firefox.enable = true;
 }
