@@ -328,9 +328,10 @@
               border = {
                 enable = true;
                 width = 2;
-                
-                active = { color = "#A8E6A1"; }; # Light green
-                inactive = { color = "#E8F5E9"; }; # Nearly white 
+                active =
+                  { color = "rgba(0,120,90,1)"; };
+                inactive =
+                  { color = "rgba(255,255,255,0.4)"; }; 
               };
 
               focus-ring = {
@@ -398,10 +399,10 @@
 
                 focus-ring = {
                   active = {
-                    color = "rgba(224, 53, 53, 100%)";
+                    color = "rgba(0, 120, 90, 100%)";
                   };
                   inactive = {
-                    color = "rgba(224, 53, 53, 30%)";
+                    color = "rgba(0, 120, 90, 30%)";
                   };
                 };
 
