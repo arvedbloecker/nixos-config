@@ -189,7 +189,7 @@
                 "Super+E".action = spawn "ghostty";
                 "Super+P".action = spawn "firefox";
                 "Super+Return".action = spawn "fuzzel";
-                "Super+Shift+L".action = spawn "dm-tool lock";
+                "Super+Shift+L".action = spawn "dm-tool" "lock";
 
                 # Audio (even when locked)
                 "XF86AudioRaiseVolume".action = spawn "wpctl" "set-volume" "@DEFAULT_SINK@" "0.1+";

@@ -31,5 +31,8 @@
     #man-pages-posix
     # Terminal
     tmux
+    # Status
+    btop
+    fastfetch
   ];
 }
