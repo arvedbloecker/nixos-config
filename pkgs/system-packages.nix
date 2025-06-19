@@ -34,5 +34,9 @@
     # Status
     btop
     fastfetch
+    # Filesystem
+    steam-run
+    # Operating System
+    glibc
   ];
 }

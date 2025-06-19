@@ -86,6 +86,7 @@
     kitty
     networkmanagerapplet
     playerctl
+    swaynotificationcenter
     swayosd
     wl-clipboard
     wl-clip-persist
@@ -143,7 +144,8 @@
               [
                 { command = sh ++ [ "wl-clip-persist --clipboard regular" ]; }
                 { command = sh ++ [ "cliphist wipe" ]; }
-                { command = sh ++ [ "systemctl --user start cliphist.service" ]; }
+                { command = sh ++ [ "systemctl --user start cliphist-text.service" ]; }
+                { command = sh ++ [ "systemctl --user start cliphist-image.service" ]; }
                 { command = sh ++ [ "systemctl --user start hypridle.service" ]; }
                 { command = sh ++ [ "systemctl --user start waybar.service" ]; }
                 { command = sh ++ [ "systemctl --user start xwayland-satellite.service" ]; }
@@ -389,7 +391,6 @@
                   { app-id = "org.pipewire.Helvum"; }
                   { app-id = "com.github.wwmm.easyeffects"; }
                   { app-id = "wdisplays"; }
-                  { app-id = "qalculate-gtk"; }
                 ];
                 open-floating = true;
               }
@@ -406,7 +407,6 @@
                     color = "rgba(0, 120, 90, 30%)";
                   };
                 };
-
                 tab-indicator = {
                   active = {
                     color = "rgba(224, 53, 53, 100%)";
