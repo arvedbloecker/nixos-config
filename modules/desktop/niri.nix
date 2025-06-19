@@ -332,7 +332,7 @@
                 enable = true;
                 width = 2;
                 active =
-                  { color = "rgba(150,0,0,1)"; };
+                  { color = "rgba(120,0,0,1)"; };
                 inactive =
                   { color = "rgba(28,28,44,0.4)"; }; 
               };
@@ -392,7 +392,7 @@
 
                 focus-ring = {
                   active = {
-                    color = "rgba(150, 0, 0, 100%)";
+                    color = "rgba(100, 0, 0, 100%)";
                   };
                   inactive = {
                     color = "rgba(28, 28, 44, 30%)";

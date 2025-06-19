@@ -199,7 +199,7 @@
                 border: Solid;
                 border-radius: 4px;
                 border-width: 2px;
-                border-color: rgba(150, 0, 0, 1);
+                border-color: rgba(120, 0, 0, 1);
               }
               #workspaces button {
                 background: #0F0F0F;
