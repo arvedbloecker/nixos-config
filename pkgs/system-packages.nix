@@ -19,6 +19,8 @@
     lftp
     tcpdump
     whois
+    # Connection
+    usbutils
     # File and Archive
     binwalk
     file
@@ -33,6 +35,8 @@
     tmux
     # Status
     btop
+    htop
+    powertop
     fastfetch
     # Filesystem
     steam-run

@@ -8,6 +8,7 @@
 
     ./core
     ./desktop
+    ./programs
     ./services
 
     #./desktops/custom-desktop.nix

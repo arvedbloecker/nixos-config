@@ -188,7 +188,7 @@
                 "Super+Shift+Slash".action = show-hotkey-overlay;
 
                 # Tools
-                "Super+E".action = spawn "ghostty";
+                "Super+E".action = spawn "kitty";
                 "Super+P".action = spawn "firefox";
                 "Super+Return".action = spawn "fuzzel";
                 "Super+Shift+L".action = spawn "dm-tool" "lock";
@@ -312,7 +312,7 @@
               gaps = 2;
               default-column-width.proportion = 0.5;
               insert-hint.display = {
-                color = "rgba(224, 224, 224, 30%)";
+                color = "rgba(28, 28, 44, 30%)";
               };
 
               preset-column-widths = [
@@ -332,21 +332,12 @@
                 enable = true;
                 width = 2;
                 active =
-                  { color = "rgba(0,120,90,1)"; };
+                  { color = "rgba(150,0,0,1)"; };
                 inactive =
-                  { color = "rgba(255,255,255,0.4)"; }; 
+                  { color = "rgba(28,28,44,0.4)"; }; 
               };
 
-              focus-ring = {
-                enable = false;
-                width = 2;
-                active = {
-                  color = "#8EDBAA";
-                };
-                inactive = {
-                  color = "#E8F7F0";
-                };
-              };
+              focus-ring.enable = false;
 
               tab-indicator = {
                 enable = true;
@@ -357,10 +348,10 @@
                 gaps-between-tabs = 8;
                 position = "top";
                 active = {
-                  color = "rgba(224, 224, 224, 100%)";
+                  color = "rgba(28, 28, 44, 100%)";
                 };
                 inactive = {
-                  color = "rgba(224, 224, 224, 30%)";
+                  color = "rgba(28, 28, 44, 30%)";
                 };
                 length.total-proportion = 1.0;
               };
@@ -401,10 +392,10 @@
 
                 focus-ring = {
                   active = {
-                    color = "rgba(0, 120, 90, 100%)";
+                    color = "rgba(150, 0, 0, 100%)";
                   };
                   inactive = {
-                    color = "rgba(0, 120, 90, 30%)";
+                    color = "rgba(28, 28, 44, 30%)";
                   };
                 };
                 tab-indicator = {

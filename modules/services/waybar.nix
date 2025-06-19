@@ -194,12 +194,12 @@
                 padding: 0 4px 0 4px;
               }
               window#waybar {
-                background: rgba(15, 15, 15, 0.7);
+                background: rgba(28, 28, 44, 0.7);
                 color: #E8F5E9;
                 border: Solid;
                 border-radius: 4px;
                 border-width: 2px;
-                border-color: rgba(0, 120, 90, 1);
+                border-color: rgba(150, 0, 0, 1);
               }
               #workspaces button {
                 background: #0F0F0F;

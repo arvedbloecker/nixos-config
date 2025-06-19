@@ -10,7 +10,6 @@
 
       # General
       TLP_ENABLE = 1;
-      TLP_PERSISTENT_DEFAULT = 0;
 
       # CPU Settings
       CPU_SCALING_GOVERNOR_ON_AC = "schedutil";
@@ -18,6 +17,23 @@
 
       CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
       CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+
+      RUNTIME_PM_ON_BAT = "auto";
+      PCIE_ASPM_ON_BAT = "powersave";
+
+      USB_AUTOSUSPEND = 1;
+      USB_EXCLUDE_AUDIO = 1;
+
+      SOUND_POWER_SAVE_ON_BAT = 1;
+      SOUND_POWER_SAVE_CONTROLLER = 1;
+
+      SATA_LINKPWR_ON_BAR = "min_power";
+
+      WIFI_PWR_ON_BAR = 5;
+
+      RADEON_DPM_PERF_LEVEL_ON_BAT = "low";
+
+      
 
       # Platform Profile
       PLATFORM_PROFILE_ON_AC = "balanced";
