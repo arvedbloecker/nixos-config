@@ -1,3 +1,4 @@
+# Custom Settings for each user/pc that might be very individual. It only needs the import of ./hardware-configuration.nix as a bare minimum. 
 { config, pkgs, username, ... }:
 
 {
