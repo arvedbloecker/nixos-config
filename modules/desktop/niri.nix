@@ -4,6 +4,9 @@
   username,
   ...
 }:
+let
+  bgImage = ./../../pkgs/RedBlueMountain.png;
+in
 {
   services = {
     blueman.enable = true;
@@ -42,9 +45,7 @@
         description = "swaybg service";
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${pkgs.swaybg}/bin/.swaybg-wrapped -m fill -i ${
-            pkgs.graphite-gtk-theme.override { wallpapers = true; }
-          }/share/backgrounds/wave-Dark.png";
+          ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i ${bgImage}";
           Restart = "on-failure";
         };
       };
