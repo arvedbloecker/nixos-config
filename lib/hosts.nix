@@ -7,6 +7,7 @@ let
       hostname ? hostDir,
       username ? "user",
       userDescription ? "Default User",
+      userEmail ? "mail@mail.de",
       hashedPassword ? null,
     }:
     inputs.nixpkgs.lib.nixosSystem {
@@ -18,6 +19,7 @@ let
           hostname
           username
           userDescription
+          userEmail
           hashedPassword
           ;
       };

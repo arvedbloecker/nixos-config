@@ -2,20 +2,22 @@
   pkgs,
   username,
   userDescription,
+  userEmail,
   ...
 }:
 {
-  home-manaher.users.${username} =
+  home-manager.users.${username} =
   {
     config, ...
   }:
   {
     programs.git = {
       enable = true;
-      userName = "${userDescription}";
+      userName = userDescription;
+      userEmail = userEmail;
       extraConfig = {
-        core.editor = "hx";
-      }
+        core.editor = "${pkgs.helix}/bin/hx";
+      };
     };
   };
 }
