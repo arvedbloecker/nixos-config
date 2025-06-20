@@ -1,0 +1,1 @@
+Welcome to my NixOS-Config. This Config has been inspired by the configuration from (Géza Ahsendorf)[https://codeberg.org/DynamicGoose?tab=repositories]. Thank you for providing such a solid and good starting-point! The picture comes from (John Towner)[https://unsplash.com/photos/aerial-photo-of-brown-moutains-JgOeRuGD_Y4].
