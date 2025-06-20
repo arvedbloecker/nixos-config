@@ -7,6 +7,7 @@ let
       hostname ? hostDir,
       username ? "user",
       userDescription ? "Default User",
+      hashedPassword ? null,
     }:
     inputs.nixpkgs.lib.nixosSystem {
       system = arch;
@@ -17,6 +18,7 @@ let
           hostname
           username
           userDescription
+          hashedPassword
           ;
       };
       modules = [
