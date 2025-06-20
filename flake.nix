@@ -27,7 +27,7 @@
       magpie-arved = {
         username = "arved";
         userDescription = "Arved Bloecker"; # Will be seen in git!
-        userEmail = "test@test.de";         # Will be seen in git!
+        userEmail = "git@arvedbloecker.de";         # Will be seen in git!
         hostname = "magpie";
         
         # Generate the hashedPassword with mkpasswd
