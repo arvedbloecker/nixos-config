@@ -26,9 +26,11 @@
     nixosConfigurations = lib.genHosts {
       magpie-arved = {
         username = "arved";
-        userDescription = "Arved Bloecker"; # Will be seen in git!
-        userEmail = "git@arvedbloecker.de";         # Will be seen in git!
+        userDescription = "Arved Bloecker";
         hostname = "magpie";
+
+        gitUsername = "arvedbloecker";
+        gitEmail = "git@arvedbloecker.de";
         
         # Generate the hashedPassword with mkpasswd
         hashedPassword = "$y$j9T$b2Obca/x4HHLzhGeiTBqr/$G.8GGokLUklJ0qnDKx.3l4pvnQWKNP/X.PROPM0BPIC";

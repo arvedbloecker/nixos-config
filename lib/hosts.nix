@@ -7,8 +7,11 @@ let
       hostname ? hostDir,
       username ? "user",
       userDescription ? "Default User",
-      userEmail ? "mail@mail.de",
       hashedPassword ? null,
+
+      gitUsername ? null,
+      gitEmail ? null,
+      
     }:
     inputs.nixpkgs.lib.nixosSystem {
       system = arch;
@@ -19,8 +22,10 @@ let
           hostname
           username
           userDescription
-          userEmail
           hashedPassword
+
+          gitUsername
+          gitEmail
           ;
       };
       modules = [

@@ -18,6 +18,7 @@
     element-desktop
     fwupd
     nextcloud-client
+    onlyoffice-desktopeditors
     qemu
     spotify
     thunderbird

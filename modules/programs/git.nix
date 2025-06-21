@@ -1,8 +1,8 @@
 {
   pkgs,
   username,
-  userDescription,
-  userEmail,
+  gitUsername,
+  gitEmail,
   ...
 }:
 {
@@ -13,8 +13,8 @@
   {
     programs.git = {
       enable = true;
-      userName = userDescription;
-      userEmail = userEmail;
+      userName = gitUsername;
+      userEmail = gitEmail;
       extraConfig = {
         core.editor = "${pkgs.helix}/bin/hx";
       };
