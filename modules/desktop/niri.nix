@@ -191,7 +191,7 @@ in
                 # Tools
                 "Super+E".action = spawn "kitty";
                 "Super+P".action = spawn "firefox";
-                "Super+Return".action = spawn "fuzzel";
+                "Super+Return".action = spawn "wofi";
                 "Super+Shift+L".action = spawn "dm-tool" "lock";
 
                 # Audio (even when locked)
