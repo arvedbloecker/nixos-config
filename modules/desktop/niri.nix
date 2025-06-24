@@ -14,6 +14,9 @@ in
     logind.powerKey = "ignore";
   };
 
+  security.pam.services.niri.enableGnomeKeyring = true;
+  security.pam.services.login.enableGnomeKeyring = true;
+
   systemd = {
     user.services = {
       # Polkit
@@ -194,16 +197,15 @@ in
                 "Super+Return".action = spawn "wofi";
                 "Super+Shift+L".action = spawn "dm-tool" "lock";
 
-                # Audio (even when locked)
-                "XF86AudioRaiseVolume".action = spawn "wpctl" "set-volume" "@DEFAULT_SINK@" "0.1+";
-                "XF86AudioLowerVolume".action = spawn "wpctl" "set-volume" "@DEFAULT_SINK@" "0.1-";
-                "XF86AudioMute".action        = spawn "wpctl" "set-mute" "@DEFAULT_SINK@" "toggle";
-                "XF86AudioMicMute".action     = spawn "wpctl" "set-mute" "@DEFAULT_SOURCE@" "toggle";
 
-                # Brightness
-                "XF86MonBrightnessUp".action   = spawn "brightnessctl" "set" "+5%";
-                "XF86MonBrightnessDown".action = spawn "brightnessctl" "set" "5%-";
-
+                "XF86AudioMute".action = sh "swayosd-client --output-volume=mute-toggle";
+                "XF86AudioPlay".action = sh "playerctl play-pause";
+                "XF86AudioPrev".action = sh "playerctl previous";
+                "XF86AudioNext".action = sh "playerctl next";
+                "XF86AudioRaiseVolume".action = sh "swayosd-client --output-volume=raise";
+                "XF86AudioLowerVolume".action = sh "swayosd-client --output-volume=lower";
+                "XF86MonBrightnessUp".action = sh "swayosd-client --brightness=raise";
+                "XF86MonBrightnessDown".action = sh "swayosd-client --brightness=lower";
                 # Close window
                 "Super+X".action = close-window;
 

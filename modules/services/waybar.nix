@@ -138,12 +138,6 @@
               "clear-all" = "swaync-client -C -sw";
             };
           };
-          "custom/display" = {
-            "format" = "󰍹";
-            "tooltip" = true;
-            "tooltip-format" = "Display Settings";
-            "on-click" = "wdisplays";
-          };
         }
       ];
     in
@@ -215,7 +209,7 @@
               #tray {
                 padding: 0;
               }
-              #bluetooth, #network, #pulseaudio, #custom-menu #custom-display{
+              #bluetooth, #network, #pulseaudio, #custom-menu {
                 margin-left: 2px;
                 margin-right: 2px;
               }
