@@ -29,6 +29,7 @@
             "custom/menu"
           ];
           "niri/window" = {
+            "tooltip" = false;
           };
           "bluetooth" = {
             "format" = "{icon}";
