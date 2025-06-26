@@ -17,6 +17,9 @@
           "modules-left" = [
             "clock"
           ];
+          "modules-center" = [
+            "niri/window"
+          ];
           "modules-right" = [
             "pulseaudio"
             "custom/display"
@@ -25,6 +28,8 @@
             "battery"
             "custom/menu"
           ];
+          "niri/window" = {
+          };
           "bluetooth" = {
             "format" = "{icon}";
             "format-icons" = {
@@ -61,7 +66,7 @@
             "on-click" = "nm-connection-editor";
           };
           "battery" = {
-            "format" = "{icon}";
+            "format" = "{icon} {capacity}%";
             "format-icons" = {
               "charging" = "󰚥";
               "discharging" = [
@@ -84,7 +89,7 @@
             "tooltip-format" = "{capacity}% - {timeTo}";
           };
           "clock" = {
-            "format" = "󱑇 {:%H:%M}";
+            "format" = "{:%y-%m-%d %H:%M}";
             "tooltip" = false;
           };
           "pulseaudio" = {
@@ -182,7 +187,7 @@
             settings = waybarSettings;
             style = ''
               * {
-                font-size: 12px;
+                font-size: 10px;
                 font-family: "Nerdfonts";
                 font-weight: Bold;
                 padding: 0 4px 0 4px;
