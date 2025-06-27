@@ -15,21 +15,108 @@
           "margin-right" = 2;
           "height" = 26;
           "modules-left" = [
-            "clock"
+            "niri/workspaces"
+            "custom/weather"
+            "mpris"
           ];
           "modules-center" = [
             "niri/window"
           ];
           "modules-right" = [
             "pulseaudio"
-            "custom/display"
+            "battery"
             "bluetooth"
             "network"
-            "battery"
+            "clock"
             "custom/menu"
           ];
+          "niri/workspaces" = {
+            "on-click" = "activate";
+            "all-outputs" = false;
+            "active-only" = true;
+            "format" = "{icon:2}";
+            "format-icons" = {
+              "default" = "";
+              "active" = "";
+            };
+          };
+          "custom/weather" = {
+            "format" = "{}°";
+            "tooltip" = true;
+            "interval" = 3600;
+            "exec" = "wttrbar --location Hannover --nerd";
+            "return-type" = "json";
+          };
+          "mpris" = {
+            "format" = "{player_icon} {title} - {artist}";
+            "format-paused" = "{status_icon} {title} - {artist}";
+
+            "player-icons" =  {
+              "default" = "󰝚 ";
+              "spotify" = "󰓇 ";
+              "firefox" = "󰗃 ";
+            };
+            "status-icons" = {
+              "paused" = "󰏤 ";
+            };
+
+            "tooltip-format" = "Playing: {title} - {artist}";
+            "tooltip-format-paused" = "Paused: {title} - {artist}";
+            "min-length" = 5;
+            "max-length" = 35;
+
+            "on-click" = "playerctl play-pause";
+            "on-click-right" = "playerctl next";
+          };
           "niri/window" = {
             "tooltip" = false;
+          };
+          "pulseaudio" = {
+            "format" = "{icon}  {volume}%";
+            "format-muted" = " ";
+            "format-icons" = {
+              "bluetooth" = "󰋋 ";
+              "headphones" = "󰋋 ";
+              "phone" = " ";
+              "default" = [
+                " "
+                " "
+                " "
+              ];
+            };
+            "on-click" = "pwvucontrol";
+            "menu" = "on-click-right";
+            "menu-file" = "~/.config/waybar/audio_menu.xml";
+            "menu-actions" = {
+              "toggle-input" = "wpctl set-mute @DEFAULT_SOURCE@ toggle";
+              "toggle-output" = "wpctl set-mute @DEFAULT_SINK@ toggle";
+              "settings" = "nohup pwvucontrol > /dev/null 2>&1 & disown && exit";
+              "patchbay" = "nohup helvum > /dev/null 2>&1 & disown && exit";
+              "effects" = "nohup easyeffects > /dev/null 2>&1 & disown && exit";
+            };
+          };
+          "battery" = {
+            "format" = "{icon} {capacity}%";
+            "format-icons" = {
+              "charging" = "󰚥";
+              "discharging" = [
+                "󰁻"
+                "󰁼"
+                "󰁽"
+                "󰁾"
+                "󰁿"
+                "󰂀"
+                "󰂁"
+                "󰂂"
+                "󰁹"
+              ];
+              "full" = "󰁹";
+              "not charging" = "󱟢";
+              "unknown" = "󱟢";
+              "default" = "󱟢";
+            };
+            "tooltip" = true;
+            "tooltip-format" = "{capacity}% - {timeTo}";
           };
           "bluetooth" = {
             "format" = "{icon}";
@@ -65,63 +152,12 @@
             "tooltip-format-disconnected" = "Nicht verbunden";
             "on-click" = "nm-connection-editor";
           };
-          "battery" = {
-            "format" = "{icon} {capacity}%";
-            "format-icons" = {
-              "charging" = "󰚥";
-              "discharging" = [
-                "󰁻"
-                "󰁼"
-                "󰁽"
-                "󰁾"
-                "󰁿"
-                "󰂀"
-                "󰂁"
-                "󰂂"
-                "󰁹"
-              ];
-              "full" = "󰁹";
-              "not charging" = "󱟢";
-              "unknown" = "󱟢";
-              "default" = "󱟢";
-            };
-            "tooltip" = true;
-            "tooltip-format" = "{capacity}% - {timeTo}";
-          };
           "clock" = {
-            "format" = "{:%y-%m-%d %H:%M}";
+            "format" = "{:%H:%M  %y-%m-%d}";
             "tooltip" = false;
           }; 
-          "pulseaudio" = {
-            "format" = "{icon} {volume}%";
-            "format-muted" = " ";
-            "format-icons" = {
-              "bluetooth" = "󰋋 ";
-              "headphones" = "󰋋 ";
-              "phone" = " ";
-              "default" = [
-                " "
-                " "
-                " "
-              ];
-            };
-            "on-click" = "pwvucontrol";
-            "menu" = "on-click-right";
-            "menu-file" = "~/.config/waybar/audio_menu.xml";
-            "menu-actions" = {
-              "toggle-input" = "wpctl set-mute @DEFAULT_SOURCE@ toggle";
-              "toggle-output" = "wpctl set-mute @DEFAULT_SINK@ toggle";
-              "settings" = "nohup pwvucontrol > /dev/null 2>&1 & disown && exit";
-              "patchbay" = "nohup helvum > /dev/null 2>&1 & disown && exit";
-              "effects" = "nohup easyeffects > /dev/null 2>&1 & disown && exit";
-            };
-          };
-          "tray" = {
-            "spacing" = 4;
-            "reverse-direction" = true;
-          };
           "custom/menu" = {
-            "format" = "{icon}";
+            "format" = "{icon:2}";
             "tooltip" = true;
             "format-icons" = {
               "notification" = "<span foreground='#E03535'><sup></sup></span>";
@@ -153,6 +189,8 @@
         helvum
         swaynotificationcenter
         wdisplays
+        wttrbar
+        playerctl
       ];
 
       home-manager.users.${username} =
@@ -186,6 +224,12 @@
             enable = true;
             settings = waybarSettings;
             style = ''
+
+              @define-color bg rgba(28, 28, 44, 0.7);
+              @define-color border rgba(120, 0, 0, 1);
+
+              @define-color white rgba(265, 265, 265, 1);
+            
               * {
                 font-size: 10px;
                 font-family: "Nerdfonts";
@@ -193,32 +237,41 @@
                 padding: 0 4px 0 4px;
               }
               window#waybar {
-                background: rgba(28, 28, 44, 0.7);
-                color: #E8F5E9;
+                background: @bg;
                 border: Solid;
                 border-radius: 4px;
                 border-width: 2px;
-                border-color: rgba(120, 0, 0, 1);
+                border-color: @border;
+                color: @white;
               }
+
+
               #workspaces button {
-                background: #0F0F0F;
-                color: #E0E0E0;
-                margin: 4px 2px 4px 2px;
-                padding: 0;
+                background: transparent;
+                border: none;
+                color: @white;
+                margin: 0;
+                transition: none;
               }
               #workspaces button.active {
-                background: #0F0F0F;
-                color: #E0E0E0;
-                margin: 4px 2px 4px 2px;
+                background: transparent;
+                border: none;
+                color: @white;
+                margin: 0;
+                transition: none;
               }
-              #tray {
-                padding: 0;
+              #workspaces button:hover {
+                background: transparent;
+                border: none;
+                box-shadow: none;
+                text-shadow: none;
               }
+              
               #bluetooth, #network, #pulseaudio, #custom-menu {
                 margin-left: 2px;
                 margin-right: 2px;
               }
-            '';
+              '';
           };
         };
     };
