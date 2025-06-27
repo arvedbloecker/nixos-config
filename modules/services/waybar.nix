@@ -244,8 +244,7 @@
                 border-color: @border;
                 color: @white;
               }
-
-
+              
               #workspaces button {
                 background: transparent;
                 border: none;
@@ -260,17 +259,27 @@
                 margin: 0;
                 transition: none;
               }
+              /* Stop annoying animations when hovering */
               #workspaces button:hover {
                 background: transparent;
                 border: none;
                 box-shadow: none;
                 text-shadow: none;
               }
-              
+
+             
               #bluetooth, #network, #pulseaudio, #custom-menu {
                 margin-left: 2px;
                 margin-right: 2px;
               }
+
+              /* Box around each element
+              #custom-weather, #mpris {
+                margin: 2px;
+                background-color: rgba(0, 0, 0, 0.3);
+                color: @white;
+              }
+              */
               '';
           };
         };

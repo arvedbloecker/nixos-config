@@ -22,6 +22,7 @@
     # Connection
     usbutils
     # File and Archive
+    bat
     binwalk
     file
     git
