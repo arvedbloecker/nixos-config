@@ -42,7 +42,6 @@
               "disconnected" = "󰂲";
               "default" = "󰂲";
             };
-            "on-click" = "blueman-manager";
             "tooltip" = true;
             "tooltip-format" = "{device_alias} ({device_address})";
 
@@ -92,16 +91,16 @@
           "clock" = {
             "format" = "{:%y-%m-%d %H:%M}";
             "tooltip" = false;
-          };
+          }; 
           "pulseaudio" = {
             "format" = "{icon} {volume}%";
-            "format-bluetooth" = "{icon}󰂯 {volume}%";
-            "format-muted" = "";
+            "format-muted" = " ";
             "format-icons" = {
+              "bluetooth" = "󰋋 ";
               "headphones" = "󰋋 ";
               "phone" = " ";
               "default" = [
-                ""
+                " "
                 " "
                 " "
               ];
