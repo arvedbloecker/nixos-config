@@ -29,7 +29,7 @@ configuration-name = {
 
 Create a new Folder in `hosts/configuration-name`.
 
-This folder needs a default.nix, with the following code:
+This folder needs a `default.nix`, with the following code:
 
 ```
 { config, pkgs, username, ...}:
@@ -58,4 +58,15 @@ When setting up your system for the first time, make sure that you have activate
 
 ## Step 4 (Optional) - Look at options.md
 
-To accomodate to different requirements in the usecases and the architecture, there will be options that can be disabled and enabled. Those options are listed in `options.md`. 
+To accomodate to different requirements in the usecases and the architecture, there will be options that can be disabled and enabled. Those options are listed in `options.md`. To use them create the file `config.nix` in the folder with `hosts/configuration-name` and import it in `default.nix`, which you created in Step 2.
+
+The `config.nix` should look like this:
+```
+{
+  username, ...
+}:
+{
+  # List here all the configs that you want to set.
+  # modules.desktop.plasma.enable = true;
+}
+```
