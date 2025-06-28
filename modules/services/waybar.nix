@@ -52,9 +52,9 @@
             "format-paused" = "{status_icon} {title} - {artist}";
 
             "player-icons" =  {
-              "default" = "󰝚 ";
-              "spotify" = "󰓇 ";
-              "firefox" = "󰗃 ";
+              "default" = "󰝚";
+              "spotify" = "󰓇";
+              "firefox" = "󰗃";
             };
             "status-icons" = {
               "paused" = "󰏤 ";
@@ -72,7 +72,7 @@
             "tooltip" = false;
           };
           "pulseaudio" = {
-            "format" = "{icon}  {volume}%";
+            "format" = "{icon} {volume}%";
             "format-muted" = " ";
             "format-icons" = {
               "bluetooth" = "󰋋 ";
@@ -232,7 +232,7 @@
             
               * {
                 font-size: 10px;
-                font-family: "Nerdfonts";
+                font-family: "JetBrainsMono Nerd Font Propo";
                 font-weight: Bold;
                 padding: 0 4px 0 4px;
               }
