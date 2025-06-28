@@ -54,11 +54,11 @@ This folder needs a `default.nix`, with the following code:
 
 The last step is to copy the file `hardware-configuration.nix` from `etc/nixos/hardware-configuration` to `nixos-config/hosts/configuration-name/hardware-configuration.nix`. Your system should work from now by running the command `sudo nixos-rebuild switch --flake .#configuration-name`. Make sure that you are in the folder with the `flake.nix` or in a child-folder when executing the command.
 
-When setting up your system for the first time, make sure that you have activated `nix.setting.experimental-features = [ "nix-command" "flakes "]`, so the flake can be used.
+When setting your system for the first time up, make sure that you have activated `nix.setting.experimental-features = [ "nix-command" "flakes "]`, so the flake can be used.
 
 ## Step 4 (Optional) - Look at options.md
 
-To accomodate to different requirements in the usecases and the architecture, there will be options that can be disabled and enabled. Those options are listed in `options.md`. To use them create the file `config.nix` in the folder with `hosts/configuration-name` and import it in `default.nix`, which you created in Step 2.
+To accomodate different requirements in the usecases and the architecture, there will be options that can be disabled and enabled. Those options are listed in `options.md`. To use them create the file `config.nix` in the folder with `hosts/configuration-name` and import it in `default.nix`, which you created in Step 2.
 
 The `config.nix` should look like this:
 ```
