@@ -43,5 +43,13 @@
     steam-run
     # Operating System
     glibc
+
+    # Rust
+    rustc
+    cargo
+    gcc
+    rust-analyzer
+    rustfmt
+    clippy
   ];
 }

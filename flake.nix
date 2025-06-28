@@ -36,6 +36,9 @@
         hashedPassword = "$y$j9T$b2Obca/x4HHLzhGeiTBqr/$G.8GGokLUklJ0qnDKx.3l4pvnQWKNP/X.PROPM0BPIC";
       };
     };
+    
+    # Development shells in ./shells
+    devShells = lib.eachSystem (pkgs: import ./shells { inherit pkgs; });
 
     lib = lib;
   };
