@@ -66,7 +66,7 @@
               "firefox" = "󰗃";
             };
             "status-icons" = {
-              "paused" = "󰏤 ";
+              "paused" = "󰏤";
             };
 
             "tooltip-format" = "Playing: {title} - {artist}";
@@ -82,15 +82,15 @@
           };
           "pulseaudio" = {
             "format" = "{icon} {volume}%";
-            "format-muted" = " ";
+            "format-muted" = "";
             "format-icons" = {
-              "bluetooth" = "󰋋 ";
-              "headphones" = "󰋋 ";
-              "phone" = " ";
+              "bluetooth" = "󰋋";
+              "headphones" = "󰋋";
+              "phone" = "";
               "default" = [
-                " "
-                " "
-                " "
+                ""
+                ""
+                ""
               ];
             };
             "on-click" = "pwvucontrol";

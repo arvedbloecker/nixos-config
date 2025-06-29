@@ -46,8 +46,8 @@
 
 
     # High Level Programs
-    kdePackages.okular # Dokument Viewer
-    kdePackages.dolphin # File Manager
+    evince # Dokument Viewer
+    nautilus # File Manager
     
 
     # Rust

@@ -17,8 +17,9 @@
     onlyoffice-desktopeditors
     qemu
     spotify
+    texliveFull
     thunderbird
-    tor
+    tor-browser
     vscode
   ];
   
