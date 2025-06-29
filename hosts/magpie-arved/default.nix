@@ -5,6 +5,7 @@
   imports = [
     ./config.nix
     ./hardware-configuration.nix
+    ./kanshi.nix
   ];
   
 
