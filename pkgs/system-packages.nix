@@ -21,6 +21,7 @@
     whois
     # Connection
     usbutils
+    blueberry
     # File and Archive
     bat
     binwalk
@@ -59,4 +60,5 @@
     clippy
     lldb
   ];
+
 }

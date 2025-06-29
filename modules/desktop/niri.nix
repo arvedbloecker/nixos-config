@@ -9,6 +9,7 @@ let
 in
 {
   services = {
+    blueman.enable = true;
     gnome.gnome-keyring.enable = true;
     logind.powerKey = "ignore";
   };
@@ -112,6 +113,12 @@ in
   home-manager.users.${username} =
     { pkgs, config, ... }:
     {
+      dconf.settings."org/blueman/general".plugin-list = [
+        "StatusIcon"
+        "ShowConnected"
+        "!ExitItem"
+      ];
+    
       services.hypridle.enable = true;
       programs = {
         waybar.enable = true;
@@ -149,6 +156,7 @@ in
                 { command = sh ++ [ "systemctl --user start xwayland-satellite.service" ]; }
                 { command = sh ++ [ "systemctl --user start swaybg.service" ]; }
                 { command = sh ++ [ "systemctl --user start swaync.service" ]; }
+                { command = sh ++ [ "sleep 1 && blueman-applet" ]; }
                 { command = sh ++ [ "id=0" ]; }
                 { command = [ "swayosd-server" ]; }
                 { command = [ "nm-applet" ]; }
@@ -372,6 +380,7 @@ in
               }
               {
                 matches = [
+                  { app-id = ".blueman-manager-wrapped"; }
                   { app-id = "nm-connection-editor"; }
                   { app-id = "com.saivert.pwvucontrol"; }
                   { app-id = "org.pipewire.Helvum"; }

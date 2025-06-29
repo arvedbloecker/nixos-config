@@ -173,16 +173,16 @@ in
         '';
 
         "swaync/style.css".text = ''
-          @define-color cc-bg rgba(15, 15, 15, 1);
-          @define-color noti-border-color rgba(224, 224, 224, 1);
-          @define-color noti-bg rgb(15, 15, 15);
-          @define-color noti-bg-darker rgb(15, 15, 15);
-          @define-color noti-bg-hover rgb(34, 34, 34);
+          @define-color cc-bg rgba(28, 28, 44, 1);
+          @define-color noti-border-color rgba(120, 0, 0, 1);
+          @define-color noti-bg rgb(28, 28, 44);
+          @define-color noti-bg-darker rgb(28, 28, 44);
+          @define-color noti-bg-hover rgb(34, 34, 54);
           @define-color noti-bg-focus rgba(56, 56, 56, 1);
           @define-color noti-close-bg rgba(56, 56, 56, 1);
-          @define-color noti-close-bg-hover rgba(75, 75, 75, 1);
+          @define-color noti-close-bg-hover rgba(75, 75, 88, 1);
           @define-color text-color rgba(255, 255, 255, 1);
-          @define-color text-color-disabled rgb(150, 150, 150);
+          @define-color text-color-disabled rgb(280, 280, 280);
           @define-color bg-selected rgb(224, 224, 224);
 
           .control-center .notification-row:focus,

@@ -35,7 +35,7 @@
             "on-click" = "activate";
             "all-outputs" = false;
             "active-only" = true;
-            "format" = "{icon:2}";
+            "format" = "{icon}";
             "format-icons" = {
               "default" = "";
               "active" = "";
@@ -140,6 +140,8 @@
             };
             "tooltip" = true;
             "tooltip-format" = "{device_alias} ({device_address})";
+
+            "on-click" = "blueman-manager";
 
           };
           "network" = {
@@ -303,10 +305,6 @@
                 margin-right: 2px;
               }
 
-              #tray > * {
-                opacity: 0.5;
-                color: @white;
-              }
               /* Box around each element
               #custom-weather, #mpris {
                 margin: 2px;
