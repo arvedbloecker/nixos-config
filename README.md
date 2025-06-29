@@ -1,8 +1,8 @@
 Welcome to my NixOS-Config. This Config has been inspired by the configuration from [Géza Ahsendorf](https://codeberg.org/DynamicGoose?tab=repositories). Thank you for providing such a solid and good starting-point! The bg-picture comes from [John Towner](https://unsplash.com/photos/aerial-photo-of-brown-moutains-JgOeRuGD_Y4).
 
-# Creating an Account
+# Creating a Profile
 
-## Step 1 - Create the Account in flake.nix
+## Step 1 - Create the Profile in flake.nix
 
 Copy in `flake.nix` the following code:
 
