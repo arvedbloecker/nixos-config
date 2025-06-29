@@ -17,6 +17,7 @@
           "modules-left" = [
             "niri/workspaces"
             "custom/weather"
+            "custom/nextcloud"
             "mpris"
           ];
           "modules-center" = [
@@ -40,8 +41,16 @@
               "active" = "";
             };
           };
+          "custom/nextcloud" = {
+            "on-click" = "nextcloud";
+            "on-click-right" = "nextcloud --background";
+            "exec" = "~/.config/waybar/nxtcloud.sh";
+            "interval" = 30;
+            "format" = "{}";
+            "return-type" = "json";
+          };
           "custom/weather" = {
-            "format" = "{}°";
+            "format" = "{text}°";
             "tooltip" = true;
             "interval" = 3600;
             "exec" = "wttrbar --location Hannover --nerd";
@@ -196,6 +205,8 @@
       home-manager.users.${username} =
         { config, lib, ... }:
         {
+
+          # Files will be put in ~/.config/waybar which can be executed.
           xdg.configFile = {
             "waybar/audio_menu.xml".text = ''
               <?xml version="1.0" encoding="UTF-8"?>
@@ -218,17 +229,36 @@
                 </object>
               </interface>
             '';
+
+            # A Script that checks if Nextcloud is running or not
+            "waybar/nxtcloud.sh" = {
+              text = ''
+                #!/usr/bin/env bash
+                # Nextcloud-Status-Check für Waybar
+
+                output=$(pgrep -f nextcloud)
+                  
+                if [ -z "$output" ]; then
+                  echo '{"text":"󰅤","class":"inactive"}' 
+                else
+                  echo '{"text":"󱋖","class":"active"}'
+                fi
+              '';
+              # Script muss ausführbar sein:
+              executable = true;
+            };
           };
 
           programs.waybar = {
             enable = true;
             settings = waybarSettings;
+
+            # CSS-Styling for the Waybar
             style = ''
 
               @define-color bg rgba(28, 28, 44, 0.7);
               @define-color border rgba(120, 0, 0, 1);
-
-              @define-color white rgba(265, 265, 265, 1);
+              @define-color text rgba(265, 265, 265, 1);
             
               * {
                 font-size: 10px;
@@ -242,20 +272,20 @@
                 border-radius: 4px;
                 border-width: 2px;
                 border-color: @border;
-                color: @white;
+                color: @text;
               }
               
               #workspaces button {
                 background: transparent;
                 border: none;
-                color: @white;
+                color: @text;
                 margin: 0;
                 transition: none;
               }
               #workspaces button.active {
                 background: transparent;
                 border: none;
-                color: @white;
+                color: @text;
                 margin: 0;
                 transition: none;
               }
@@ -273,6 +303,10 @@
                 margin-right: 2px;
               }
 
+              #tray > * {
+                opacity: 0.5;
+                color: @white;
+              }
               /* Box around each element
               #custom-weather, #mpris {
                 margin: 2px;

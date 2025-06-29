@@ -18,6 +18,7 @@
     qemu
     spotify
     thunderbird
+    tor
     vscode
   ];
   

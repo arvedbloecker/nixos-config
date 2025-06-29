@@ -44,6 +44,12 @@
     # Operating System
     glibc
 
+
+    # High Level Programs
+    kdePackages.okular # Dokument Viewer
+    kdePackages.dolphin # File Manager
+    
+
     # Rust
     rustc
     cargo
@@ -51,5 +57,6 @@
     rust-analyzer
     rustfmt
     clippy
+    lldb
   ];
 }
