@@ -196,7 +196,7 @@ in
                 "Super+E".action = spawn "kitty";
                 "Super+P".action = spawn "firefox";
                 "Super+Return".action = spawn "wofi";
-                "Super+Shift+L".action = spawn "dm-tool" "lock";
+                "Super+Shift+L".action = spawn "loginctl" "lock-session";
 
 
                 "XF86AudioMute".action = sh "swayosd-client --output-volume=mute-toggle";
