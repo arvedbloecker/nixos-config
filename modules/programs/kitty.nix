@@ -5,39 +5,48 @@
 }:
 {
   home-manager.users.${username} = { config, ... }: {
+
     programs.kitty = {
       enable = true;
 
-      # Colours for the Theme Catpuccin_Mocha
       extraConfig = ''
-        background #1e1e2e
-        foreground #cdd6f4
-        selection_background #585b70
-        selection_foreground #cdd6f4
-        url_color #f5e0dc
+        # Everforest Dark – Medium (Default)
 
-        cursor #f5e0dc
-        cursor_text_color #1e1e2e
+        ## Farben
+        background            #232A2E
+        foreground            #D3C6AA
 
-        color0 #45475a
-        color1 #f38ba8
-        color2 #a6e3a1
-        color3 #f9e2af
-        color4 #89b4fa
-        color5 #f5c2e7
-        color6 #94e2d5
-        color7 #bac2de
-        color8 #585b70
-        color9 #f38ba8
-        color10 #a6e3a1
-        color11 #f9e2af
-        color12 #89b4fa
-        color13 #f5c2e7
-        color14 #94e2d5
-        color15 #a6adc8
+        selection_background  #2D353B
+        selection_foreground  #D3C6AA
 
-        window_padding_width 4
+        url_color             #83C092
+
+        cursor                #E67E80
+        cursor_text_color     #232A2E
+
+        ## ANSI-Farben (0–7)
+        color0   #D3C6AA
+        color1   #E67E80
+        color2   #A7C080
+        color3   #DBBC7F
+        color4   #7FBBB3
+        color5   #D699B6
+        color6   #83C092
+        color7   #9DA9A0
+
+        ## Helle ANSI-Farben (8–15)
+        color8   #7A8478
+        color9   #E67E80
+        color10  #A7C080
+        color11  #DBBC7F
+        color12  #7FBBB3
+        color13  #D699B6
+        color14  #83C092
+        color15  #9DA9A0
+
+        window_padding_width  4
       '';
     };
+
   };
 }

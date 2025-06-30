@@ -5,7 +5,7 @@
   ...
 }:
 let
-  bgImage = ./../../pkgs/RedBlueMountain.png;
+  bgImage = ./../../pkgs/nix-nord-green.svg;
 in
 {
   services = {
@@ -198,6 +198,10 @@ in
                 "Super+Return".action = spawn "wofi";
                 "Super+Shift+L".action = spawn "loginctl" "lock-session";
 
+                 
+                "Super+S".action = sh "swaync-client -t";
+                "Super+A".action = sh "cliphist list | wofi -S dmenu | cliphist decode | wl-copy";
+
 
                 "XF86AudioMute".action = sh "swayosd-client --output-volume=mute-toggle";
                 "XF86AudioPlay".action = sh "playerctl play-pause";
@@ -313,7 +317,7 @@ in
             gestures.hot-corners.enable = false;
 
             layout = {
-              gaps = 2;
+              gaps = 4;
               default-column-width.proportion = 0.5;
               insert-hint.display = {
                 color = "rgba(28, 28, 44, 30%)";
@@ -334,11 +338,11 @@ in
               
               border = {
                 enable = true;
-                width = 2;
+                width = 3;
                 active =
-                  { color = "rgba(120,0,0,1)"; };
+                  { color = "rgba(131, 192, 146, 1)"; };
                 inactive =
-                  { color = "rgba(28,28,44,0.4)"; }; 
+                  { color = "rgba(211, 198, 170, 1)"; }; 
               };
 
               focus-ring.enable = false;
@@ -348,8 +352,8 @@ in
                 place-within-column = true;
                 width = 8;
                 corner-radius = 8;
-                gap = 8;
-                gaps-between-tabs = 8;
+                gap = 12;
+                gaps-between-tabs = 12;
                 position = "top";
                 active = {
                   color = "rgba(28, 28, 44, 100%)";

@@ -9,10 +9,10 @@
           "spacing" = 4;
           "layer" = "top";
           "position" = "top";
-          "margin-top" = 2;
-          "margin-bottom" = 2;
-          "margin-left" = 2;
-          "margin-right" = 2;
+          "margin-top" = 4;
+          "margin-bottom" = 0;
+          "margin-left" = 4;
+          "margin-right" = 4;
           "height" = 26;
           "modules-left" = [
             "niri/workspaces"
@@ -258,9 +258,9 @@
             # CSS-Styling for the Waybar
             style = ''
 
-              @define-color bg rgba(28, 28, 44, 0.7);
-              @define-color border rgba(120, 0, 0, 1);
-              @define-color text rgba(265, 265, 265, 1);
+              @define-color bg rgba(35, 42, 46, 1);
+              @define-color border rgba(131, 192, 146, 1);
+              @define-color text rgba(211, 198, 170, 1);
             
               * {
                 font-size: 10px;
@@ -272,7 +272,7 @@
                 background: @bg;
                 border: Solid;
                 border-radius: 4px;
-                border-width: 2px;
+                border-width: 3px;
                 border-color: @border;
                 color: @text;
               }

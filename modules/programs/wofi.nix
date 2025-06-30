@@ -21,13 +21,17 @@
       };
 
     style = ''
-      /* Catppuccin Mocha Colors */
-      @define-color base   #1e1e2e;
-      @define-color mantle #181825;
-      @define-color crust  #11111b;
 
-      @define-color text rgb(200,200,200);
-      /*@define-color text   #cdd6f4;*/
+      @define-color dark-gray #232A2E;
+      @define-color light-beige #D3C6AA;
+      @define-color soft-red #E67E80;
+      @define-color soft-cyan #83C092;
+    
+      @define-color base   #232A2E; /* Dark Gray */
+      @define-color mantle #181825;
+      @define-color crust  #83C092; /* Soft Cyan */
+
+      @define-color text   #D3C6AA;
       @define-color red    #f38ba8;
       @define-color surface0  #313244;
       @define-color surface1  #45475a;
@@ -35,9 +39,9 @@
 
       #window {
         margin: 0px;
-        border: 2px solid rgb(120, 0, 0);
+        border: 2px solid @soft-cyan;
         border-radius: 10px;
-        background-color: rgba(30, 30, 46, 0.7);
+        background-color: @dark-gray;
         font-size: 16px;
         font-weight: bold;
       }
@@ -45,10 +49,10 @@
       #input {
         border-radius: 8px;
         color: @text;
-        background-color: rgba(24, 24, 37, 0.9);
+        background-color: @dark-gray;
         padding: 6px 8px;
         font-size: 16px;
-        border: 2px solid rgb(120,0,0);
+        border: 4px solid @soft-cyan;
         margin-bottom: 6px;
       }
 
@@ -66,25 +70,25 @@
       }
 
       #entry:selected {
-        background-color: @surface2;
+        background-color: @dark-gray;
         font-weight: normal;
         border-radius: 8px;
       }
 
       #text:selected {
-        background-color: @surface2;
+        background-color: @dark-gray;
         color: @text;
         font-weight: normal;
       }
 
       #expander-box {
-        background: @surface0;
+        background: @dark-gray;
         color: @text;
         font-weight: normal;
       }
 
       #expander-box:selected {
-        background: @surface1;
+        background: @dark-gray;
         color: @text;
         font-weight: normal;
       }

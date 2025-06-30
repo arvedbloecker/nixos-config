@@ -1,4 +1,4 @@
-{
+{  
   config,
   pkgs,
   username,
@@ -6,7 +6,7 @@
 }:
 let
   powerSettings =
-    if (false) then
+    if (config.modules.powerManagement.ppd.enable) then
       ''
         ,
               "menu#power-profiles": {
@@ -28,7 +28,7 @@ let
                 ]
               }
       ''
-    else if (true) then
+    else if (config.modules.powerManagement.tlp.enable) then
       ''
         ,
               "menu#power-profiles": {
@@ -63,464 +63,257 @@ in
     { config, ... }:
     {
       xdg.configFile = {
-        # Swaync
+        # Swaync JSON
         "swaync/config.json".text = ''
           {
             "$schema": "/etc/xdg/swaync/configSchema.json",
             "positionX": "right",
             "positionY": "top",
-            "control-center-margin-top": 6,
-            "control-center-margin-bottom": 6,
-            "control-center-margin-right": 6,
-            "control-center-margin-left": 6,
-            "notification-icon-size": 64,
-            "notification-body-image-height": 100,
-            "notification-body-image-width": 200,
-            "timeout": 10,
-            "timeout-low": 5,
+            "layer": "overlay",
+            "control-center-layer": "top",
+            "layer-shell": true,
+            "cssPriority": "application",
+            "control-center-width": 520,
+            "control-center-margin-top": 0,
+            "control-center-margin-bottom": 0,
+            "control-center-margin-right": 0,
+            "control-center-margin-left": 0,
+            "notification-2fa-action": true,
+            "notification-inline-replies": false,
+            "notification-window-width": 380,
+            "notification-icon-size": 48,
+            "notification-body-image-height": 240,
+            "notification-body-image-width": 240,
+            "timeout": 8,
+            "timeout-low": 4,
             "timeout-critical": 0,
             "fit-to-screen": true,
-            "notification-window-width": 500,
             "keyboard-shortcuts": true,
             "image-visibility": "when-available",
-            "transition-time": 200,
-            "hide-on-clear": false,
+            "transition-time": 150,
+            "hide-on-clear": true,
             "hide-on-action": true,
             "script-fail-notify": true,
             "widgets": [
-              "menubar",
-              "buttons-grid",
               "mpris",
-              "volume",
-              "backlight",
               "title",
-              "dnd",
-              "notifications"
+              "volume",
+              "notifications",
+              "backlight",
+              "buttons-grid"
             ],
             "widget-config": {
               "title": {
                 "text": "Notifications",
                 "clear-all-button": true,
-                "button-text": "Clear All"
-              },
-              "dnd": {
-                "text": "Do Not Disturb"
-              },
-              "label": {
-                "max-lines": 1,
-                "text": "Notification Center"
+                "button-text": "Clear"
               },
               "mpris": {
-                "image-size": 96,
-                "image-radius": 8
+                "image-size": 80,
+                "image-radius": 10
               },
               "volume": {
-                "label": "󰕾 "
+                "label": "",
+                "step": 5
               },
               "backlight": {
-                "label": "󰃟 "
+                "label": "󰃞",
+                "step": 5
               },
               "buttons-grid": {
                 "actions": [
                   {
-                    "label": "",
-                    "command": "wofi"
+                    "label": "",
+                    "command": "kitty nm-connection-editor",
+                    "tooltip": "Network"
                   },
                   {
-                    "label": "󰍺",
-                    "command": "wdisplays"
+                    "label": "",
+                    "command": "blueman-manager",
+                    "tooltip": "Bluetooth"
                   },
                   {
-                    "label": "",
-                    "command": "gpu-screen-recorder-gtk"
+                    "label": "󰂛",
+                    "command": "swaync-client -d",
+                    "type": "toggle",
+                    "tooltip": "DND"
+                  },
+                  {
+                    "label": "",
+                    "command": "hyprlock",
+                    "tooltip": "Lock"
+                  },
+                  {
+                    "label": "󰜉",
+                    "command": "reboot",
+                    "tooltip": "Reboot"
+                  },
+                  {
+                    "label": "⏻",
+                    "command": "shutdown now",
+                    "tooltip": "Power Off"
                   }
                 ]
-              },
-              "menubar": {
-                "menu#power-buttons": {
-                  "label": "",
-                  "position": "left",
-                  "actions": [
-                    {
-                      "label": " Shut down",
-                      "command": "systemctl poweroff"
-                    },
-                    {
-                      "label": "󰜉 Reboot",
-                      "command": "systemctl reboot"
-                    },
-                    {
-                      "label": "󰒲 Suspend",
-                      "command": "systemctl suspend"
-                    },
-                    {
-                      "label": "󰋊 Hibernate",
-                      "command": "systemctl hibernate"
-                    },
-                    {
-                      "label": "󰍃 Logout",
-                      "command": "niri msg action quit -s"
-                    },
-                    {
-                      "label": "󰌾 Lock Screen",
-                      "command": "loginctl lock-session"
-                    }
-                  ]
-                }${powerSettings}
               }
             }
           }
         '';
 
+        # Swaync CSS – Everforest Dark (Medium), 4px Abstand, 8px Radius
         "swaync/style.css".text = ''
-          @define-color cc-bg rgba(28, 28, 44, 1);
-          @define-color noti-border-color rgba(120, 0, 0, 1);
-          @define-color noti-bg rgb(28, 28, 44);
-          @define-color noti-bg-darker rgb(28, 28, 44);
-          @define-color noti-bg-hover rgb(34, 34, 54);
-          @define-color noti-bg-focus rgba(56, 56, 56, 1);
-          @define-color noti-close-bg rgba(56, 56, 56, 1);
-          @define-color noti-close-bg-hover rgba(75, 75, 88, 1);
-          @define-color text-color rgba(255, 255, 255, 1);
-          @define-color text-color-disabled rgb(280, 280, 280);
-          @define-color bg-selected rgb(224, 224, 224);
+          /* 1. Palette ─────────────────────────────────────────────────── */
+          @define-color theme_fg             #D3C6AA;
+          @define-color theme_fg_secondary   #D3C6AA;
+          @define-color theme_bg             #232A2E;
+          @define-color popup_bg             #232A2E;
+          @define-color module_bg            #232A2E;
+          @define-color module_hover_bg      #DBBC7F;
+          @define-color button_bg            #A7C080;
+          @define-color button_hover_bg      #DBBC7F;
+          @define-color accent_color         #83C092;
+          @define-color accent_color_hover   #A7C080;
+          @define-color border_light         #FFFFFF;
+          @define-color border_dark          #000000;
+          @define-color border_medium        #808080;
+          @define-color icon_primary         @theme_fg;
+          @define-color icon_secondary       #D3C6AA;
+          @define-color slider_trough_bg     #232A2E;
+          @define-color slider_thumb_bg      #D3C6AA;
+          @define-color close_button_bg      #6E6E73;
+          @define-color close_button_hover_bg#828288;
+          @define-color mpris_player_bg      #000000;
 
-          .control-center .notification-row:focus,
-          .control-center .notification-row:hover {
-            opacity: 1;
-            background: @noti-bg-darker
-          }
-
-          .notification-row {
+          /* 2. Basis-Reset ────────────────────────────────────────────── */
+          * {
+            font-family: "Inter", "SF Pro Text", sans-serif;
+            font-size: 17px;
+            color: @theme_fg;
+            border: none;
+            border-radius: 8px;
+            background: none;
+            padding: 0;
+            margin: 0;
+            box-shadow: none;
+            text-shadow: none;
             outline: none;
           }
 
-          .notification {
-            border-radius: 10px;
-            margin: 6px 0px 0px 0px;
-            padding: 0;
-            border: 2px solid @noti-border-color
-          }
-
-          .notification-content {
-            background: transparent;
-            padding: 8px;
-            border-radius: 10px
-          }
-
-          .close-button {
-            background: @noti-close-bg;
-            color: @text-color;
-            text-shadow: none;
-            padding: 0;
-            border-radius: 100%;
-            margin-top: 10px;
-            margin-right: 10px;
-            box-shadow: none;
-            border: none;
-            min-width: 24px;
-            min-height: 24px
-          }
-
-          .close-button:hover {
-            box-shadow: none;
-            background: @noti-close-bg-hover;
-            transition: all .15s ease-in-out;
-            border: none
-          }
-
-          .notification-default-action,
-          .notification-action {
-            padding: 4px;
-            margin: 0;
-            box-shadow: none;
-            background: @noti-bg;
-            border: none;
-            color: @text-color;
-            transition: all .15s ease-in-out
-          }
-
-          .notification-default-action:hover,
-          .notification-action:hover {
-            -gtk-icon-effect: none;
-            background: @noti-bg-hover
-          }
-
-          .notification-default-action {
-            border-radius: 10px
-          }
-
-          .notification-default-action:not(:only-child) {
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0
-          }
-
-          .notification-action {
-            border-radius: 0;
-            border-top: none;
-            border-right: none
-          }
-
-          .notification-action:first-child {
-            border-bottom-left-radius: 6px;
-            background: #1b1b2b
-          }
-
-          .notification-action:last-child {
-            border-bottom-right-radius: 6px;
-            background: #1b1b2b
-          }
-
-          .inline-reply {
-            margin-top: 8px
-          }
-
-          .inline-reply-entry {
-            background: @noti-bg-darker;
-            color: @text-color;
-            caret-color: @text-color;
-            border: 2px solid @noti-border-color;
-            border-radius: 10px
-          }
-
-          .inline-reply-button {
-            margin-left: 4px;
-            background: @noti-bg;
-            border: 2px solid @noti-border-color;
-            border-radius: 10px;
-            color: @text-color
-          }
-
-          .inline-reply-button:disabled {
-            background: initial;
-            color: @text-color-disabled;
-            border: 1px solid transparent
-          }
-
-          .inline-reply-button:hover {
-            background: @noti-bg-hover
-          }
-
-          .body-image {
-            margin-top: 6px;
-            background-color: #fff;
-            border-radius: 10px
-          }
-
-          .summary {
-            font-size: 16px;
-            font-weight: bold;
-            background: transparent;
-            color: @text-color;
-            text-shadow: none
-          }
-
-          .time {
-            font-size: 16px;
-            font-weight: bold;
-            background: transparent;
-            color: @text-color;
-            text-shadow: none;
-            margin-right: 18px
-          }
-
-          .body {
-            font-size: 15px;
-            font-weight: 400;
-            background: transparent;
-            color: @text-color;
-            text-shadow: none
-          }
-
+          /* 3. Control Center ─────────────────────────────────────────── */
           .control-center {
-            background: @cc-bg;
-            border: 2px solid @noti-border-color;
-            border-radius: 10px;
+            margin: 4px;
+            background-color: @theme_bg;
+            border: 1px solid @border_medium;
+            border-top-color: @border_light;
+            border-bottom-color: @border_dark;
+            border-radius: 8px;
+            padding: 28px;
+            min-width: 380px;
           }
 
-          .control-center-list {
-            background: transparent
+          /* 4. Widgets ───────────────────────────────────────────────── */
+          .widget-mpris,
+          .widget-volume,
+          .widget-backlight,
+          .widget-buttons-grid,
+          .control-center-list > box > *:not(.widget-title) {
+            background-color: @module_bg;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 14px;
+            border: 1px solid @border_medium;
           }
+          .widget-volume, .widget-backlight { padding: 14px 18px; }
+          .widget-buttons-grid { padding: 12px; }
+          .control-center > box > *:last-child { margin-bottom: 0; }
 
-          .control-center-list-placeholder {
-            opacity: .5
-          }
-
-          .floating-notifications {
-            background: transparent
-          }
-
-          .blank-window {
-            background: alpha(black, 0)
-          }
-
+          /* 5. Titel-Module ──────────────────────────────────────────── */
           .widget-title {
-            color: @text-color;
-            margin: 8px;
-            font-size: 1.5rem
-          }
-
-          .widget-title>button {
-            font-size: initial;
-            color: @text-color;
-            text-shadow: none;
-            background: @noti-bg;
-            box-shadow: none;
+            background: none;
             border: none;
-            border-radius: 10px
+            padding: 4px 6px 12px;
+            margin-bottom: 8px;
+          }
+          .widget-title label { font-weight: 500; color: @theme_fg_secondary; }
+          .widget-title button {
+            font-size: 16px;
+            color: @theme_fg;
+            background-color: @button_bg;
+            border-radius: 8px;
+            padding: 7px 16px;
+            transition: background-color 0.15s ease;
+          }
+          .widget-title button:hover { background-color: @button_hover_bg; }
+
+          /* 6. MPRIS Widget ─────────────────────────────────────────── */
+          .widget-mpris .widget-mpris-player {
+            background-color: @mpris_player_bg;
+            border-radius: 8px;
+            border: 1px solid @border_medium;
+            padding: 16px;
+          }
+          .widget-mpris .widget-mpris-album-art { border-radius: 8px; margin-right: 12px; }
+          .widget-mpris .widget-mpris-title    { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+          .widget-mpris .widget-mpris-subtitle { font-size: 16px; }
+          .widget-mpris .widget-mpris-player button:hover {
+            background-color: @button_hover_bg; color: @icon_primary;
+          }
+          .widget-mpris .widget-mpris-player button:disabled { color: @border_medium; }
+
+          /* 7. Slider (Volume, Backlight) ───────────────────────────── */
+          .widget-volume label, .widget-backlight label { font-size: 24px; margin-right: 14px; }
+          scale trough { min-height: 12px; border-radius: 6px; background-color: @slider_trough_bg; }
+          scale trough progress { background-color: @accent_color; transition: background-color 0.15s ease; }
+          scale:hover trough progress { background-color: @accent_color; }
+          trough highlight {
+            background: @accent_color; border-radius: 20px; box-shadow: 0 0 5px rgba(0,0,0,0.5);
+          }
+          scale slider { background-color: @slider_thumb_bg; border-radius: 7px; }
+
+          /* 8. Button Grid ──────────────────────────────────────────── */
+          .widget-buttons-grid > flowboxchild > button {
+            background-color: @module_bg; border-radius: 50%; padding: 14px; min-width: 24px; min-height: 24px;
+            transition: background-color 0.15s ease;
+          }
+          .widget-buttons-grid > flowboxchild > button:hover { background-color: @button_hover_bg; }
+          .widget-buttons-grid > flowboxchild > button.toggle:checked {
+            background-color: @accent_color; color: white;
+          }
+          .widget-buttons-grid > flowboxchild > button.toggle:checked:hover {
+            background-color: @accent_color_hover;
           }
 
-          .widget-title>button:hover {
-            background: @noti-bg-hover
+          /* 9. Notification Center & Floating ───────────────────────── */
+          .control-center-list,
+          .floating-notifications .notification-background {
+            border-radius: 8px;
+            background-color: @module_bg;
+            border: 1px solid @border_medium;
+            padding: 16px;
+            margin: 4px;
           }
-
-          .widget-dnd {
-            color: @text-color;
-            margin: 8px;
-            font-size: 1.1rem
+          .control-center .notification-row,
+          .floating-notifications .notification-row { margin-bottom: 12px; }
+          .control-center .notification-row:hover .notification-background,
+          .floating-notifications .notification-row:hover .notification-background {
+            background-color: @module_hover_bg;
           }
-
-          .widget-dnd>switch {
-            font-size: initial;
-            border-radius: 15px;
-            background: @noti-bg;
-            border: 2px solid @noti-border-color;
-            box-shadow: none
+          .control-center .notification .summary,
+          .floating-notifications .notification .summary {
+            font-weight: 600; color: @theme_fg;
           }
-
-          .widget-dnd>switch:checked {
-            background: @bg-selected
+          .control-center .notification .body,
+          .floating-notifications .notification .body {
+            color: @theme_fg_secondary;
           }
-
-          .widget-dnd>switch slider {
-            background: @noti-bg-hover;
-            border-radius: 10px
+          .control-center .notification .time,
+          .floating-notifications .notification .time {
+            font-size: 15px; color: @icon_secondary;
           }
-
-          .widget-label {
-            margin: 8px;
+          .close-button {
+            background-color: @close_button_bg; border-radius: 50%; min-width: 24px; min-height: 24px;
+            transition: background-color 0.15s ease;
           }
-
-          .widget-label>label {
-            font-size: 1.5rem;
-            color: @text-color;
-          }
-
-          .widget-mpris {
-            color: @text-color;
-            background: @noti-bg-darker;
-            padding: 8px;
-            margin: 0px;
-          }
-
-          .widget-mpris-player {
-            padding: 8px;
-            margin: 8px
-          }
-
-          .widget-mpris-title {
-            font-weight: 700;
-            font-size: 1.25rem
-          }
-
-          .widget-mpris-subtitle {
-            font-size: 1.1rem
-          }
-
-          .widget-buttons-grid {
-            font-size: x-large;
-            background: @noti-bg-darker;
-          }
-
-          .widget-menubar>box {
-            border: 2px solid @noti-border-color;
-            border-radius: 7px 7px 10px 10px;
-            background: @noti-border-color
-          }
-
-          .widget-menubar>box>.menu-button-bar>button {
-            color: @noti-bg
-          }
-
-          .power-buttons>button {
-            color: @noti-bg
-          }
-
-          .power-profiles>button {
-            color: @noti-bg
-          }
-
-          .widget-buttons-grid>flowbox>flowboxchild>button {
-            padding: 6px 56px;
-            background: transparent;
-            border-radius: 10px;
-            background: @noti-bg;
-            color: @text-color
-          }
-
-          .widget-buttons-grid>flowbox>flowboxchild>button:hover {
-            color: @noti-border-color;
-            background: @noti-bg-hover;
-          }
-                  
-          .widget-menubar>box>.menu-button-bar>button {
-            border: none;
-            background: transparent
-          }
-
-          .topbar-buttons>button {
-            border: none;
-            background: transparent
-          }
-
-          .widget-volume {
-            background: @noti-bg-darker;
-            padding: 8px;
-            margin: 0px;
-            border-radius: 10px;
-            font-size: x-large;
-            color: @noti-border-color 
-          }
-
-          .widget-volume>box>button {
-            background: transparent;
-            border: none
-          }
-
-          .per-app-volume {
-            background-color: @noti-bg;
-            padding: 4px 8px 8px;
-            margin: 0 8px 8px;
-            border-radius: 10px
-          }
-
-          .widget-backlight {
-            background: @noti-bg-darker;
-            padding: 8px;
-            margin: 0px;
-            border-radius: 0px;
-            font-size: x-large;
-            color: @noti-border-color
-          }
-
-          .widget-inhibitors {
-            margin: 8px;
-            font-size: 1.5rem
-          }
-
-          .widget-inhibitors>button {
-            font-size: initial;
-            color: @text-color;
-            text-shadow: none;
-            background: @noti-bg;
-            border: 2px solid @noti-border-color;
-            box-shadow: none;
-            border-radius: 10px
-          }
-
-          .widget-inhibitors>button:hover {
-            background: @noti-bg-hover
-          }
+          .close-button:hover { background-color: @close_button_hover_bg; }
         '';
       };
     };
