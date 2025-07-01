@@ -10,39 +10,65 @@
       enable = true;
 
       extraConfig = ''
-        # Everforest Dark – Medium (Default)
+        # Gruvbox Dark – Medium
 
-        ## Farben
-        background            #232A2E
-        foreground            #D3C6AA
+        ## Hintergrund und Text
+        # bg0
+        background            #282828
+        # fg0
+        foreground            #FBF1C7
 
-        selection_background  #2D353B
-        selection_foreground  #D3C6AA
+        ## Auswahl
+        # bg0_s
+        selection_background  #32302F
+        # fg0
+        selection_foreground  #FBF1C7
 
-        url_color             #83C092
+        ## Links
+        # aqua0
+        url_color             #689D6A
 
-        cursor                #E67E80
-        cursor_text_color     #232A2E
+        ## Cursor
+        # yellow1
+        cursor                #FABD2F
+        # bg0
+        cursor_text_color     #282828
 
         ## ANSI-Farben (0–7)
-        color0   #D3C6AA
-        color1   #E67E80
-        color2   #A7C080
-        color3   #DBBC7F
-        color4   #7FBBB3
-        color5   #D699B6
-        color6   #83C092
-        color7   #9DA9A0
+        # black (bg0)
+        color0   #282828
+        # red0
+        color1   #CC241D
+        # green0
+        color2   #98971A
+        # yellow0
+        color3   #D79921
+        # blue0
+        color4   #458588
+        # purple0
+        color5   #B16286
+        # aqua0
+        color6   #689D6A
+        # gray
+        color7   #A89984
 
         ## Helle ANSI-Farben (8–15)
-        color8   #7A8478
-        color9   #E67E80
-        color10  #A7C080
-        color11  #DBBC7F
-        color12  #7FBBB3
-        color13  #D699B6
-        color14  #83C092
-        color15  #9DA9A0
+        # gray (bright)
+        color8   #928374
+        # red1
+        color9   #FB4934
+        # green1
+        color10  #B8BB26
+        # yellow1
+        color11  #FABD2F
+        # blue1
+        color12  #83A598
+        # purple1
+        color13  #D3869B
+        # aqua1
+        color14  #8EC07C
+        # fg0 (bright white)
+        color15  #FBF1C7
 
         window_padding_width  4
       '';

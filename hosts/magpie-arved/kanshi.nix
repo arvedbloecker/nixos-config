@@ -48,6 +48,28 @@
                 ];
               };
             }
+            {
+              profile = {
+                # Laptop screen below external Screen
+                name = "sra-lab-pc30";
+                outputs = [
+                  {
+                    criteria = "Samsung Display Corp. 0x419F Unknown";
+                    mode = "2880x1800";
+                    status = "enable";
+                    scale = 1.0;
+                    position = "${builtins.toString ((2560 - 2880) / 2)},${builtins.toString 1440}";
+                  }
+                  {
+                    criteria = "Dell Inc. DELL U2715H GH85D86M06FS";
+                    mode = "2560x1440";
+                    status = "enable";
+                    scale = 1.0;
+                    position = "0,0";
+                  }
+                ];
+              };
+            }
           ];
       };
     };

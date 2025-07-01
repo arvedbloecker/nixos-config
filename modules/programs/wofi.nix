@@ -22,16 +22,17 @@
 
     style = ''
 
-      @define-color dark-gray #232A2E;
+
+      @define-color dark-gray rgb(40, 40, 40);
       @define-color light-beige #D3C6AA;
       @define-color soft-red #E67E80;
-      @define-color soft-cyan #83C092;
+      @define-color soft-cyan rgb(104, 157, 106);
     
-      @define-color base   #232A2E; /* Dark Gray */
+      @define-color base   rgb(40, 40, 40); /* Dark Gray */
       @define-color mantle #181825;
-      @define-color crust  #83C092; /* Soft Cyan */
+      @define-color crust  rgb(104, 157, 106); /* Soft Cyan */
 
-      @define-color text   #D3C6AA;
+      @define-color text   rgb(251, 241, 199);
       @define-color red    #f38ba8;
       @define-color surface0  #313244;
       @define-color surface1  #45475a;

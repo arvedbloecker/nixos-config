@@ -161,29 +161,56 @@ in
 
         # Swaync CSS – Everforest Dark (Medium), 4px Abstand, 8px Radius
         "swaync/style.css".text = ''
-          /* 1. Palette ─────────────────────────────────────────────────── */
-          @define-color theme_fg             #D3C6AA;
-          @define-color theme_fg_secondary   #D3C6AA;
-          @define-color theme_bg             #232A2E;
-          @define-color popup_bg             #232A2E;
-          @define-color module_bg            #232A2E;
-          @define-color module_hover_bg      #DBBC7F;
-          @define-color button_bg            #A7C080;
-          @define-color button_hover_bg      #DBBC7F;
-          @define-color accent_color         #83C092;
-          @define-color accent_color_hover   #A7C080;
-          @define-color border_light         #FFFFFF;
-          @define-color border_dark          #000000;
-          @define-color border_medium        #808080;
-          @define-color icon_primary         @theme_fg;
-          @define-color icon_secondary       #D3C6AA;
-          @define-color slider_trough_bg     #232A2E;
-          @define-color slider_thumb_bg      #D3C6AA;
-          @define-color close_button_bg      #6E6E73;
-          @define-color close_button_hover_bg#828288;
-          @define-color mpris_player_bg      #000000;
 
-          /* 2. Basis-Reset ────────────────────────────────────────────── */
+          /* Gruvbox Colours ─────────────────────────────────────────── */    
+
+          @define-color bg0                  #282828;
+          @define-color bg1                  #3c3836;
+          @define-color bg2                  #504945;
+          @define-color bg3                  #665c54;
+          @define-color fg0                  #fbf1c7;
+          @define-color fg1                  #d5c4a1;
+          @define-color fg2                  #d5c4a1;
+          @define-color fg3                  #bdae93;
+          @define-color gray                 #928374;
+          @define-color red0                 #cc241d;
+          @define-color red1                 #fb4934;
+          @define-color green0               #98971a;
+          @define-color green1               #b8bb26;
+          @define-color yellow0              #d79921;
+          @define-color yellow1              #fabd2f;
+          @define-color blue0                #458588;
+          @define-color blue1                #83a598;
+          @define-color purple0              #b16286;
+          @define-color purple1              #d3869b;
+          @define-color aqua0                #689d6a;
+          @define-color aqua1                #8ec07c;
+          @define-color orange0              #d65d0e;
+          @define-color orange1              #fe8019;
+          
+          /* Palette ─────────────────────────────────────────────────── */
+          @define-color theme_fg             @fg0;
+          @define-color theme_fg_secondary   @fg1;
+          @define-color theme_bg             @bg1;
+          @define-color popup_bg             @bg1;
+          @define-color module_bg            @bg1;
+          @define-color module_hover_bg      @gray;
+          @define-color button_bg            @aqua0; /* Clear button */
+          @define-color button_hover_bg      @orange0; /* Clear button hover */
+          @define-color accent_color         @yellow0;
+          @define-color accent_color_hover   @blue0;
+          @define-color border_light         @border_medium; /* Uniform Bordering */
+          @define-color border_dark          @border_medium;
+          @define-color border_medium        @aqua0;
+          @define-color icon_primary         @theme_fg;
+          @define-color icon_secondary       @yellow0;
+          @define-color slider_trough_bg     @bg2; /* Background Sound-Slider */
+          @define-color slider_thumb_bg      @fg0; /* Button Sound-Slider */
+          @define-color close_button_bg      @gray;
+          @define-color close_button_hover_bg@green0;
+          @define-color mpris_player_bg      @bg2;
+
+          /* Basis-Reset ────────────────────────────────────────────── */
           * {
             font-family: "Inter", "SF Pro Text", sans-serif;
             font-size: 17px;
@@ -198,11 +225,12 @@ in
             outline: none;
           }
 
-          /* 3. Control Center ─────────────────────────────────────────── */
+          /* Control Center ─────────────────────────────────────────── */
+          
           .control-center {
             margin: 4px;
             background-color: @theme_bg;
-            border: 1px solid @border_medium;
+            border: 3px solid @border_medium;
             border-top-color: @border_light;
             border-bottom-color: @border_dark;
             border-radius: 8px;
@@ -210,7 +238,8 @@ in
             min-width: 380px;
           }
 
-          /* 4. Widgets ───────────────────────────────────────────────── */
+          /* Widgets ───────────────────────────────────────────────── */
+          
           .widget-mpris,
           .widget-volume,
           .widget-backlight,
@@ -226,7 +255,8 @@ in
           .widget-buttons-grid { padding: 12px; }
           .control-center > box > *:last-child { margin-bottom: 0; }
 
-          /* 5. Titel-Module ──────────────────────────────────────────── */
+          /* Titel-Module ──────────────────────────────────────────── */
+          
           .widget-title {
             background: none;
             border: none;
@@ -244,7 +274,8 @@ in
           }
           .widget-title button:hover { background-color: @button_hover_bg; }
 
-          /* 6. MPRIS Widget ─────────────────────────────────────────── */
+          /* MPRIS Widget ─────────────────────────────────────────── */
+          
           .widget-mpris .widget-mpris-player {
             background-color: @mpris_player_bg;
             border-radius: 8px;
@@ -259,7 +290,8 @@ in
           }
           .widget-mpris .widget-mpris-player button:disabled { color: @border_medium; }
 
-          /* 7. Slider (Volume, Backlight) ───────────────────────────── */
+          /* Slider (Volume, Backlight) ───────────────────────────── */
+          
           .widget-volume label, .widget-backlight label { font-size: 24px; margin-right: 14px; }
           scale trough { min-height: 12px; border-radius: 6px; background-color: @slider_trough_bg; }
           scale trough progress { background-color: @accent_color; transition: background-color 0.15s ease; }
@@ -269,7 +301,8 @@ in
           }
           scale slider { background-color: @slider_thumb_bg; border-radius: 7px; }
 
-          /* 8. Button Grid ──────────────────────────────────────────── */
+          /* Button Grid ──────────────────────────────────────────── */
+          
           .widget-buttons-grid > flowboxchild > button {
             background-color: @module_bg; border-radius: 50%; padding: 14px; min-width: 24px; min-height: 24px;
             transition: background-color 0.15s ease;
@@ -282,7 +315,8 @@ in
             background-color: @accent_color_hover;
           }
 
-          /* 9. Notification Center & Floating ───────────────────────── */
+          /* Notification Center & Floating ───────────────────────── */
+          
           .control-center-list,
           .floating-notifications .notification-background {
             border-radius: 8px;

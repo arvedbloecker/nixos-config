@@ -5,7 +5,7 @@
   ...
 }:
 let
-  bgImage = ./../../pkgs/nix-nord-green.svg;
+  bgImage = ./../../pkgs/wallpaper/dark-thinkdot.png;
 in
 {
   services = {
@@ -335,37 +335,44 @@ in
                 { proportion = 2.0 / 3.0; }
                 { proportion = 1.0; }
               ];
-              
+
+              # Creates the Border around each windowpreset-window-heights
               border = {
                 enable = true;
                 width = 3;
                 active =
-                  { color = "rgba(131, 192, 146, 1)"; };
+                  # aqua0
+                  { color = "rgba(104, 157, 106, 1)"; };
                 inactive =
-                  { color = "rgba(211, 198, 170, 1)"; }; 
+                  # fg0
+                  { color = "rgba(235, 219, 178, 1)"; }; 
               };
 
+              # No Focus ring as it creates a variable width, which brings noise in my opinion. The border active/inactive is enough
               focus-ring.enable = false;
 
+              # For Grouping Windows in Tabs (Super+W)
               tab-indicator = {
                 enable = true;
                 place-within-column = true;
                 width = 8;
                 corner-radius = 8;
-                gap = 12;
-                gaps-between-tabs = 12;
+                gap = 4;
+                gaps-between-tabs = 4;
                 position = "top";
                 active = {
-                  color = "rgba(28, 28, 44, 100%)";
+                  # aqua0
+                  color = "rgba(104, 157, 106, 1)";
                 };
                 inactive = {
-                  color = "rgba(28, 28, 44, 30%)";
+                  # fg0
+                color = "rgba(251, 241, 199, 1)";
                 };
                 length.total-proportion = 1.0;
               };
             };
-
-            overview.backdrop-color = "#0f0f0f";
+            # bg1
+            overview.backdrop-color = "rgb(60,56,54)";
 
             window-rules = [
               {
@@ -397,23 +404,6 @@ in
                 matches = [
                   { is-window-cast-target = true; }
                 ];
-
-                focus-ring = {
-                  active = {
-                    color = "rgba(100, 0, 0, 100%)";
-                  };
-                  inactive = {
-                    color = "rgba(28, 28, 44, 30%)";
-                  };
-                };
-                tab-indicator = {
-                  active = {
-                    color = "rgba(224, 53, 53, 100%)";
-                  };
-                  inactive = {
-                    color = "rgba(224, 53, 53, 30%)";
-                  };
-                };
               }
             ];
           };

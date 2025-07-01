@@ -13,6 +13,7 @@
           "margin-bottom" = 0;
           "margin-left" = 4;
           "margin-right" = 4;
+          "radius" = 4;
           "height" = 26;
           "modules-left" = [
             "niri/workspaces"
@@ -258,15 +259,16 @@
             # CSS-Styling for the Waybar
             style = ''
 
-              @define-color bg rgba(35, 42, 46, 1);
-              @define-color border rgba(131, 192, 146, 1);
-              @define-color text rgba(211, 198, 170, 1);
+              @define-color bg rgba(40, 40, 40, 0.6);
+              @define-color border rgba(104, 157, 106, 1);
+              @define-color text rgba(235, 219, 178, 1);
             
               * {
                 font-size: 10px;
                 font-family: "JetBrainsMono Nerd Font Propo";
                 font-weight: Bold;
                 padding: 0 4px 0 4px;
+                border-radius: 4px;
               }
               window#waybar {
                 background: @bg;
