@@ -1,5 +1,6 @@
 {
   imports = [
+    ./btop.nix
     ./git.nix
     ./helix.nix
     ./hyprlock.nix
