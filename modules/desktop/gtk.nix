@@ -10,10 +10,14 @@
     {
       gtk = {
         enable = true;
-        iconTheme.name = "Adwaita";
-        iconTheme.package = pkgs.adwaita-icon-theme;
-        theme.name = "Everforest";
-        theme.package = pkgs.everforest-gtk-theme;
+        #iconTheme.name = "Adwaita";
+        #iconTheme.package = pkgs.adwaita-icon-theme;
+        theme.name = "Gruvbox-Dark";
+        theme.package = pkgs.gruvbox-gtk-theme;
+
+        iconTheme.name = "Gruvbox-Plus-Dark";
+        iconTheme.package = pkgs.gruvbox-plus-icons;
       };
     };
-}
+  }
+
