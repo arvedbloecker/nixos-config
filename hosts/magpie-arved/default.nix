@@ -21,7 +21,6 @@
     texliveFull
     thunderbird
     tor-browser
-    typst
     vscode
   ];
   

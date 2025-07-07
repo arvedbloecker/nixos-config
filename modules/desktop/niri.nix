@@ -156,6 +156,7 @@ in
                 { command = sh ++ [ "systemctl --user start xwayland-satellite.service" ]; }
                 { command = sh ++ [ "systemctl --user start swaybg.service" ]; }
                 { command = sh ++ [ "systemctl --user start swaync.service" ]; }
+                { command = sh ++ [ "systemctl --user start kanshi.service" ]; }
                 { command = sh ++ [ "sleep 1 && blueman-applet" ]; }
                 { command = sh ++ [ "id=0" ]; }
                 { command = [ "swayosd-server" ]; }

@@ -15,5 +15,20 @@ type: `boolean`
 default: `false`  
 possible values: `true`, `false`  
   
-Sets the desktop config for hypridle (disables brightness changes and suspend)
+Sets the desktop config for hypridle (disables brightness changes and suspend). `false` means that hypridle is active and `true` disables the suspend.
 
+### `modules.powerManagement.tlp.enable`
+
+type: boolean
+default: false
+possible values: true, false
+
+Enables tlp (for laptop power-management).
+
+### `modules.powerManagement.ppd.enable`
+
+type: boolean
+default: false
+possible values: true, false
+
+Enables power-profiles-daemon (for laptop power-management)

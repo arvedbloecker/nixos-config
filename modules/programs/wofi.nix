@@ -96,7 +96,7 @@
 
       /* Override the blue selection indicator (e.g. app icon circle) */
       #entry:selected image {
-        background-color: white;
+        background-color: transparent;
         color: white;
         border-radius: 50%;
       }

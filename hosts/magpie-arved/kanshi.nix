@@ -35,7 +35,7 @@
                     criteria = "Samsung Display Corp. 0x419F Unknown";
                     mode = "2880x1800";
                     status = "enable";
-                    scale = 1.0;
+                    scale = 1.5;
                     position = "${builtins.toString ((2560 - 2880) / 2)},${builtins.toString 1440}";
                   }
                   {
@@ -57,7 +57,7 @@
                     criteria = "Samsung Display Corp. 0x419F Unknown";
                     mode = "2880x1800";
                     status = "enable";
-                    scale = 1.0;
+                    scale = 1.5;
                     position = "${builtins.toString ((2560 - 2880) / 2)},${builtins.toString 1440}";
                   }
                   {

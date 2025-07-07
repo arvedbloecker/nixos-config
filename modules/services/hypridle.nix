@@ -13,6 +13,7 @@
     let
       hypridleSettings =
         if (!config.modules.services.hypridle.desktop) then
+        # if false (standard) sets the hypridle on
           {
             general = {
               lock_cmd = "pidof hyprlock || niri msg action do-screen-transition && hyprlock --no-fade-in";
@@ -47,6 +48,7 @@
             ];
           }
         else
+        # if true then nothing happens on inactivity (empty listener)
           {
             general = {
               lock_cmd = "pidof hyprlock || niri msg action do-screen-transition && hyprlock --no-fade-in";
