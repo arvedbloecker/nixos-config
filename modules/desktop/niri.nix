@@ -39,10 +39,24 @@ in
         description = "wl-paste + cliphist service";
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.cliphist}/bin/cliphist store";
+          ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.cliphist}/bin/cliphist store --text";
           Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
         };
       };
+      cliphist-image = {
+        description = "wl-paste + cliphist service for pictures";
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.cliphist}/bin/cliphist store --image";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
+      };
+
+      
 
       swaybg = {
         description = "swaybg service";
@@ -134,6 +148,7 @@ in
               DISPLAY = ":1";
               ELM_DISPLAY = "wl";
               GDK_BACKEND = "wayland,x11";
+              MOZ_ENABLE_WAYLAND = "1"; # Run Firefux under Wayland
               QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
               SDL_VIDEODRIVER = "wayland";
               CLUTTER_BACKEND = "wayland";

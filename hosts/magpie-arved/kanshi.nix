@@ -36,7 +36,7 @@
                     mode = "2880x1800";
                     status = "enable";
                     scale = 1.5;
-                    position = "${builtins.toString ((2560 - 2880) / 2)},${builtins.toString 1440}";
+                    position = "${builtins.toString ((2560 - 1920) / 2)},${builtins.toString 1440}";
                   }
                   {
                     criteria = "Lenovo Group Limited Q27q-20 UPP023CY";
@@ -58,7 +58,8 @@
                     mode = "2880x1800";
                     status = "enable";
                     scale = 1.5;
-                    position = "${builtins.toString ((2560 - 2880) / 2)},${builtins.toString 1440}";
+                    # 1920 comes from 2880 / 1.5 (Scaling) = 1920
+                    position = "${builtins.toString ((2560 - 1920) / 2)},${builtins.toString 1440}";
                   }
                   {
                     criteria = "Dell Inc. DELL U2715H GH85D86M06FS";

@@ -15,8 +15,11 @@
       enable = true;
       userName = gitUsername;
       userEmail = gitEmail;
+     
       extraConfig = {
+        init = { defaultBranch = "main"; };
         core.editor = "${pkgs.helix}/bin/hx";
+        
       };
     };
   };

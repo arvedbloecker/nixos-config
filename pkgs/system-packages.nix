@@ -49,7 +49,7 @@
     # High Level Programs
     evince # Dokument Viewer
     nautilus # File Manager
-    
+    gnome-photos # Show Photos
 
     # Rust
     rustc
