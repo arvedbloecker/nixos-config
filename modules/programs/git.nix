@@ -19,6 +19,9 @@
       extraConfig = {
         init = { defaultBranch = "main"; };
         core.editor = "${pkgs.helix}/bin/hx";
+
+        push = { default = "simple"; };
+        pull = { rebase = true; };
         
       };
     };
