@@ -28,12 +28,12 @@
         username = "arved";
         userDescription = "Arved Bloecker";
         hostname = "magpie";
-
-        gitUsername = "arvedbloecker";
-        gitEmail = "git@arvedbloecker.de";
         
         # Generate the hashedPassword with mkpasswd
         hashedPassword = "$y$j9T$b2Obca/x4HHLzhGeiTBqr/$G.8GGokLUklJ0qnDKx.3l4pvnQWKNP/X.PROPM0BPIC";
+
+        gitUsername = "arvedbloecker";
+        gitEmail = "git@arvedbloecker.de";
       };
     };
     
