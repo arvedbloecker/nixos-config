@@ -330,7 +330,7 @@ in
                 "Super+Shift+P".action   = power-off-monitors;
               };
 
-            gestures.hot-corners.enable = false;
+            gestures.hot-corners.enable = true;
 
             layout = {
               gaps = 4;

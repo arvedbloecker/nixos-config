@@ -20,9 +20,9 @@
 
         ## Auswahl
         # bg0_s
-        selection_background  #32302F
+        selection_background  #FBF1C7
         # fg0
-        selection_foreground  #FBF1C7
+        selection_foreground  #282828
 
         ## Links
         # aqua0
