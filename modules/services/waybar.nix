@@ -1,3 +1,4 @@
+# This module configures the waybar, a program to provide a very customizable taskbar. https://github.com/Alexays/Waybar/wiki
 {
   config, lib, pkgs, username, ...
 }:
@@ -6,6 +7,7 @@
     let
       waybarSettings = [
         {
+          # General configurations
           "spacing" = 4;
           "layer" = "top";
           "position" = "top";
@@ -15,9 +17,12 @@
           "margin-right" = 4;
           "radius" = 4;
           "height" = 26;
+
+          # Provides where and in what ordner the parts shall be ordered
           "modules-left" = [
             "niri/workspaces"
             "custom/weather"
+            "idle_inhibitor"
             "custom/nextcloud"
             "mpris"
           ];
@@ -32,6 +37,8 @@
             "clock"
             "custom/menu"
           ];
+
+          # Functionality of the modules
           "niri/workspaces" = {
             "on-click" = "activate";
             "all-outputs" = false;
@@ -56,6 +63,15 @@
             "interval" = 3600;
             "exec" = "wttrbar --location Hannover --nerd";
             "return-type" = "json";
+          };
+          "idle_inhibitor" = {
+            "format" = "{icon}";
+            "format-icons" = {
+              "activated" = "󰛨";
+              "deactivated" = "󰌶";
+            };
+            # optional: startet direkt aktiviert
+            "start-activated" = false;
           };
           "mpris" = {
             "format" = "{player_icon} {title} - {artist}";
@@ -195,12 +211,12 @@
       ];
     in
     {
+      # Packages that will be installed with the waybar
       environment.systemPackages = with pkgs; [
         easyeffects
         pwvucontrol
         helvum
         swaynotificationcenter
-        wdisplays
         wttrbar
         playerctl
       ];

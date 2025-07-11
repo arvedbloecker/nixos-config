@@ -1,3 +1,4 @@
+# This file is for the sway-notificationcenter. It provides the Sidebar to see notifications and control the media-player.
 {  
   config,
   pkgs,
