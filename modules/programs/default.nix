@@ -7,5 +7,7 @@
     ./kitty.nix
     ./swaync.nix
     ./wofi.nix
+    ./zellij.nix
+    ./zsh.nix
   ];
 }
