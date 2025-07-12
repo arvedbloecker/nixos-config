@@ -23,6 +23,7 @@
             "niri/workspaces"
             "custom/weather"
             "idle_inhibitor"
+            "custom/mail"
             "custom/nextcloud"
             "mpris"
           ];
@@ -49,6 +50,18 @@
               "active" = "";
             };
           };
+          # This module relies on thunderbird, delete it if you dont use thunderbird
+          # Also delete this in modules-left
+          "custom/mail" = {
+            "on-click" = "thunderbird";
+            "on-click-right" = "~/.config/waybar/run-thunderbird-bg.sh";
+            "exec" = "~/.config/waybar/mail.sh";
+            "interval" = 30;
+            "format" = "{}";
+            "return-type" = "json";
+          };
+          # This module relies on nextcloud, delete it if you dont use nextcloud
+          # Also delete this in modules-left
           "custom/nextcloud" = {
             "on-click" = "nextcloud";
             "on-click-right" = "nextcloud --background";
@@ -188,13 +201,13 @@
             "format" = "{icon:2}";
             "tooltip" = true;
             "format-icons" = {
-              "notification" = "<span foreground='#E03535'><sup></sup></span>";
+              "notification" = "";
               "none" = "";
-              "dnd-notification" = "<span foreground='#E03535'><sup></sup></span>";
+              "dnd-notification" = "";
               "dnd-none" = "";
-              "inhibited-notification" = "<span foreground='#E03535'><sup></sup></span>";
+              "inhibited-notification" = "";
               "inhibited-none" = "";
-              "dnd-inhibited-notification" = "<span foreground='#E03535'><sup></sup></span>";
+              "dnd-inhibited-notification" = "";
               "dnd-inhibited-none" = "";
             };
             "exec" = "swaync-client -swb";
@@ -264,6 +277,33 @@
                 fi
               '';
               # Script muss ausführbar sein:
+              executable = true;
+            };
+            "waybar/mail.sh" = {
+              text = ''
+                #!/usr/bin/env bash
+                # Nextcloud-Status-Check für Waybar
+
+                output=$(pgrep -f thunderbird)
+                  
+                if [ -z "$output" ]; then
+                  echo '{"text":"󱏤","class":"inactive"}' 
+                else
+                  echo '{"text":"󱋈","class":"active"}'
+                fi
+              '';
+              # Script muss ausführbar sein:
+              executable = true;
+            };
+            "waybar/run-thunderbird-bg.sh" = {
+              text = ''
+                #!/usr/bin/env bash
+
+                while true;
+                  timeout 30 thunderbird --headless;
+                  do sleep 10m;
+                done
+              '';
               executable = true;
             };
           };

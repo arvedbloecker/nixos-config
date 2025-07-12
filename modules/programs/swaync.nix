@@ -192,9 +192,9 @@ in
           /* Palette ─────────────────────────────────────────────────── */
           @define-color theme_fg             @fg0;
           @define-color theme_fg_secondary   @fg1;
-          @define-color theme_bg             @bg1;
-          @define-color popup_bg             @bg1;
-          @define-color module_bg            @bg1;
+          @define-color theme_bg             @bg0;
+          @define-color popup_bg             @bg0;
+          @define-color module_bg            @bg0;
           @define-color module_hover_bg      @gray;
           @define-color button_bg            @aqua0; /* Clear button */
           @define-color button_hover_bg      @orange0; /* Clear button hover */
@@ -205,11 +205,11 @@ in
           @define-color border_medium        @aqua0;
           @define-color icon_primary         @theme_fg;
           @define-color icon_secondary       @yellow0;
-          @define-color slider_trough_bg     @bg2; /* Background Sound-Slider */
+          @define-color slider_trough_bg     @bg1; /* Background Sound-Slider */
           @define-color slider_thumb_bg      @fg0; /* Button Sound-Slider */
           @define-color close_button_bg      @gray;
           @define-color close_button_hover_bg@green0;
-          @define-color mpris_player_bg      @bg2;
+          @define-color mpris_player_bg      @bg1;
 
           /* Basis-Reset ────────────────────────────────────────────── */
           * {
@@ -326,24 +326,34 @@ in
             padding: 16px;
             margin: 4px;
           }
+
           .control-center .notification-row,
           .floating-notifications .notification-row { margin-bottom: 12px; }
+
           .control-center .notification-row:hover .notification-background,
           .floating-notifications .notification-row:hover .notification-background {
             background-color: @module_hover_bg;
           }
+          
           .control-center .notification .summary,
           .floating-notifications .notification .summary {
             font-weight: 600; color: @theme_fg;
           }
+          
           .control-center .notification .body,
           .floating-notifications .notification .body {
             color: @theme_fg_secondary;
           }
+          
           .control-center .notification .time,
           .floating-notifications .notification .time {
             font-size: 15px; color: @icon_secondary;
           }
+
+          .notification-row image {
+            margin-right: 8px;
+          }
+          
           .close-button {
             background-color: @close_button_bg; border-radius: 50%; min-width: 24px; min-height: 24px;
             transition: background-color 0.15s ease;
