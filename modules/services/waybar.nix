@@ -299,9 +299,9 @@
               text = ''
                 #!/usr/bin/env bash
 
-                while true;
+                while true; do
                   timeout 30 thunderbird --headless;
-                  do sleep 10m;
+                  sleep 10m;
                 done
               '';
               executable = true;
