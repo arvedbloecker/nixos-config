@@ -23,7 +23,7 @@
     style = ''
 
 
-      @define-color dark-gray rgb(40, 40, 40);
+      @define-color dark-gray rgba(40, 40, 40, 0.98);
       @define-color light-beige #D3C6AA;
       @define-color soft-red #E67E80;
       @define-color soft-cyan rgb(104, 157, 106);
@@ -44,7 +44,7 @@
         border-radius: 10px;
         background-color: @dark-gray;
         font-size: 16px;
-        font-weight: bold;
+        font-weight: normal;
       }
 
       #input {
@@ -60,6 +60,7 @@
       #outer-box {
         margin: 8px;
         border: none;
+        border-radius: 10px;
         background-color: transparent;
         border-radius: 8px;
       }
@@ -72,14 +73,14 @@
 
       #entry:selected {
         background-color: @dark-gray;
-        font-weight: normal;
+        font-weight: bold;
         border-radius: 8px;
       }
 
       #text:selected {
         background-color: @dark-gray;
         color: @text;
-        font-weight: normal;
+        font-weight: bold;
       }
 
       #expander-box {

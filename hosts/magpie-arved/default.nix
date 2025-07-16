@@ -17,6 +17,7 @@
     nextcloud-client
     onlyoffice-desktopeditors
     qemu
+    signal-desktop
     spotify
     texliveFull
     thunderbird

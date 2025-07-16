@@ -78,7 +78,7 @@
             "return-type" = "json";
           };
           "idle_inhibitor" = {
-            "format" = "{icon}";
+            "format" = "{icon:2}";
             "format-icons" = {
               "activated" = "󰛨";
               "deactivated" = "󰌶";
