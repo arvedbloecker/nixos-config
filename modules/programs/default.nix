@@ -8,6 +8,6 @@
     ./swaync.nix
     ./wofi.nix
     ./zellij.nix
-    ./zsh.nix
+    ./shell.nix
   ];
 }
