@@ -22,6 +22,7 @@
           "modules-left" = [
             "niri/workspaces"
             "custom/weather"
+            "custom/refresh"
             "idle_inhibitor"
             "custom/mail"
             "custom/nextcloud"
@@ -50,13 +51,19 @@
               "active" = "";
             };
           };
+          "custom/refresh" = {
+            "on-click" = "~/.config/waybar/refresh-wbar.sh";
+            "format" = "";
+          };
+          
           # This module relies on thunderbird, delete it if you dont use thunderbird
           # Also delete this in modules-left
           "custom/mail" = {
             "on-click" = "thunderbird";
             "on-click-right" = "~/.config/waybar/run-thunderbird-bg.sh";
+            "on-click-middle" = "killall .thunderbird-wr";
             "exec" = "~/.config/waybar/mail.sh";
-            "interval" = 30;
+            "interval" = 10;
             "format" = "{}";
             "return-type" = "json";
           };
@@ -65,8 +72,9 @@
           "custom/nextcloud" = {
             "on-click" = "nextcloud";
             "on-click-right" = "nextcloud --background";
+            "on-click-middle" = "pkill nextcloud";
             "exec" = "~/.config/waybar/nxtcloud.sh";
-            "interval" = 30;
+            "interval" = 10;
             "format" = "{}";
             "return-type" = "json";
           };
@@ -78,7 +86,7 @@
             "return-type" = "json";
           };
           "idle_inhibitor" = {
-            "format" = "{icon:2}";
+            "format" = "{icon}";
             "format-icons" = {
               "activated" = "󰛨";
               "deactivated" = "󰌶";
@@ -271,9 +279,9 @@
                 output=$(pgrep -f nextcloud)
                   
                 if [ -z "$output" ]; then
-                  echo '{"text":"󰅤","class":"inactive"}' 
+                  echo "{\"text\":\"󰅤\",\"class\":\"inactive\"}" 
                 else
-                  echo '{"text":"󱋖","class":"active"}'
+                  echo "{\"text\":\"󱋖\",\"class\":\"active\"}"
                 fi
               '';
               # Script muss ausführbar sein:
@@ -287,22 +295,83 @@
                 output=$(pgrep -f thunderbird)
                   
                 if [ -z "$output" ]; then
-                  echo '{"text":"󱏤","class":"inactive"}' 
+                  echo "{\"text\":\"󱏤\",\"class\":\"inactive\"}"
                 else
-                  echo '{"text":"󱋈","class":"active"}'
+                  echo "{\"text\":\"󱋈\",\"class\":\"active\"}"
                 fi
               '';
               # Script muss ausführbar sein:
               executable = true;
             };
-            "waybar/run-thunderbird-bg.sh" = {
+            "waybar/run-thunderbrd-bg.sh" = {
               text = ''
                 #!/usr/bin/env bash
+                
+                # Function to check if thunderbird is running/
+                thunderbird_is_running() {
+                  pgrep -f thunderbird > /dev/null
+                }
+
+                # Check if thunderbird is running
+                if thunderbird_is_running; then
+                  # thunderbird is running, so kill it
+                  killall .thunderbird-wr
+                else
+                  # thunderbird is not running
+                fi
 
                 while true; do
                   timeout 30 thunderbird --headless;
                   sleep 10m;
                 done
+              '';
+              executable = true;
+            };
+            "waybar/run-thunderbrd-fg.sh" = {
+              text = ''
+                #!/usr/bin/env bash
+                
+                # Function to check if thunderbird is running/
+                thunderbird_is_running() {
+                  pgrep -f thunderbird > /dev/null
+                }
+
+                # Check if thunderbird is running
+                if thunderbird_is_running; then
+                  # thunderbird is running, so kill and restart it
+                  echo "thunderbird is running. Restarting..."
+                  killall .thunderbird-wr
+                  thunderbird
+                else
+                  # thunderbird is not running, start it
+                  echo "thunderbird is not running. Starting..."
+                  thunderbird
+                fi
+
+              '';
+              executable = true;
+            };
+            "waybar/refresh-wbar.sh" = {
+              text = ''
+                #!/usr/bin/env bash
+
+                # Function to check if waybar is running/
+                waybar_is_running() {
+                  pgrep -f waybar > /dev/null
+                }
+
+                # Check if waybar is running
+                if waybar_is_running; then
+                  # Waybar is running, so kill and restart it
+                  echo "Waybar is running. Restarting..."
+                  killall .waybar-wrapped
+                  waybar &
+                else
+                  # Waybar is not running, start it
+                  echo "waybar is not running. Starting..."
+                  waybar &
+                fi
+
               '';
               executable = true;
             };
