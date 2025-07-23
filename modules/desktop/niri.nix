@@ -148,7 +148,7 @@ in
               DISPLAY = ":1";
               ELM_DISPLAY = "wl";
               GDK_BACKEND = "wayland,x11";
-              MOZ_ENABLE_WAYLAND = "1"; # Run Firefux under Wayland
+              MOZ_ENABLE_WAYLAND = "0"; # Run Firefox under Wayland
               QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
               SDL_VIDEODRIVER = "wayland";
               CLUTTER_BACKEND = "wayland";
@@ -183,7 +183,7 @@ in
               warp-mouse-to-focus.enable = true;
 
               mouse = {
-                accel-speed = 0.5;
+                accel-speed = 0.0;
               };
 
               touchpad = {
