@@ -211,6 +211,7 @@ in
                 # Tools
                 "Super+E".action = spawn "kitty";
                 "Super+P".action = spawn "firefox";
+                "Super+Space".action = spawn "wofi";
                 "Super+Return".action = spawn "wofi";
                 "Super+Shift+L".action = spawn "loginctl" "lock-session";
 
@@ -316,10 +317,6 @@ in
 
                 # Tabbed column display
                 "Super+W".action = toggle-column-tabbed-display;
-
-                # Switch keyboard layout
-                "Super+Space".action       = switch-layout "next";
-                "Super+Shift+Space".action = switch-layout "prev";
 
                 # Screenshots
                 "Print".action       = screenshot;

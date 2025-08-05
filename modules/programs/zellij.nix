@@ -5,7 +5,7 @@ let
   zellijConfig = ''
     theme "gruvbox-dark";
     copy_on_select true;
-    default_mode "normal"; // TODO: Change to "locked" after issue #3998 is fixed
+    default_mode "locked"; // TODO: Change to "locked" after issue #3998 is fixed
 
     keybinds {
       shared {

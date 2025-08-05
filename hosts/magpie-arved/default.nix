@@ -11,6 +11,7 @@
 
   users.users.${username}.packages = with pkgs; [
     android-studio
+    anki
     docker_28
     element-desktop
     fwupd

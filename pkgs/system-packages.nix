@@ -32,8 +32,8 @@
     tree
     unzip
     # Documentation
-    #man-pages
-    #man-pages-posix
+    man-pages
+    man-pages-posix
     # Terminal
     tmux
     # Status
@@ -45,6 +45,8 @@
     steam-run
     # Operating System
     glibc
+
+    glib
 
 
     # High Level Programs
