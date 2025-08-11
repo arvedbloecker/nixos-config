@@ -16,7 +16,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-private, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
   let
     lib = import ./lib {
       inherit self inputs;
@@ -36,9 +36,6 @@
         gitEmail = "git@arvedbloecker.de";
       };
     };
-    
-    # Development shells in ./shells
-    devShells = lib.eachSystem (pkgs: import ./shells { inherit pkgs; });
 
     lib = lib;
   };
