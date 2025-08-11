@@ -18,6 +18,7 @@
     onlyoffice-desktopeditors
     qemu
     signal-desktop
+    simple-scan
     spotify
     texliveFull
     thunderbird
