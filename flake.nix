@@ -21,7 +21,15 @@
     lib = import ./lib {
       inherit self inputs;
     };
-  in
+
+    
+    private = if builtins.pathExists ./private.nix 
+      then import ./private.nix 
+      else {
+         gitUsername = "defaulUser";
+         gitEmail = "default@example.com";
+      };
+  in                    
   {
     nixosConfigurations = lib.genHosts {
       magpie-arved = {
@@ -32,8 +40,11 @@
         # Generate the hashedPassword with mkpasswd
         hashedPassword = "$y$j9T$b2Obca/x4HHLzhGeiTBqr/$G.8GGokLUklJ0qnDKx.3l4pvnQWKNP/X.PROPM0BPIC";
 
-        gitUsername = "arvedbloecker";
-        gitEmail = "git@arvedbloecker.de";
+        gitUsername = private.gitUsername;
+        gitEmail = private.gitEmail;
+
+        # gitUsername = "arvedbloecker";
+        # gitEmail = "git@arvedbloecker.de";
       };
     };
     

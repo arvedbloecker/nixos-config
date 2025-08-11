@@ -4,6 +4,8 @@
 }:
 {
   environment.systemPackages = with pkgs; [
+    age
+    sops
     psmisc
     # Shell
     fish

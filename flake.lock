@@ -1,27 +1,5 @@
 {
   "nodes": {
-    "brother-ds640": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "dir": "brother-ds640",
-        "lastModified": 1754941830,
-        "narHash": "sha256-vP1TU7MmlHDXp0P4+Tqmr2kebEtONqCgp/mfH+VpxYo=",
-        "ref": "refs/heads/main",
-        "rev": "e79aadd1611dd71829f8fba0d9c2c0953461b37d",
-        "revCount": 18,
-        "type": "git",
-        "url": "https://codeberg.org/arvedbloecker/nix-packages.git"
-      },
-      "original": {
-        "dir": "brother-ds640",
-        "type": "git",
-        "url": "https://codeberg.org/arvedbloecker/nix-packages.git"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -135,7 +113,6 @@
     },
     "root": {
       "inputs": {
-        "brother-ds640": "brother-ds640",
         "home-manager": "home-manager",
         "niri": "niri",
         "nixpkgs": "nixpkgs"
