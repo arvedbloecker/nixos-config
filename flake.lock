@@ -79,6 +79,23 @@
         "type": "github"
       }
     },
+    "nix-private": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1754950426,
+        "narHash": "sha256-nFJAGdMCbR4RI60+gdxGIsBBQvE2FIt7AiEgAxn4LFU=",
+        "ref": "main",
+        "rev": "6086bdc0ed4cead8d5f8aab26670a3c8cda62f36",
+        "revCount": 2,
+        "type": "git",
+        "url": "ssh://git@codeberg.org/arvedbloecker/nix-private.git"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "ssh://git@codeberg.org/arvedbloecker/nix-private.git"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1754767907,
@@ -115,6 +132,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "niri": "niri",
+        "nix-private": "nix-private",
         "nixpkgs": "nixpkgs"
       }
     },
