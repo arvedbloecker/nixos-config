@@ -11,8 +11,7 @@
 
   users.users.${username}.packages = with pkgs; [
     android-studio
-    anki
-    docker_28
+    bitwarden
     element-desktop
     fwupd
     nextcloud-client
@@ -22,7 +21,6 @@
     spotify
     texliveFull
     thunderbird
-    tor-browser
     vscode
   ];
   

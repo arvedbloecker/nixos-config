@@ -19,6 +19,7 @@
       "networkmanager"
       "wheel"
       "audio"
+      "scanner"
     ];
   };
 }

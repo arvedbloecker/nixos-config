@@ -187,7 +187,7 @@ in
               };
 
               touchpad = {
-                accel-speed = 0.5;
+                accel-speed = 0.0;
               };
 
               keyboard.xkb.layout = "us";
