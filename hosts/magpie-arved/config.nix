@@ -9,4 +9,10 @@
     #powerManagement.ppd.enable = true;
     #powerManagement.autoCpuFreq.enable = true;
   };
+
+  # Enable Sops and Sops-Connected Modules
+  secrets.enable = true;
+  sops = {
+    gitConfig.enable = true;
+  };
 }

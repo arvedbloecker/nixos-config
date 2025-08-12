@@ -7,7 +7,8 @@
     ./hardware-configuration.nix
     ./kanshi.nix
   ];
-  
+
+  secrets.enable = true;
 
   users.users.${username}.packages = with pkgs; [
     android-studio
