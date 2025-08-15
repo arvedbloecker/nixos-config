@@ -18,9 +18,9 @@
                 outputs = [
                   {
                     criteria = "Samsung Display Corp. 0x419F Unknown";
-                    mode = "2800x1800";
+                    mode = "2880x1800";
                     status = "enable";
-                    scale = 1.0;
+                    scale = 1.4;
                     position = "0,0";
                   }
                 ];
