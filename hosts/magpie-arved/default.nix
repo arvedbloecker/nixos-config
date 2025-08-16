@@ -1,11 +1,13 @@
 # Custom Settings for each user/pc that might be very individual. It only needs the import of ./hardware-configuration.nix as a bare minimum. 
-{ config, pkgs, username, ... }:
+{ config, pkgs, username, nixos-hardware, ... }:
 
 {
   imports = [
     ./config.nix
     ./hardware-configuration.nix
     ./kanshi.nix
+
+    nixos-hardware.nixosModules.lenovo-thinkpad-p14s-amd-gen5
   ];
 
   secrets.enable = true;
@@ -25,6 +27,11 @@
     thunderbird
     vscode
   ];
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
   
   # Fingerprintreader
   #services.fprintd.enable = true;

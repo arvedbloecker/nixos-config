@@ -13,6 +13,10 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+    };
     
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -20,7 +24,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, sops-nix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixos-hardware,  sops-nix, ... }@inputs:
     let
       lib = import ./lib {
         inherit self inputs;

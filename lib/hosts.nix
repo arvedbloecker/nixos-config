@@ -19,6 +19,7 @@ let
         userDescription
         hashedPassword
         ;
+      inherit (inputs) nixos-hardware;
     };
     modules = [
       inputs.home-manager.nixosModules.home-manager
