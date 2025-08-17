@@ -32,6 +32,12 @@
     enable = true;
     enable32Bit = true;
   };
+
+  # Thinkpad Specific Power Management Features
+  services.thermald.enable = true;
+
+  # AMD GPU Power Management
+  hardware.amdgpu.opencl.enable = true;
   
   # Fingerprintreader
   #services.fprintd.enable = true;

@@ -44,3 +44,26 @@ default: `false`
 possible values: `true`, `false`
 
 Enables autoCpuFreq (for laptop power-management).
+
+### Secrets
+
+#### `secrets.enable`
+
+type: `boolean`
+default: `false`
+possible values: `true`, `false`
+
+Enables the secret-management via sops.
+
+#### `sops.gitConfig`
+
+type: `boolean`
+default: `false`
+possible values: `true`, `false`
+
+Make sure secrets.enable is activated when using this.
+
+Enables managing the git-data via sops.
+
+
+
