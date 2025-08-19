@@ -7,6 +7,7 @@
     age
     sops
     psmisc
+    xdg-utils
     # Shell
     fish
     # Editor

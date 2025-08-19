@@ -6,6 +6,7 @@
     ./hyprlock.nix
     ./kitty.nix
     ./swaync.nix
+    ./vscode.nix
     ./wofi.nix
     ./zellij.nix
     ./shell.nix
