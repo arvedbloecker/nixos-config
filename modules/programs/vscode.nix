@@ -8,8 +8,8 @@ in
 {
   home-manager.users.${username} = { config, ... }: {
     programs.vscode = {
-
       enable = true;
+      # Use FHS wrapper globally
       package = pkgs.vscode.fhsWithPackages (ps: with ps; [
         python3
         python3Packages.pip
@@ -19,11 +19,13 @@ in
         gdb
         cmake
         pkg-config
+        # Serial communication tools
+        screen
+        minicom
       ]);
-
       profiles.platformio = {
         extensions = commonExtensions ++ (with pkgs.vscode-extensions; [
-          ms-vscode.cpptools          # Microsoft C/C++ extension
+          ms-vscode.cpptools
           platformio.platformio-vscode-ide
         ]);
       };
