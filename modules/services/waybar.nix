@@ -24,7 +24,6 @@
             "custom/weather"
             "custom/refresh"
             "idle_inhibitor"
-            "custom/mail"
             "custom/nextcloud"
             "mpris"
           ];
@@ -32,6 +31,8 @@
             "niri/window"
           ];
           "modules-right" = [
+            "cpu"
+            "memory"
             "pulseaudio"
             "battery"
             "bluetooth"
@@ -40,6 +41,16 @@
             "custom/menu"
           ];
 
+          "cpu" = {
+            "interval" = 10;
+            "format" = " {usage}%";
+          };
+
+          "memory" = {
+            "interval" = 10;
+            "format" = " {used}GiB";
+          };
+          
           # Functionality of the modules
           "niri/workspaces" = {
             "on-click" = "activate";
@@ -56,17 +67,6 @@
             "format" = "";
           };
           
-          # This module relies on thunderbird, delete it if you dont use thunderbird
-          # Also delete this in modules-left
-          "custom/mail" = {
-            "on-click" = "thunderbird";
-            "on-click-right" = "~/.config/waybar/run-thunderbird-bg.sh";
-            "on-click-middle" = "killall .thunderbird-wr";
-            "exec" = "~/.config/waybar/mail.sh";
-            "interval" = 10;
-            "format" = "{}";
-            "return-type" = "json";
-          };
           # This module relies on nextcloud, delete it if you dont use nextcloud
           # Also delete this in modules-left
           "custom/nextcloud" = {
@@ -183,7 +183,7 @@
 
           };
           "network" = {
-            "format-wifi" = "{icon}";
+            "format-wifi" = "{icon} {bandwidthDownBytes}  {bandwidthUpBytes}  ";
             "format-ethernet" = "󰈀 ";
             "format-disconnected" = "󰖪";
             "format-icons" = {
@@ -202,7 +202,7 @@
             "on-click" = "nm-connection-editor";
           };
           "clock" = {
-            "format" = "{:%H:%M  %y-%m-%d}";
+            "format" = "{:%y-%m-%d %H:%M}";
             "tooltip" = false;
           }; 
           "custom/menu" = {
@@ -287,70 +287,6 @@
               # Script muss ausführbar sein:
               executable = true;
             };
-            "waybar/mail.sh" = {
-              text = ''
-                #!/usr/bin/env bash
-                # Nextcloud-Status-Check für Waybar
-
-                output=$(pgrep -f thunderbird)
-                  
-                if [ -z "$output" ]; then
-                  echo "{\"text\":\"󱏤\",\"class\":\"inactive\"}"
-                else
-                  echo "{\"text\":\"󱋈\",\"class\":\"active\"}"
-                fi
-              '';
-              # Script muss ausführbar sein:
-              executable = true;
-            };
-            "waybar/run-thunderbrd-bg.sh" = {
-              text = ''
-                #!/usr/bin/env bash
-                
-                # Function to check if thunderbird is running/
-                thunderbird_is_running() {
-                  pgrep -f thunderbird > /dev/null
-                }
-
-                # Check if thunderbird is running
-                if thunderbird_is_running; then
-                  # thunderbird is running, so kill it
-                  killall .thunderbird-wr
-                else
-                  # thunderbird is not running
-                fi
-
-                while true; do
-                  timeout 30 thunderbird --headless;
-                  sleep 10m;
-                done
-              '';
-              executable = true;
-            };
-            "waybar/run-thunderbrd-fg.sh" = {
-              text = ''
-                #!/usr/bin/env bash
-                
-                # Function to check if thunderbird is running/
-                thunderbird_is_running() {
-                  pgrep -f thunderbird > /dev/null
-                }
-
-                # Check if thunderbird is running
-                if thunderbird_is_running; then
-                  # thunderbird is running, so kill and restart it
-                  echo "thunderbird is running. Restarting..."
-                  killall .thunderbird-wr
-                  thunderbird
-                else
-                  # thunderbird is not running, start it
-                  echo "thunderbird is not running. Starting..."
-                  thunderbird
-                fi
-
-              '';
-              executable = true;
-            };
             "waybar/refresh-wbar.sh" = {
               text = ''
                 #!/usr/bin/env bash
@@ -426,7 +362,6 @@
                 text-shadow: none;
               }
 
-             
               #bluetooth, #network, #pulseaudio, #custom-menu {
                 margin-left: 2px;
                 margin-right: 2px;

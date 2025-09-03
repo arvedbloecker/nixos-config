@@ -20,7 +20,7 @@
                     criteria = "Samsung Display Corp. 0x419F Unknown";
                     mode = "2880x1800";
                     status = "enable";
-                    scale = 1.4;
+                    scale = 1.2;
                     position = "0,0";
                   }
                 ];
