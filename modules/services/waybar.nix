@@ -21,7 +21,6 @@
           # Provides where and in what ordner the parts shall be ordered
           "modules-left" = [
             "niri/workspaces"
-            "custom/weather"
             "custom/refresh"
             "idle_inhibitor"
             "custom/nextcloud"
@@ -76,13 +75,6 @@
             "exec" = "~/.config/waybar/nxtcloud.sh";
             "interval" = 10;
             "format" = "{}";
-            "return-type" = "json";
-          };
-          "custom/weather" = {
-            "format" = "{text}°";
-            "tooltip" = true;
-            "interval" = 3600;
-            "exec" = "wttrbar --location Hannover --nerd";
             "return-type" = "json";
           };
           "idle_inhibitor" = {
