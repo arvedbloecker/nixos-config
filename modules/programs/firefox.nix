@@ -13,7 +13,7 @@
             settings = {
               "ui.textScaleFactor" = 100;
               "layout.css.devPixelsPerPx" = "1.0";
-              "browser.display.os-zoom-behavior" = 0;  # Korrektur: "display" nicht "displau"
+              "browser.display.os-zoom-behavior" = 0;
             };
           };
         };
