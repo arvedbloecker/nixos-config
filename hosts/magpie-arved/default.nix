@@ -14,6 +14,7 @@
 
   users.users.${username}.packages = with pkgs; [
     android-studio
+    ausweisapp
     bitwarden
     element-desktop
     fwupd
@@ -32,6 +33,9 @@
     enable = true;
     enable32Bit = true;
   };
+
+  programs.ausweisapp.enable = true;
+  programs.ausweisapp.openFirewall = true;
 
   # Thinkpad Specific Power Management Features
   services.thermald.enable = true;

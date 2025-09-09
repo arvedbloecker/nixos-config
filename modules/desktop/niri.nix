@@ -145,10 +145,9 @@ in
             screenshot-path = "~/Nextcloud/Photos/Sammlungen/Screenshots-Desktop/%Y-%m-%d-%H%M%S.png";
 
             environment = {
-              DISPLAY = ":1";
               ELM_DISPLAY = "wl";
               GDK_BACKEND = "wayland,x11";
-              MOZ_ENABLE_WAYLAND = "0"; # Run Firefox under Wayland
+              MOZ_ENABLE_WAYLAND = "1"; # Run Firefox under Wayland
               QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
               SDL_VIDEODRIVER = "wayland";
               CLUTTER_BACKEND = "wayland";
@@ -162,9 +161,9 @@ in
                 ];
               in
               [
-                { command = sh ++ [ "wl-clip-persist --clipboard regular" ]; }
+                { command = sh ++ [ "wl-clip-persist --clipboard regular" ]; } #Might cause Problems
                 { command = sh ++ [ "cliphist wipe" ]; }
-                { command = sh ++ [ "systemctl --user start cliphist-text.service" ]; }
+                { command = sh ++ [ "systemctl --user start cliphist.service" ]; }
                 { command = sh ++ [ "systemctl --user start cliphist-image.service" ]; }
                 { command = sh ++ [ "systemctl --user start hypridle.service" ]; }
                 { command = sh ++ [ "systemctl --user start waybar.service" ]; }
@@ -319,12 +318,13 @@ in
                 "Super+W".action = toggle-column-tabbed-display;
 
                 # Screenshots
+                "Super+Shift+P".action     = screenshot;
                 "Print".action       = screenshot;
                 "Alt+Print".action   = screenshot-window;
 
                 # Session & power
                 "Ctrl+Alt+Delete".action = quit;
-                "Super+Shift+P".action   = power-off-monitors;
+                # "Super+Shift+P".action   = power-off-monitors;
               };
 
             gestures.hot-corners.enable = true;
