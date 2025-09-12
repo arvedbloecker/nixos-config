@@ -1,3 +1,4 @@
+# Wofi is a app-launcher
 {
   username,
   ...

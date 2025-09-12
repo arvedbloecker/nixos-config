@@ -1,3 +1,4 @@
+# Helix is a Vim-Like texteditor
 { username, ... }:
 
 {

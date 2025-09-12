@@ -1,3 +1,4 @@
+# Setting for the shell
 {
   pkgs, username, ...
 }:

@@ -1,3 +1,4 @@
+# VSCode is a gui based texteditor which offers a lot of plugin-support
 { pkgs, username, ... }:
 let
   commonExtensions = with pkgs.vscode-extensions; [

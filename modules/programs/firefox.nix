@@ -1,3 +1,4 @@
+# Firefox is a webbrowser
 {lib, pkgs, username, ...}:
 {
 

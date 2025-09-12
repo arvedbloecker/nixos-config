@@ -1,3 +1,4 @@
+# Kitty is a terminal emulator
 {
   pkgs,
   username,

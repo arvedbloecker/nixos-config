@@ -1,3 +1,4 @@
+# BTOP is a modern system monitor
 { pkgs, username, ... }:
 
 {

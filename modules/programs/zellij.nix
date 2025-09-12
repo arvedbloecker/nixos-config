@@ -1,3 +1,4 @@
+#Zellij is a terminal multiplexer
 { pkgs, username, ... }:
 
 let

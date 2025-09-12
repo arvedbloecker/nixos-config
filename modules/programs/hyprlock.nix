@@ -1,4 +1,4 @@
-
+# Hyprlock is a lockscreen
 {
   pkgs,
   username,
