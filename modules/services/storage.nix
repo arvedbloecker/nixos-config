@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  username,
   ...
 }:
 with lib; let
@@ -9,6 +10,15 @@ with lib; let
 in {
   options.modules.services.storage = {
     enable = mkEnableOption "Enable USB automounting and storage services";
+    
+    udiskie = {
+      notify = mkBoolOpt true "Show desktop notifications for mount/unmount";
+      tray = mkOption {
+        type = types.enum ["always" "auto" "never" "smart"];
+        default = "smart";
+        description = "When to show system tray icon";
+      };
+    };
   };
 
   config = mkIf cfg.enable {
@@ -43,5 +53,21 @@ in {
       exfat       # exFAT
       dosfstools  # FAT32
     ];
+
+    # Home Manager udiskie Konfiguration - nur für den echten Benutzer
+    home-manager.users.${username} = {
+      services.udiskie = {
+        enable = true;
+        automount = true;
+        notify = cfg.udiskie.notify;
+        tray = cfg.udiskie.tray;
+        
+        settings = {
+          program_options = {
+            file_manager = "${pkgs.ranger}/bin/ranger";
+          };
+        };
+      };
+    };
   };
 }
