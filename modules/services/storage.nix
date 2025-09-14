@@ -26,13 +26,11 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # System services für USB-Geräte
     services = {
       udisks2.enable = true;
       gvfs.enable = true;
     };
 
-    # Polkit-Berechtigungen für USB-Mounting ohne sudo
     security.polkit = {
       enable = true;
       extraConfig = ''
@@ -48,7 +46,6 @@ in {
       '';
     };
 
-    # Pakete für verschiedene Dateisysteme
     environment.systemPackages = with pkgs; [
       udiskie
       udisks
@@ -58,7 +55,6 @@ in {
       dosfstools  # FAT32
     ];
 
-    # Home Manager udiskie Konfiguration - nur für den echten Benutzer
     home-manager.users.${username} = {
       services.udiskie = {
         enable = true;
