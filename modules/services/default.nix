@@ -6,6 +6,7 @@
     ./lightdm.nix
     ./printing.nix
     ./scanner.nix
+    ./storage.nix
     ./waybar.nix
     ./xserver.nix
   ];

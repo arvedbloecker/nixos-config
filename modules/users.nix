@@ -20,6 +20,8 @@
       "wheel"
       "audio"
       "scanner"
+      "disk"
+      "storage"
     ];
   };
 }

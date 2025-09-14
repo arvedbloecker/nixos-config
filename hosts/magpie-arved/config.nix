@@ -8,6 +8,9 @@
     powerManagement.tlp.enable = true;
     #powerManagement.ppd.enable = true;
     #powerManagement.autoCpuFreq.enable = true;
+    #
+
+    services.storage.enable = true;
   };
 
   # Enable Sops and Sops-Connected Modules
