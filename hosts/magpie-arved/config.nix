@@ -11,6 +11,7 @@
     #
 
     services.storage.enable = true;
+    programs.udiskie.enable = true;
   };
 
   # Enable Sops and Sops-Connected Modules
