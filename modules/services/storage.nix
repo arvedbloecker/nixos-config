@@ -12,10 +12,14 @@ in {
     enable = mkEnableOption "Enable USB automounting and storage services";
     
     udiskie = {
-      notify = mkBoolOpt true "Show desktop notifications for mount/unmount";
+      notify = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Show desktop notifications for mount/unmount";
+      };
       tray = mkOption {
-        type = types.enum ["always" "auto" "never" "smart"];
-        default = "smart";
+        type = types.enum ["always" "auto" "never"];
+        default = "auto";
         description = "When to show system tray icon";
       };
     };
