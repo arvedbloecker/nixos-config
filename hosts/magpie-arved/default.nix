@@ -16,6 +16,7 @@
     android-studio
     ausweisapp
     bitwarden
+    brave # Firefox has a weird scaling on my laptop and i dont know how to fix it : (
     element-desktop
     fwupd
     nextcloud-client

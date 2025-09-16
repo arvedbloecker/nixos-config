@@ -1,7 +1,6 @@
 # Firefox is a webbrowser
 {lib, pkgs, username, ...}:
 {
-
   home-manager.users.${username} = {
     config, ...
   }:
