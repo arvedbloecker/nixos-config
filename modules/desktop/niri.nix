@@ -5,7 +5,7 @@
   ...
 }:
 let
-  bgImage = ./../../pkgs/wallpaper/dark-thinkdot.png;
+  bgImage = ./../../pkgs/wallpaper/nix-d-nord-red.jpg;
 in
 {
   services = {
@@ -64,6 +64,19 @@ in
           Type = "simple";
           ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i ${bgImage}";
           Restart = "on-failure";
+        };
+      };
+
+      xwayland-satellite = {
+        description = "xwayland-satellite";
+        wantedBy = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
+        serviceConfig = {
+          Type = "notify";
+          ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
+          NotifyAccess = "all";
+          Restart = "always";
+          RestartSec = 2;
         };
       };
     };

@@ -4,7 +4,7 @@
 let
   # Vollständige, benutzerdefinierte Zellij-Konfiguration in KDL
   zellijConfig = ''
-    theme "gruvbox-dark";
+    theme "ayu-mirage";
     copy_on_select true;
     default_mode "locked"; 
 
