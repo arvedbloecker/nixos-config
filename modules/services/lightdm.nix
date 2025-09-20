@@ -14,7 +14,7 @@
     lib.mkIf (config.modules.displayManager.lightdm.enable)
       {
         enable = true;
-        background = ../../pkgs/wallpaper/dark-thinkdot.png;
+        background = ../../pkgs/wallpaper/RedBlueMountain.png;
 
         greeters.gtk = {
           enable = true;

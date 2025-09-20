@@ -28,8 +28,9 @@
       @define-color light-beige #D3C6AA;
       @define-color soft-red #E67E80;
       @define-color soft-cyan rgb(104, 157, 106);
+      @define-color ayu-mirage-blue #212733;
     
-      @define-color base   rgb(40, 40, 40); /* Dark Gray */
+      @define-color base   ayu-mirage-blue; /* Dark Gray */
       @define-color mantle #181825;
       @define-color crust  rgb(104, 157, 106); /* Soft Cyan */
 
@@ -43,7 +44,7 @@
         margin: 0px;
         border: 2px solid @soft-cyan;
         border-radius: 10px;
-        background-color: @dark-gray;
+        background-color: @ayu-mirage-blue;
         font-size: 16px;
         font-weight: normal;
       }
@@ -51,7 +52,7 @@
       #input {
         border-radius: 8px;
         color: @text;
-        background-color: @dark-gray;
+        background-color: @ayu-mirage-blue;
         padding: 6px 8px;
         font-size: 16px;
         border: 4px solid @soft-cyan;
@@ -73,25 +74,25 @@
       }
 
       #entry:selected {
-        background-color: @dark-gray;
+        background-color: @ayu-mirage-blue;
         font-weight: bold;
         border-radius: 8px;
       }
 
       #text:selected {
-        background-color: @dark-gray;
+        background-color: @ayu-mirage-blue;
         color: @text;
         font-weight: bold;
       }
 
       #expander-box {
-        background: @dark-gray;
+        background: @ayu-mirage-blue;
         color: @text;
         font-weight: normal;
       }
 
       #expander-box:selected {
-        background: @dark-gray;
+        background: @ayu-mirage-blue;
         color: @text;
         font-weight: normal;
       }

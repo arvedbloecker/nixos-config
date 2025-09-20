@@ -5,7 +5,7 @@
   ...
 }:
 let
-  bgImage = ./../../pkgs/wallpaper/nix-d-nord-red.jpg;
+  bgImage = ./../../pkgs/wallpaper/RedBlueMountain.png;
 in
 {
   services = {

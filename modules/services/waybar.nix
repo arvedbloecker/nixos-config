@@ -312,7 +312,7 @@
             # CSS-Styling for the Waybar
             style = ''
 
-              @define-color bg rgba(40, 40, 40, 0.6);
+              @define-color bg #212733;
               @define-color border rgba(104, 157, 106, 1);
               @define-color text rgba(235, 219, 178, 1);
             
