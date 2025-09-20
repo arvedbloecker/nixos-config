@@ -9,7 +9,7 @@
 
       # Wir setzen hier unser eigenes Theme als Standard
       settings = {
-        theme = "ayu_mirage";
+        theme = "ayu_mirage_transparent";
         editor.soft-wrap = {
           enable   = true;
           max-wrap = 25;
@@ -25,6 +25,17 @@
             auto-format = true;
           }
         ];
+      };
+
+      themes = {
+        ayu_mirage_transparent = {
+          "inherits" = "ayu_mirage";
+          "ui.background" = {};
+        };
+        ayu_light_transparent = {
+          "inherits" = "ayu_light";
+          "ui.background" = {};
+        };
       };
     };
   };

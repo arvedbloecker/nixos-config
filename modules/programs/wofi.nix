@@ -28,7 +28,7 @@
       @define-color light-beige #D3C6AA;
       @define-color soft-red #E67E80;
       @define-color soft-cyan rgb(104, 157, 106);
-      @define-color ayu-mirage-blue #212733;
+      @define-color ayu-mirage-blue rgba(33,39,51,0.95);
     
       @define-color base   ayu-mirage-blue; /* Dark Gray */
       @define-color mantle #181825;
