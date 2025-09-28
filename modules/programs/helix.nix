@@ -7,7 +7,6 @@
     programs.helix = {
       enable = true;
 
-      # Wir setzen hier unser eigenes Theme als Standard
       settings = {
         theme = "ayu_mirage_transparent";
         editor.soft-wrap = {
@@ -16,7 +15,6 @@
         };
       };
 
-      # Deine bestehende Spracheinstellungen
       languages = {
         languages = [
           {

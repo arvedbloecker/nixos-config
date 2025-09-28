@@ -8,7 +8,7 @@
       enable = true;
       settings = {
         # Name der .theme-Datei im share-Ordner (oder ~/.config/btop/themes)
-        color_theme      = "ayu-mirage.theme";
+        color_theme      = "onedark.theme";
         theme_background = true;
         truecolor        = true;
       };
