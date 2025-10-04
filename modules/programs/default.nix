@@ -6,6 +6,7 @@
     ./helix.nix
     ./hyprlock.nix
     ./kitty.nix
+    ./mullvad.nix
     ./ranger.nix
     ./standard.nix
     ./swaync.nix

@@ -29,6 +29,11 @@
         ayu_mirage_transparent = {
           "inherits" = "ayu_mirage";
           "ui.background" = {};
+          "ui.linenr" = "gray";
+          "ui.linenr.selected" = "foreground";
+
+          "ui.selection" = { bg="gray"; };
+          
         };
         ayu_light_transparent = {
           "inherits" = "ayu_light";

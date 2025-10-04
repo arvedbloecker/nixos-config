@@ -19,7 +19,10 @@
     brave # Firefox has a weird scaling on my laptop and i dont know how to fix it : (
     element-desktop
     fwupd
+    mullvad
+    mullvad-vpn
     nextcloud-client
+    obsidian
     onlyoffice-desktopeditors
     qemu
     signal-desktop
@@ -28,6 +31,8 @@
     texliveFull
     thunderbird
     vscode
+
+    chromium
   ];
 
   hardware.graphics = {
