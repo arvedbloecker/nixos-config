@@ -61,6 +61,7 @@ When setting your system for the first time up, make sure that you have activate
 To accomodate different requirements in the usecases and the architecture, there will be options that can be disabled and enabled. Those options are listed in `options.md`. To use them create the file `config.nix` in the folder with `hosts/configuration-name` and import it in `default.nix`, which you created in Step 2.
 
 The `config.nix` should look like this:
+
 ```
 {
   username, ...
