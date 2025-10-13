@@ -32,8 +32,8 @@
           "ui.linenr" = "gray";
           "ui.linenr.selected" = "foreground";
 
-          "ui.selection" = { bg="gray"; };
-          
+          # "ui.selection" = { bg="#344c4d"; };
+          "ui.selection" = { bg="#263f40"; };
         };
         ayu_light_transparent = {
           "inherits" = "ayu_light";

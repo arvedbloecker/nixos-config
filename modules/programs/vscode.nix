@@ -35,6 +35,15 @@ in
           myriad-dreamin.tinymist
         ]);
       };
+      profiles.c-stuff = {
+        extensions = commonExtensions ++ (with pkgs.vscode-extensions; [
+          ms-vscode.cpptools          # Grundlegende C/C++ Extension
+          vadimcn.vscode-lldb         # CodeLLDB für besseres Debugging  
+          ms-vscode.cmake-tools       # CMake Integration
+          llvm-vs-code-extensions.vscode-clangd  # Verbessertes IntelliSense
+          twxs.cmake                  # CMake Language Support
+        ]);
+      };
     };
   };
 }

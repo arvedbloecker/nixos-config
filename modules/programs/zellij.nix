@@ -26,8 +26,8 @@ let
 
     // Platzsparende UI-Optionen
     pane_frames false;
-    default_layout "compact";
-    simplified_ui true;
+    // default_layout "compact";
+    // simplified_ui true;
 
     ui {
       pane_frames { hide_session_name true; };
