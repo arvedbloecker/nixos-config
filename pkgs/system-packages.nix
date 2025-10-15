@@ -50,6 +50,10 @@
     glibc
     glib
 
+    openconnect
+    networkmanager-openconnect
+    networkmanager-openvpn
+
     # Rust
     rustc
     cargo

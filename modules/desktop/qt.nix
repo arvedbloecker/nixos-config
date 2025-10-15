@@ -16,7 +16,7 @@
   environment.systemPackages = with pkgs; [
     libsForQt5.qt5ct
     libsForQt5.qtstyleplugin-kvantum
-    gruvbox-kvantum
+    ayu-theme-gtk 
   ];
   
   home-manager.users.${username} = {
@@ -25,7 +25,7 @@
   {
     xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
       [General]
-      theme=Gruvbox-Dark-Blue
+      theme=AyuMirage
     '';
   };
 }

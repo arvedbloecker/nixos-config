@@ -18,6 +18,7 @@ let
         bind "Alt n" { NewPane; };
         bind "Alt [" { PreviousSwapLayout; };
         bind "Alt ]" { NextSwapLayout; };
+        bind "Alt t" { NewTab; };
       };
     };
 

@@ -10,31 +10,30 @@
           # General configurations
           "spacing" = 4;
           "layer" = "top";
-          "position" = "top";
-          "margin-top" = 4;
+          "position" = "bottom";
+          "margin-top" = 0;
           "margin-bottom" = 0;
-          "margin-left" = 4;
-          "margin-right" = 4;
-          "radius" = 4;
+          "margin-left" = 0;
+          "margin-right" = 0;
+          "radius" = 0;
           "height" = 26;
 
           # Provides where and in what ordner the parts shall be ordered
           "modules-left" = [
             "niri/workspaces"
-            "custom/refresh"
-            "idle_inhibitor"
-            "custom/nextcloud"
             "mpris"
           ];
           "modules-center" = [
             "niri/window"
           ];
           "modules-right" = [
+            "idle_inhibitor"
             "cpu"
             "memory"
             "pulseaudio"
             "battery"
             "bluetooth"
+            "custom/vpn"
             "network"
             "clock"
             "custom/menu"
@@ -43,11 +42,15 @@
           "cpu" = {
             "interval" = 10;
             "format" = " {usage}%";
+            "warning" = 50;
+            "critical" = 80;
           };
 
           "memory" = {
             "interval" = 10;
             "format" = " {used}GiB";
+            "warning" = 70;
+            "critical" = 90;
           };
           
           # Functionality of the modules
@@ -60,22 +63,6 @@
               "default" = "";
               "active" = "";
             };
-          };
-          "custom/refresh" = {
-            "on-click" = "~/.config/waybar/refresh-wbar.sh";
-            "format" = "";
-          };
-          
-          # This module relies on nextcloud, delete it if you dont use nextcloud
-          # Also delete this in modules-left
-          "custom/nextcloud" = {
-            "on-click" = "nextcloud";
-            "on-click-right" = "nextcloud --background";
-            "on-click-middle" = "pkill nextcloud";
-            "exec" = "~/.config/waybar/nxtcloud.sh";
-            "interval" = 10;
-            "format" = "{}";
-            "return-type" = "json";
           };
           "idle_inhibitor" = {
             "format" = "{icon}";
@@ -110,6 +97,16 @@
           "niri/window" = {
             "tooltip" = false;
           };
+          "custom/vpn" = {
+            "format" = "{icon} {text}";
+            "exec" = "$HOME/.config/waybar/vpn-active.sh";
+            "return-type" = "json";
+            "interval" = 5;
+            "format-icons" = [
+              ""
+              ""
+            ];
+          };
           "pulseaudio" = {
             "format" = "{icon} {volume}%";
             "format-muted" = "";
@@ -136,6 +133,8 @@
           };
           "battery" = {
             "format" = "{icon} {capacity}%";
+            "warning" = 25;
+            "critical" = 15;
             "format-icons" = {
               "charging" = "󰚥";
               "discharging" = [
@@ -261,44 +260,20 @@
                 </object>
               </interface>
             '';
-
-            # A Script that checks if Nextcloud is running or not
-            "waybar/nxtcloud.sh" = {
-              text = ''
-                #!/usr/bin/env bash
-                # Nextcloud-Status-Check für Waybar
-
-                output=$(pgrep -f nextcloud)
-                  
-                if [ -z "$output" ]; then
-                  echo "{\"text\":\"󰅤\",\"class\":\"inactive\"}" 
-                else
-                  echo "{\"text\":\"󱋖\",\"class\":\"active\"}"
-                fi
-              '';
-              # Script muss ausführbar sein:
-              executable = true;
-            };
-            "waybar/refresh-wbar.sh" = {
+            "waybar/vpn-active.sh" = {
               text = ''
                 #!/usr/bin/env bash
 
-                # Function to check if waybar is running/
-                waybar_is_running() {
-                  pgrep -f waybar > /dev/null
-                }
+                # nmcli connection show --active | grep -iq vpn \
+                # && echo '{"text":"Connected","class":"connected","percentage":100}' \
+                # || echo '{"text":"Disconnected","class":"disconnected","percentage":0}'
 
-                # Check if waybar is running
-                if waybar_is_running; then
-                  # Waybar is running, so kill and restart it
-                  echo "Waybar is running. Restarting..."
-                  killall .waybar-wrapped
-                  waybar &
-                else
-                  # Waybar is not running, start it
-                  echo "waybar is not running. Starting..."
-                  waybar &
-                fi
+                name=$(nmcli -t -f NAME,TYPE connection show --active \
+                       | awk -F: '$2=="vpn"{print $1; exit}')
+
+                [ -n "$name" ] \
+                  && echo "{\"text\":\"$name\",\"class\":\"connected\",\"percentage\":100}" \
+                  || echo '{"text":"","class":"disconnected","percentage":0}'
 
               '';
               executable = true;
@@ -314,7 +289,7 @@
 
               @define-color bg rgba(33,39,51, 0.9);
               @define-color border rgba(104, 157, 106, 1);
-              @define-color text rgba(235, 219, 178, 1);
+              @define-color text #cccac2;
             
               * {
                 font-size: 10px;
@@ -326,8 +301,8 @@
               window#waybar {
                 background: @bg;
                 border: Solid;
-                border-radius: 4px;
-                border-width: 3px;
+                border-radius: 0px;
+                border-width: 0px;
                 border-color: @border;
                 color: @text;
               }
@@ -366,6 +341,43 @@
                 color: @white;
               }
               */
+
+              #idle_inhibitor.activated {
+                color: #ffad66;
+              }
+              #custom-vpn.connected {
+                color: #ffad66;
+              }
+              #custom-vpn.connected {
+                color: #ffad66;
+              }
+              #pulseaudio.muted {
+                color: #ffad66;
+              }
+
+              #cpu.warning {
+                color: #ffad66;
+              }
+              #cpu.critical {
+                color: red;
+              }
+
+              /* Arbeitsspeicher */
+              #memory.warning {
+                color: #ffad66;
+              }
+              #memory.critical {
+                color: red;
+              }
+
+              /* Akkustand */
+              #battery.warning {
+                color: #ffad66;
+              }
+              #battery.critical {
+                color: red;
+              }
+
               '';
           };
         };

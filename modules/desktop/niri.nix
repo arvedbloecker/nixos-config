@@ -343,7 +343,7 @@ in
             gestures.hot-corners.enable = true;
 
             layout = {
-              gaps = 4;
+              gaps = 0;
               default-column-width.proportion = 0.5;
               insert-hint.display = {
                 color = "rgba(28, 28, 44, 30%)";
@@ -368,10 +368,14 @@ in
                 width = 3;
                 active =
                   # aqua0
-                  { color = "rgba(104, 157, 106, 1)"; };
+                  # { color = "rgba(104, 157, 106, 1)"; };
+                  # orange (ayu_mirage)
+                  { color = "#ffad66"; };
                 inactive =
                   # fg0
-                  { color = "rgba(235, 219, 178, 1)"; }; 
+                  # { color = "rgba(235, 219, 178, 1)"; }; 
+                  { color = "#1f2439"; };
+
               };
 
               # No Focus ring as it creates a variable width, which brings noise in my opinion. The border active/inactive is enough
@@ -382,29 +386,32 @@ in
                 enable = true;
                 place-within-column = true;
                 width = 8;
-                corner-radius = 8;
-                gap = 4;
-                gaps-between-tabs = 4;
+                corner-radius = 0;
+                gap = 0;
+                gaps-between-tabs = 20;
                 position = "top";
                 active = {
                   # aqua0
-                  color = "rgba(104, 157, 106, 1)";
+                  # color = "rgba(104, 157, 106, 1)";
+                  color = "#ffad66"; 
                 };
                 inactive = {
                   # fg0
-                color = "rgba(251, 241, 199, 1)";
+                # color = "rgba(251, 241, 199, 1)";
+                   color = "#1f2439"; 
                 };
-                length.total-proportion = 1.0;
+                length.total-proportion = 0.95;
               };
             };
             # bg1
-            overview.backdrop-color = "rgb(60,56,54)";
+            # overview.backdrop-color = "rgb(60,56,54)";
+            overview.backdrop-color = "#1f2439";
 
             window-rules = [
               {
                 geometry-corner-radius =
                   let
-                    radius = 2.0;
+                    radius = 0.0;
                   in
                   {
                     bottom-left = radius;

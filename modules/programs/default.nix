@@ -9,7 +9,7 @@
     ./mullvad.nix
     ./ranger.nix
     ./standard.nix
-    ./swaync.nix
+    # ./swaync.nix
     ./vscode.nix
     ./wofi.nix
     ./zellij.nix
