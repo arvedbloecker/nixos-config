@@ -42,15 +42,19 @@
           "cpu" = {
             "interval" = 10;
             "format" = " {usage}%";
-            "warning" = 50;
-            "critical" = 80;
+            "states" = {
+              "warning" = 50;
+              "critical" = 80;
+            };
           };
 
           "memory" = {
             "interval" = 10;
             "format" = " {used}GiB";
-            "warning" = 70;
-            "critical" = 90;
+            "states" = {
+              "warning" = 70;
+              "critical" = 90;
+            };
           };
           
           # Functionality of the modules
@@ -133,8 +137,12 @@
           };
           "battery" = {
             "format" = "{icon} {capacity}%";
-            "warning" = 25;
-            "critical" = 15;
+            "states" = {
+              "warning" = 30;
+              "critical" = 15;
+            };
+            # "warning" = 30;
+            # "critical" = 15;
             "format-icons" = {
               "charging" = "󰚥";
               "discharging" = [
@@ -290,7 +298,10 @@
               @define-color bg rgba(33,39,51, 0.9);
               @define-color border rgba(104, 157, 106, 1);
               @define-color text #cccac2;
-            
+
+              @define-color warning #ffad66;
+              @define-color critical red;
+                          
               * {
                 font-size: 10px;
                 font-family: "JetBrainsMono Nerd Font Propo";
@@ -343,39 +354,36 @@
               */
 
               #idle_inhibitor.activated {
-                color: #ffad66;
+                color: @warning;
               }
               #custom-vpn.connected {
-                color: #ffad66;
-              }
-              #custom-vpn.connected {
-                color: #ffad66;
+                color: @warning;
               }
               #pulseaudio.muted {
-                color: #ffad66;
+                color: @warning;
               }
 
               #cpu.warning {
-                color: #ffad66;
+                color: @warning;
               }
               #cpu.critical {
-                color: red;
+                color: @critical;
               }
 
               /* Arbeitsspeicher */
               #memory.warning {
-                color: #ffad66;
+                color: @warning;
               }
               #memory.critical {
-                color: red;
+                color: @critical;
               }
 
               /* Akkustand */
               #battery.warning {
-                color: #ffad66;
+                color: @warning;
               }
               #battery.critical {
-                color: red;
+                color: @critical;
               }
 
               '';

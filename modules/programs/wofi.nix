@@ -29,12 +29,13 @@
       @define-color soft-red #E67E80;
       @define-color soft-cyan rgb(104, 157, 106);
       @define-color ayu-mirage-blue rgba(33,39,51,0.95);
-    
+      @define-color ayu-mirage-orange #ffad66;
+          
       @define-color base   ayu-mirage-blue; /* Dark Gray */
       @define-color mantle #181825;
       @define-color crust  rgb(104, 157, 106); /* Soft Cyan */
 
-      @define-color text   rgb(251, 241, 199);
+      @define-color text   #cccac2; /* white */
       @define-color red    #f38ba8;
       @define-color surface0  #313244;
       @define-color surface1  #45475a;
@@ -42,7 +43,7 @@
 
       #window {
         margin: 0px;
-        border: 2px solid @soft-cyan;
+        border: 2px solid @ayu-mirage-orange;
         border-radius: 10px;
         background-color: @ayu-mirage-blue;
         font-size: 16px;
@@ -55,7 +56,7 @@
         background-color: @ayu-mirage-blue;
         padding: 6px 8px;
         font-size: 16px;
-        border: 4px solid @soft-cyan;
+        border: 4px solid @ayu-mirage-orange;
         margin-bottom: 6px;
       }
 
