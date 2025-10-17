@@ -5,230 +5,474 @@
 {
   config =
     let
-      waybarSettings = [
-        {
-          # General configurations
-          "spacing" = 4;
-          "layer" = "top";
-          "position" = "bottom";
-          "margin-top" = 0;
-          "margin-bottom" = 0;
-          "margin-left" = 0;
-          "margin-right" = 0;
-          "radius" = 0;
-          "height" = 26;
+      waybarSettings =
+        if(config.modules.powerManagement.ppd.enable) then
+        [
+          {
+            # General configurations
+            "spacing" = 4;
+            "layer" = "top";
+            "position" = "bottom";
+            "margin-top" = 0;
+            "margin-bottom" = 0;
+            "margin-left" = 0;
+            "margin-right" = 0;
+            "radius" = 0;
+            "height" = 26;
 
-          # Provides where and in what ordner the parts shall be ordered
-          "modules-left" = [
-            "niri/workspaces"
-            "mpris"
-          ];
-          "modules-center" = [
-            "niri/window"
-          ];
-          "modules-right" = [
-            "idle_inhibitor"
-            "cpu"
-            "memory"
-            "pulseaudio"
-            "battery"
-            "bluetooth"
-            "custom/vpn"
-            "network"
-            "clock"
-            "custom/menu"
-          ];
-
-          "cpu" = {
-            "interval" = 10;
-            "format" = " {usage}%";
-            "states" = {
-              "warning" = 50;
-              "critical" = 80;
-            };
-          };
-
-          "memory" = {
-            "interval" = 10;
-            "format" = " {used}GiB";
-            "states" = {
-              "warning" = 70;
-              "critical" = 90;
-            };
-          };
-          
-          # Functionality of the modules
-          "niri/workspaces" = {
-            "on-click" = "activate";
-            "all-outputs" = false;
-            "active-only" = true;
-            "format" = "{icon}";
-            "format-icons" = {
-              "default" = "";
-              "active" = "";
-            };
-          };
-          "idle_inhibitor" = {
-            "format" = "{icon}";
-            "format-icons" = {
-              "activated" = "󰛨";
-              "deactivated" = "󰌶";
-            };
-            # optional: startet direkt aktiviert
-            "start-activated" = false;
-          };
-          "mpris" = {
-            "format" = "{player_icon} {title} - {artist}";
-            "format-paused" = "{status_icon} {title} - {artist}";
-
-            "player-icons" =  {
-              "default" = "󰝚";
-              "spotify" = "󰓇";
-              "firefox" = "󰗃";
-            };
-            "status-icons" = {
-              "paused" = "󰏤";
-            };
-
-            "tooltip-format" = "Playing: {title} - {artist}";
-            "tooltip-format-paused" = "Paused: {title} - {artist}";
-            "min-length" = 5;
-            "max-length" = 35;
-
-            "on-click" = "playerctl play-pause";
-            "on-click-right" = "playerctl next";
-          };
-          "niri/window" = {
-            "tooltip" = false;
-          };
-          "custom/vpn" = {
-            "format" = "{icon} {text}";
-            "exec" = "$HOME/.config/waybar/vpn-active.sh";
-            "return-type" = "json";
-            "interval" = 5;
-            "format-icons" = [
-              ""
-              ""
+            # Provides where and in what ordner the parts shall be ordered
+            "modules-left" = [
+              "niri/workspaces"
+              "mpris"
             ];
-          };
-          "pulseaudio" = {
-            "format" = "{icon} {volume}%";
-            "format-muted" = "";
-            "format-icons" = {
-              "bluetooth" = "󰋋";
-              "headphones" = "󰋋";
-              "phone" = "";
-              "default" = [
-                ""
-                ""
-                ""
-              ];
+            "modules-center" = [
+              "niri/window"
+            ];
+            "modules-right" = [
+              "idle_inhibitor"
+              "cpu"
+              "memory"
+              "pulseaudio"
+              "battery"
+              "bluetooth"
+              "power-profiles-daemon"
+              "custom/vpn"
+              "network"
+              "clock"
+              "custom/menu"
+            ];
+            "power-profiles-daemon" = {
+              "format" = "{icon}";
+              "tooltip-format" = "Power profile: {profile}\nDriver: {driver}";
+              "tooltip" = true;
+              "format-icons" = {
+                "default" = "";
+                "performance" = "";
+                "balanced" = "";
+                "power-saver" = "";
+              };
             };
-            "on-click" = "pwvucontrol";
-            "menu" = "on-click-right";
-            "menu-file" = "~/.config/waybar/audio_menu.xml";
-            "menu-actions" = {
-              "toggle-input" = "wpctl set-mute @DEFAULT_SOURCE@ toggle";
-              "toggle-output" = "wpctl set-mute @DEFAULT_SINK@ toggle";
-              "settings" = "nohup pwvucontrol > /dev/null 2>&1 & disown && exit";
-              "patchbay" = "nohup helvum > /dev/null 2>&1 & disown && exit";
-              "effects" = "nohup easyeffects > /dev/null 2>&1 & disown && exit";
+            "cpu" = {
+              "interval" = 10;
+              "format" = " {usage}%";
+              "states" = {
+                "warning" = 50;
+                "critical" = 80;
+              };
             };
-          };
-          "battery" = {
-            "format" = "{icon} {capacity}%";
-            "states" = {
-              "warning" = 30;
-              "critical" = 15;
+            "memory" = {
+              "interval" = 10;
+              "format" = " {used}GiB";
+              "states" = {
+                "warning" = 70;
+                "critical" = 90;
+              };
             };
-            # "warning" = 30;
-            # "critical" = 15;
-            "format-icons" = {
-              "charging" = "󰚥";
-              "discharging" = [
-                "󰁻"
-                "󰁼"
-                "󰁽"
-                "󰁾"
-                "󰁿"
-                "󰂀"
-                "󰂁"
-                "󰂂"
-                "󰁹"
-              ];
-              "full" = "󰁹";
-              "not charging" = "󱟢";
-              "unknown" = "󱟢";
-              "default" = "󱟢";
+            # Functionality of the modules
+            "niri/workspaces" = {
+              "on-click" = "activate";
+              "all-outputs" = false;
+              "active-only" = true;
+              "format" = "{icon}";
+              "format-icons" = {
+                "default" = "";
+                "active" = "";
+              };
             };
-            "tooltip" = true;
-            "tooltip-format" = "{capacity}% - {timeTo}";
-          };
-          "bluetooth" = {
-            "format" = "{icon}";
-            "format-icons" = {
-              "connected" = "󰂯";
-              "on" = "󰂯";
-              "off" = "󰂲";
-              "disabled" = "󰂲";
-              "powered-off" = "󰂲";
-              "disconnected" = "󰂲";
-              "default" = "󰂲";
+            "idle_inhibitor" = {
+              "format" = "{icon}";
+              "format-icons" = {
+                "activated" = "󰛨";
+                "deactivated" = "󰌶";
+              };
+              # optional: startet direkt aktiviert
+              "start-activated" = false;
             };
-            "tooltip" = true;
-            "tooltip-format" = "{device_alias} ({device_address})";
+            "mpris" = {
+              "format" = "{player_icon} {title} - {artist}";
+              "format-paused" = "{status_icon} {title} - {artist}";
 
-            "on-click" = "blueman-manager";
+              "player-icons" =  {
+                "default" = "󰝚";
+                "spotify" = "󰓇";
+                "firefox" = "󰗃";
+              };
+              "status-icons" = {
+                "paused" = "󰏤";
+              };
 
-          };
-          "network" = {
-            "format-wifi" = "{icon} {bandwidthDownBytes}  {bandwidthUpBytes}  ";
-            "format-ethernet" = "󰈀 ";
-            "format-disconnected" = "󰖪";
-            "format-icons" = {
-              "wifi" = [
-                "󰤯"
-                "󰤟"
-                "󰤢"
-                "󰤥"
-                "󰤨"
+              "tooltip-format" = "Playing: {title} - {artist}";
+              "tooltip-format-paused" = "Paused: {title} - {artist}";
+              "min-length" = 5;
+              "max-length" = 35;
+
+              "on-click" = "playerctl play-pause";
+              "on-click-right" = "playerctl next";
+            };
+            "niri/window" = {
+              "tooltip" = false;
+            };
+            "custom/vpn" = {
+              "format" = "{icon} {text}";
+              "exec" = "$HOME/.config/waybar/vpn-active.sh";
+              "return-type" = "json";
+              "interval" = 5;
+              "format-icons" = [
+                ""
+                ""
               ];
+
+              "on-click" = "blueman-manager";
+
             };
-            "tooltip" = true;
-            "tooltip-format-wifi" = "{essid} ({signalStrength}%)\n{ipaddr}";
-            "tooltip-format-ethernet" = "{ifname}\n{ipaddr}";
-            "tooltip-format-disconnected" = "Nicht verbunden";
-            "on-click" = "nm-connection-editor";
-          };
-          "clock" = {
-            "format" = "{:%y-%m-%d %H:%M}";
-            "tooltip" = false;
-          }; 
-          "custom/menu" = {
-            "format" = "{icon:2}";
-            "tooltip" = true;
-            "format-icons" = {
-              "notification" = "";
-              "none" = "";
-              "dnd-notification" = "";
-              "dnd-none" = "";
-              "inhibited-notification" = "";
-              "inhibited-none" = "";
-              "dnd-inhibited-notification" = "";
-              "dnd-inhibited-none" = "";
+
+            "pulseaudio" = {
+              "format" = "{icon} {volume}%";
+              "format-muted" = "";
+              "format-icons" = {
+                "bluetooth" = "󰋋";
+                "headphones" = "󰋋";
+                "phone" = "";
+                "default" = [
+                  ""
+                  ""
+                  ""
+                ];
+              };
+              "on-click" = "pwvucontrol";
+              "menu" = "on-click-right";
+              "menu-file" = "~/.config/waybar/audio_menu.xml";
+              "menu-actions" = {
+                "toggle-input" = "wpctl set-mute @DEFAULT_SOURCE@ toggle";
+                "toggle-output" = "wpctl set-mute @DEFAULT_SINK@ toggle";
+                "settings" = "nohup pwvucontrol > /dev/null 2>&1 & disown && exit";
+                "patchbay" = "nohup helvum > /dev/null 2>&1 & disown && exit";
+                "effects" = "nohup easyeffects > /dev/null 2>&1 & disown && exit";
+              };
             };
-            "exec" = "swaync-client -swb";
-            "return-type" = "json";
-            "on-click" = "swaync-client -t -sw";
-            "menu" = "on-click-right";
-            "menu-file" = "~/.config/waybar/notify_menu.xml";
-            "menu-actions" = {
-              "toggle-dnd" = "swaync-client -d -sw";
-              "clear-all" = "swaync-client -C -sw";
+            "battery" = {
+              "format" = "{icon} {capacity}%";
+              "states" = {
+                "warning" = 30;
+                "critical" = 15;
+              };
+              # "warning" = 30;
+              # "critical" = 15;
+              "format-icons" = {
+                "charging" = "󰚥";
+                "discharging" = [
+                  "󰁻"
+                  "󰁼"
+                  "󰁽"
+                  "󰁾"
+                  "󰁿"
+                  "󰂀"
+                  "󰂁"
+                  "󰂂"
+                  "󰁹"
+                ];
+                "full" = "󰁹";
+                "not charging" = "󱟢";
+                "unknown" = "󱟢";
+                "default" = "󱟢";
+              };
+              "tooltip" = true;
+              "tooltip-format" = "{capacity}% - {timeTo}";
             };
-          };
-        }
-      ];
+            "bluetooth" = {
+              "format" = "{icon}";
+              "format-icons" = {
+                "connected" = "󰂯";
+                "on" = "󰂯";
+                "off" = "󰂲";
+                "disabled" = "󰂲";
+                "powered-off" = "󰂲";
+                "disconnected" = "󰂲";
+                "default" = "󰂲";
+              };
+              "tooltip" = true;
+              "tooltip-format" = "{device_alias} ({device_address})";
+
+              "on-click" = "blueman-manager";
+
+            };
+            "network" = {
+              "format-wifi" = "{icon} {bandwidthDownBytes}  {bandwidthUpBytes}  ";
+              "format-ethernet" = "󰈀 ";
+              "format-disconnected" = "󰖪";
+              "format-icons" = {
+                "wifi" = [
+                  "󰤯"
+                  "󰤟"
+                  "󰤢"
+                  "󰤥"
+                  "󰤨"
+                ];
+              };
+              "tooltip" = true;
+              "tooltip-format-wifi" = "{essid} ({signalStrength}%)\n{ipaddr}";
+              "tooltip-format-ethernet" = "{ifname}\n{ipaddr}";
+              "tooltip-format-disconnected" = "Nicht verbunden";
+              "on-click" = "nm-connection-editor";
+            };
+            "clock" = {
+              "format" = "{:%y-%m-%d %H:%M}";
+              "tooltip" = false;
+            }; 
+            "custom/menu" = {
+              "format" = "{icon:2}";
+              "tooltip" = true;
+              "format-icons" = {
+                "notification" = "";
+                "none" = "";
+                "dnd-notification" = "";
+                "dnd-none" = "";
+                "inhibited-notification" = "";
+                "inhibited-none" = "";
+                "dnd-inhibited-notification" = "";
+                "dnd-inhibited-none" = "";
+              };
+              "exec" = "swaync-client -swb";
+              "return-type" = "json";
+              "on-click" = "swaync-client -t -sw";
+              "menu" = "on-click-right";
+              "menu-file" = "~/.config/waybar/notify_menu.xml";
+              "menu-actions" = {
+                "toggle-dnd" = "swaync-client -d -sw";
+                "clear-all" = "swaync-client -C -sw";
+              };
+            };
+          }
+        ]
+        else
+        [
+          {
+            # General configurations
+            "spacing" = 4;
+            "layer" = "top";
+            "position" = "bottom";
+            "margin-top" = 0;
+            "margin-bottom" = 0;
+            "margin-left" = 0;
+            "margin-right" = 0;
+            "radius" = 0;
+            "height" = 26;
+
+            # Provides where and in what ordner the parts shall be ordered
+            "modules-left" = [
+              "niri/workspaces"
+              "mpris"
+            ];
+            "modules-center" = [
+              "niri/window"
+            ];
+            "modules-right" = [
+              "idle_inhibitor"
+              "cpu"
+              "memory"
+              "pulseaudio"
+              "battery"
+              "bluetooth"
+              "custom/vpn"
+              "network"
+              "clock"
+              "custom/menu"
+            ];
+
+            "cpu" = {
+              "interval" = 10;
+              "format" = " {usage}%";
+              "states" = {
+                "warning" = 50;
+                "critical" = 80;
+              };
+            };
+
+            "memory" = {
+              "interval" = 10;
+              "format" = " {used}GiB";
+              "states" = {
+                "warning" = 70;
+                "critical" = 90;
+              };
+            };
+          
+            # Functionality of the modules
+            "niri/workspaces" = {
+              "on-click" = "activate";
+              "all-outputs" = false;
+              "active-only" = true;
+              "format" = "{icon}";
+              "format-icons" = {
+                "default" = "";
+                "active" = "";
+              };
+            };
+            "idle_inhibitor" = {
+              "format" = "{icon}";
+              "format-icons" = {
+                "activated" = "󰛨";
+                "deactivated" = "󰌶";
+              };
+              # optional: startet direkt aktiviert
+              "start-activated" = false;
+            };
+            "mpris" = {
+              "format" = "{player_icon} {title} - {artist}";
+              "format-paused" = "{status_icon} {title} - {artist}";
+
+              "player-icons" =  {
+                "default" = "󰝚";
+                "spotify" = "󰓇";
+                "firefox" = "󰗃";
+              };
+              "status-icons" = {
+                "paused" = "󰏤";
+              };
+
+              "tooltip-format" = "Playing: {title} - {artist}";
+              "tooltip-format-paused" = "Paused: {title} - {artist}";
+              "min-length" = 5;
+              "max-length" = 35;
+
+              "on-click" = "playerctl play-pause";
+              "on-click-right" = "playerctl next";
+            };
+            "niri/window" = {
+              "tooltip" = false;
+            };
+            "custom/vpn" = {
+              "format" = "{icon} {text}";
+              "exec" = "$HOME/.config/waybar/vpn-active.sh";
+              "return-type" = "json";
+              "interval" = 5;
+              "format-icons" = [
+                ""
+                ""
+              ];
+
+              "on-click" = "blueman-manager";
+
+            };
+
+            "pulseaudio" = {
+              "format" = "{icon} {volume}%";
+              "format-muted" = "";
+              "format-icons" = {
+                "bluetooth" = "󰋋";
+                "headphones" = "󰋋";
+                "phone" = "";
+                "default" = [
+                  ""
+                  ""
+                  ""
+                ];
+              };
+              "on-click" = "pwvucontrol";
+              "menu" = "on-click-right";
+              "menu-file" = "~/.config/waybar/audio_menu.xml";
+              "menu-actions" = {
+                "toggle-input" = "wpctl set-mute @DEFAULT_SOURCE@ toggle";
+                "toggle-output" = "wpctl set-mute @DEFAULT_SINK@ toggle";
+                "settings" = "nohup pwvucontrol > /dev/null 2>&1 & disown && exit";
+                "patchbay" = "nohup helvum > /dev/null 2>&1 & disown && exit";
+                "effects" = "nohup easyeffects > /dev/null 2>&1 & disown && exit";
+              };
+            };
+            "battery" = {
+              "format" = "{icon} {capacity}%";
+              "states" = {
+                "warning" = 30;
+                "critical" = 15;
+              };
+              # "warning" = 30;
+              # "critical" = 15;
+              "format-icons" = {
+                "charging" = "󰚥";
+                "discharging" = [
+                  "󰁻"
+                  "󰁼"
+                  "󰁽"
+                  "󰁾"
+                  "󰁿"
+                  "󰂀"
+                  "󰂁"
+                  "󰂂"
+                  "󰁹"
+                ];
+                "full" = "󰁹";
+                "not charging" = "󱟢";
+                "unknown" = "󱟢";
+                "default" = "󱟢";
+              };
+              "tooltip" = true;
+              "tooltip-format" = "{capacity}% - {timeTo}";
+            };
+            "bluetooth" = {
+              "format" = "{icon}";
+              "format-icons" = {
+                "connected" = "󰂯";
+                "on" = "󰂯";
+                "off" = "󰂲";
+                "disabled" = "󰂲";
+                "powered-off" = "󰂲";
+                "disconnected" = "󰂲";
+                "default" = "󰂲";
+              };
+              "tooltip" = true;
+              "tooltip-format" = "{device_alias} ({device_address})";
+
+              "on-click" = "blueman-manager";
+
+            };
+            "network" = {
+              "format-wifi" = "{icon} {bandwidthDownBytes}  {bandwidthUpBytes}  ";
+              "format-ethernet" = "󰈀 ";
+              "format-disconnected" = "󰖪";
+              "format-icons" = {
+                "wifi" = [
+                  "󰤯"
+                  "󰤟"
+                  "󰤢"
+                  "󰤥"
+                  "󰤨"
+                ];
+              };
+              "tooltip" = true;
+              "tooltip-format-wifi" = "{essid} ({signalStrength}%)\n{ipaddr}";
+              "tooltip-format-ethernet" = "{ifname}\n{ipaddr}";
+              "tooltip-format-disconnected" = "Nicht verbunden";
+              "on-click" = "nm-connection-editor";
+            };
+            "clock" = {
+              "format" = "{:%y-%m-%d %H:%M}";
+              "tooltip" = false;
+            }; 
+            "custom/menu" = {
+              "format" = "{icon:2}";
+              "tooltip" = true;
+              "format-icons" = {
+                "notification" = "";
+                "none" = "";
+                "dnd-notification" = "";
+                "dnd-none" = "";
+                "inhibited-notification" = "";
+                "inhibited-none" = "";
+                "dnd-inhibited-notification" = "";
+                "dnd-inhibited-none" = "";
+              };
+              "exec" = "swaync-client -swb";
+              "return-type" = "json";
+              "on-click" = "swaync-client -t -sw";
+              "menu" = "on-click-right";
+              "menu-file" = "~/.config/waybar/notify_menu.xml";
+              "menu-actions" = {
+                "toggle-dnd" = "swaync-client -d -sw";
+                "clear-all" = "swaync-client -C -sw";
+              };
+            };
+          }
+        ];
     in
     {
       # Packages that will be installed with the waybar
@@ -384,6 +628,10 @@
               }
               #battery.critical {
                 color: @critical;
+              }
+
+              #power-profiles-daemon.performance {
+                color: @warning;
               }
 
               '';
