@@ -39,8 +39,17 @@
               "custom/vpn"
               "network"
               "clock"
-              "custom/menu"
+              "custom/suspend"
+              "custom/shutdown"
             ];
+            "custom/suspend" = {
+              "format" = "";
+              "on-click" = "systemctl suspend";
+            };
+            "custom/shutdown" = {
+              "format" = "";
+              "on-click" = "shutdown now";
+            };
             "power-profiles-daemon" = {
               "format" = "{icon}";
               "tooltip-format" = "Power profile: {profile}\nDriver: {driver}";
@@ -218,30 +227,13 @@
             "clock" = {
               "format" = "{:%y-%m-%d %H:%M}";
               "tooltip" = false;
-            }; 
-            "custom/menu" = {
-              "format" = "{icon:2}";
-              "tooltip" = true;
-              "format-icons" = {
-                "notification" = "";
-                "none" = "";
-                "dnd-notification" = "";
-                "dnd-none" = "";
-                "inhibited-notification" = "";
-                "inhibited-none" = "";
-                "dnd-inhibited-notification" = "";
-                "dnd-inhibited-none" = "";
-              };
-              "exec" = "swaync-client -swb";
-              "return-type" = "json";
-              "on-click" = "swaync-client -t -sw";
               "menu" = "on-click-right";
               "menu-file" = "~/.config/waybar/notify_menu.xml";
               "menu-actions" = {
                 "toggle-dnd" = "swaync-client -d -sw";
                 "clear-all" = "swaync-client -C -sw";
               };
-            };
+            }; 
           }
         ]
         else
@@ -276,8 +268,17 @@
               "custom/vpn"
               "network"
               "clock"
-              "custom/menu"
+              "custom/suspend"
+              "custom/shutdown"
             ];
+            "custom/suspend" = {
+              "format" = "";
+              "on-click" = "systemctl suspend";
+            };
+            "custom/shutdown" = {
+              "format" = "";
+              "on-click" = "shutdown now";
+            };
 
             "cpu" = {
               "interval" = 10;
@@ -447,30 +448,13 @@
             "clock" = {
               "format" = "{:%y-%m-%d %H:%M}";
               "tooltip" = false;
-            }; 
-            "custom/menu" = {
-              "format" = "{icon:2}";
-              "tooltip" = true;
-              "format-icons" = {
-                "notification" = "";
-                "none" = "";
-                "dnd-notification" = "";
-                "dnd-none" = "";
-                "inhibited-notification" = "";
-                "inhibited-none" = "";
-                "dnd-inhibited-notification" = "";
-                "dnd-inhibited-none" = "";
-              };
-              "exec" = "swaync-client -swb";
-              "return-type" = "json";
-              "on-click" = "swaync-client -t -sw";
               "menu" = "on-click-right";
               "menu-file" = "~/.config/waybar/notify_menu.xml";
               "menu-actions" = {
                 "toggle-dnd" = "swaync-client -d -sw";
                 "clear-all" = "swaync-client -C -sw";
               };
-            };
+            }; 
           }
         ];
     in
@@ -584,7 +568,7 @@
                 text-shadow: none;
               }
 
-              #bluetooth, #network, #pulseaudio, #custom-menu {
+              #bluetooth, #network, #pulseaudio {
                 margin-left: 2px;
                 margin-right: 2px;
               }

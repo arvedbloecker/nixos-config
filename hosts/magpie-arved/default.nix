@@ -16,11 +16,10 @@
     android-studio
     ausweisapp
     bitwarden
-    brave # Firefox has a weird scaling on my laptop and i dont know how to fix it : (
+    brave
     element-desktop
     fwupd
-    mullvad
-    mullvad-vpn
+    ksnip
     nextcloud-client
     obsidian
     onlyoffice-desktopeditors
@@ -31,8 +30,7 @@
     texliveFull
     thunderbird
     vscode
-
-    chromium
+    zotero
   ];
 
   hardware.graphics = {

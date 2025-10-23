@@ -24,6 +24,7 @@ let
     modules = [
       inputs.home-manager.nixosModules.home-manager
       inputs.niri.nixosModules.niri
+      inputs.nur.modules.nixos.default
       inputs.sops-nix.nixosModules.sops 
       "${self}/default.nix"
       "${self}/hosts/${hostDir}"
