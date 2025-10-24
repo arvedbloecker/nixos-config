@@ -164,7 +164,7 @@ in
         "swaync/style.css".text = ''
 
           /* Gruvbox Colours ─────────────────────────────────────────── */    
-
+          /*
           @define-color bg0                  #282828;
           @define-color bg1                  #3c3836;
           @define-color bg2                  #504945;
@@ -188,24 +188,54 @@ in
           @define-color aqua1                #8ec07c;
           @define-color orange0              #d65d0e;
           @define-color orange1              #fe8019;
+          */
+
+          /* Ayu Mirage Colours ──────────────────────────────────────── */
+
+          @define-color bg0                  #212733;
+          @define-color bg1                  #30394a;
+          @define-color bg2                  #404c63;
+          @define-color bg3                  #515f7b;
+          @define-color fg0                  #cbccc6;
+          @define-color fg1                  #b8b9b4;
+          @define-color fg2                  #a6a7a3;
+          @define-color fg3                  #8a8b87;
+          @define-color gray                 #565b66;
+          @define-color dark-gray            #322843;
+          @define-color black                #1a1f29;
+          @define-color red0                 #f28779;
+          @define-color red1                 #ee6958;
+          @define-color green0               #d5ff80;
+          @define-color green1               #c9ff5c;
+          @define-color yellow0              #ffcc77;
+          @define-color yellow1              #ffc35c;
+          @define-color blue0                #73d0ff;
+          @define-color blue1                #5cc9ff;
+          @define-color purple0              #dfbfff;
+          @define-color purple1              #cc99ff;
+          @define-color aqua0                #444b55;
+          @define-color aqua1                #5b6471;
+          @define-color orange0              #ffad66;
+          @define-color orange1              #ff9d47;
+
           
           /* Palette ─────────────────────────────────────────────────── */
           @define-color theme_fg             @fg0;
           @define-color theme_fg_secondary   @fg1;
           @define-color theme_bg             @bg0;
           @define-color popup_bg             @bg0;
-          @define-color module_bg            @bg0;
+          @define-color module_bg            @bg1;
           @define-color module_hover_bg      @gray;
-          @define-color button_bg            @aqua0; /* Clear button */
+          @define-color button_bg            @bg1; /* Clear button */
           @define-color button_hover_bg      @orange0; /* Clear button hover */
           @define-color accent_color         @yellow0;
           @define-color accent_color_hover   @blue0;
           @define-color border_light         @border_medium; /* Uniform Bordering */
           @define-color border_dark          @border_medium;
-          @define-color border_medium        @aqua0;
+          @define-color border_medium        @bg0;
           @define-color icon_primary         @theme_fg;
           @define-color icon_secondary       @yellow0;
-          @define-color slider_trough_bg     @bg1; /* Background Sound-Slider */
+          @define-color slider_trough_bg     @bg2; /* Background Sound-Slider */
           @define-color slider_thumb_bg      @fg0; /* Button Sound-Slider */
           @define-color close_button_bg      @gray;
           @define-color close_button_hover_bg@green0;
@@ -234,7 +264,7 @@ in
             border: 3px solid @border_medium;
             border-top-color: @border_light;
             border-bottom-color: @border_dark;
-            border-radius: 8px;
+            border-radius: 0px;
             padding: 28px;
             min-width: 380px;
           }
@@ -247,7 +277,7 @@ in
           .widget-buttons-grid,
           .control-center-list > box > *:not(.widget-title) {
             background-color: @module_bg;
-            border-radius: 8px;
+            border-radius: 0px;
             padding: 18px;
             margin-bottom: 14px;
             border: 1px solid @border_medium;
@@ -320,7 +350,7 @@ in
           
           .control-center-list,
           .floating-notifications .notification-background {
-            border-radius: 8px;
+            border-radius: 0px;
             background-color: @module_bg;
             border: 1px solid @border_medium;
             padding: 16px;
