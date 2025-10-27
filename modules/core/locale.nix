@@ -14,9 +14,11 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
+  # Is already defined in NIRI
   # Keyboard-Setting
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "altgr-intl";
-  };
+  # services.xserver.xkb = {
+  #   layout = "us";
+  #   variant = "altgr-intl";
+  #   options = "caps:none";
+  # };
 }

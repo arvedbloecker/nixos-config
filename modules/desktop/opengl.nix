@@ -2,9 +2,9 @@
   config, pkgs, lib, ...
 }:
 {
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
-  hardware.opengl.extraPackages = with pkgs; [
+  hardware.graphics.extraPackages = with pkgs; [
     libGL
   ];
 }

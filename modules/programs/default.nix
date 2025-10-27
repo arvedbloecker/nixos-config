@@ -7,7 +7,7 @@
     ./hyprlock.nix
     ./kitty.nix
     ./mullvad.nix
-    ./ranger.nix
+    # ./ranger.nix
     ./standard.nix
     ./swaync.nix
     ./vscode.nix

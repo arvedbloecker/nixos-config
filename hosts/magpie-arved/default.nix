@@ -31,6 +31,10 @@
     thunderbird
     vscode
     zotero
+
+    eog
+    evince
+    gnome-sound-recorder
   ];
 
   hardware.graphics = {

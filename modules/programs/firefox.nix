@@ -16,7 +16,7 @@
               "layout.css.devPixelsPerPx" = "1.0";
               "browser.display.os-zoom-behavior" = 1;
             };
-            extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+            extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
               ublock-origin
               bitwarden
               privacy-badger

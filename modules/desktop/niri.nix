@@ -204,6 +204,7 @@ in
 
               keyboard.xkb.layout = "us";
               keyboard.xkb.variant = "altgr-intl";
+              keyboard.xkb.options = "caps:none";
 
               focus-follows-mouse = {
                 enable = true;
