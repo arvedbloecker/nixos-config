@@ -13,6 +13,16 @@
           enable   = true;
           max-wrap = 25;
         };
+        editor.indent-guides = {
+          render = true;
+          character = " ";
+          skip-levels = 1;
+        };
+
+        editor.whitespace = {
+          render = "all";
+          characters = { tab = "→"; space = "·"; };
+        };
       };
 
       languages = {
