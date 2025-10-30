@@ -33,6 +33,7 @@ in
       profiles.typst = {
         extensions = commonExtensions ++ (with pkgs.vscode-extensions; [
           myriad-dreamin.tinymist
+          tomoki1207.pdf
         ]);
       };
       profiles.c-stuff = {

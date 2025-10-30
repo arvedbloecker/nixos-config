@@ -28,7 +28,7 @@
       @define-color light-beige #D3C6AA;
       @define-color soft-red #E67E80;
       @define-color soft-cyan rgb(104, 157, 106);
-      @define-color ayu-mirage-blue rgba(33,39,51,0.95);
+      @define-color ayu-mirage-blue rgba(33,39,51,0.85);
       @define-color ayu-mirage-orange #ffad66;
           
       @define-color base   ayu-mirage-blue; /* Dark Gray */
@@ -44,14 +44,14 @@
       #window {
         margin: 0px;
         border: 2px solid @ayu-mirage-orange;
-        border-radius: 10px;
+        border-radius: 0px;
         background-color: @ayu-mirage-blue;
         font-size: 16px;
         font-weight: normal;
       }
 
       #input {
-        border-radius: 8px;
+        border-radius: 0px;
         color: @text;
         background-color: @ayu-mirage-blue;
         padding: 6px 8px;
@@ -63,9 +63,8 @@
       #outer-box {
         margin: 8px;
         border: none;
-        border-radius: 10px;
+        border-radius: 0px;
         background-color: transparent;
-        border-radius: 8px;
       }
 
       #text {
@@ -77,7 +76,7 @@
       #entry:selected {
         background-color: @ayu-mirage-blue;
         font-weight: bold;
-        border-radius: 8px;
+        border-radius: 0px;
       }
 
       #text:selected {

@@ -7,6 +7,7 @@
     ./hyprlock.nix
     ./kitty.nix
     ./mullvad.nix
+    ./networkmanager.nix
     # ./ranger.nix
     ./standard.nix
     ./swaync.nix

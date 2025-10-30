@@ -54,7 +54,6 @@ in
   environment.systemPackages = with pkgs; [
     swaynotificationcenter
     wdisplays
-    gpu-screen-recorder-gtk
     wofi
   ];
 
@@ -97,8 +96,8 @@ in
             "script-fail-notify": true,
             "widgets": [
               "mpris",
-              "title",
               "volume",
+              "title",
               "notifications",
               "backlight",
               "buttons-grid"
@@ -125,7 +124,7 @@ in
                 "actions": [
                   {
                     "label": "",
-                    "command": "kitty nm-connection-editor",
+                    "command": "nm-connection-editor",
                     "tooltip": "Network"
                   },
                   {
@@ -138,6 +137,11 @@ in
                     "command": "swaync-client -d",
                     "type": "toggle",
                     "tooltip": "DND"
+                  },
+                  {
+                    "label": "",
+                    "command": "systemctl suspend",
+                    "tooltip": "Suspend"
                   },
                   {
                     "label": "",
