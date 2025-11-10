@@ -39,8 +39,8 @@
               "custom/vpn"
               "network"
               "clock"
-              "custom/suspend"
-              "custom/shutdown"
+              # "custom/suspend"
+              # "custom/shutdown"
             ];
             "custom/suspend" = {
               "format" = "";
@@ -131,8 +131,7 @@
                 ""
               ];
 
-              "on-click" = "blueman-manager";
-
+              "on-click" = "nm-connection-editor";
             };
 
             "pulseaudio" = {
@@ -233,6 +232,7 @@
                 "toggle-dnd" = "swaync-client -d -sw";
                 "clear-all" = "swaync-client -C -sw";
               };
+              "on-click" = "swaync-client -t";
             }; 
           }
         ]
@@ -454,6 +454,7 @@
                 "toggle-dnd" = "swaync-client -d -sw";
                 "clear-all" = "swaync-client -C -sw";
               };
+              "on-click" = "swaync-client -t -sw";
             }; 
           }
         ];
@@ -500,12 +501,9 @@
               text = ''
                 #!/usr/bin/env bash
 
-                # nmcli connection show --active | grep -iq vpn \
-                # && echo '{"text":"Connected","class":"connected","percentage":100}' \
-                # || echo '{"text":"Disconnected","class":"disconnected","percentage":0}'
-
+                # Suche nach aktiven VPN oder WireGuard Verbindungen
                 name=$(nmcli -t -f NAME,TYPE connection show --active \
-                       | awk -F: '$2=="vpn"{print $1; exit}')
+                       | awk -F: '$2=="vpn" || $2=="wireguard"{print $1; exit}')
 
                 [ -n "$name" ] \
                   && echo "{\"text\":\"$name\",\"class\":\"connected\",\"percentage\":100}" \

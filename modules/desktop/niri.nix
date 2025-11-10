@@ -40,6 +40,8 @@ in
         serviceConfig = {
           Type = "simple";
           ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.cliphist}/bin/cliphist store --text";
+          StandardOutput = "journal";
+          StandardError = "journal";
           Restart = "on-failure";
           RestartSec = 1;
           TimeoutStopSec = 10;
@@ -50,6 +52,8 @@ in
         serviceConfig = {
           Type = "simple";
           ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.cliphist}/bin/cliphist store --image";
+          StandardOutput = "journal";
+          StandardError = "journal";
           Restart = "on-failure";
           RestartSec = 1;
           TimeoutStopSec = 10;
@@ -120,7 +124,7 @@ in
     swaynotificationcenter
     swayosd
     wl-clipboard
-    wl-clip-persist
+    # wl-clip-persist
     wl-color-picker
     wofi-power-menu
     xwayland-satellite
@@ -174,10 +178,11 @@ in
                 ];
               in
               [
-                { command = sh ++ [ "wl-clip-persist --clipboard regular" ]; } #Might cause Problems
+                # { command = sh ++ [ "wl-clip-persist --clipboard regular" ]; } #Might cause Problems
                 { command = sh ++ [ "cliphist wipe" ]; }
                 { command = sh ++ [ "systemctl --user start cliphist.service" ]; }
                 { command = sh ++ [ "systemctl --user start cliphist-image.service" ]; }
+                { command = sh ++ [ "sleep 0.5 && cliphist wipe" ]; }
                 { command = sh ++ [ "systemctl --user start hypridle.service" ]; }
                 { command = sh ++ [ "systemctl --user start waybar.service" ]; }
                 { command = sh ++ [ "systemctl --user start xwayland-satellite.service" ]; }
@@ -389,8 +394,8 @@ in
                 width = 8;
                 corner-radius = 0;
                 gap = 0;
-                gaps-between-tabs = 20;
-                position = "top";
+                gaps-between-tabs = 0;
+                position = "bottom";
                 active = {
                   # aqua0
                   # color = "rgba(104, 157, 106, 1)";
@@ -401,7 +406,7 @@ in
                 # color = "rgba(251, 241, 199, 1)";
                    color = "#1f2439"; 
                 };
-                length.total-proportion = 0.95;
+                length.total-proportion = 1.0;
               };
             };
             # bg1
