@@ -4,8 +4,8 @@
 let
   # Define here the Theme, leave the rest untouched
   # Dont forget to add the theme to git
-  customThemekvc = ./../../pkgs/theme/amy-dark/Amy-Dark-Kvantum.kvconfig;
-  customThemesvg = ./../../pkgs/theme/amy-dark/Amy-Dark-Kvantum.svg;
+  customThemekvc = ./../../pkgs/theme/Marge/Marge.kvconfig;
+  customThemesvg = ./../../pkgs/theme/Marge/Marge.svg;
 in
 {
   environment.systemPackages = with pkgs; [
