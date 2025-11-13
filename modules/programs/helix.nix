@@ -13,11 +13,11 @@
           enable   = true;
           max-wrap = 25;
         };
-        editor.indent-guides = {
-          render = true;
-          character = " ";
-          skip-levels = 1;
-        };
+        # editor.indent-guides = {
+        #   render = true;
+        #   character = " ";
+        #   skip-levels = 1;
+        # };
 
         editor.whitespace = {
           render = "all";
@@ -43,6 +43,7 @@
           "ui.linenr.selected" = "foreground";
 
           # "ui.selection" = { bg="#344c4d"; };
+          "ui.whitespace" = { fg="gray"; };
           "ui.selection" = { bg="#263f40"; };
         };
         ayu_light_transparent = {

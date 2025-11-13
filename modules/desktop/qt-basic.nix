@@ -1,12 +1,7 @@
-# Get the themes form https://store.kde.org/browse?cat=123&ord=latest
+# Find available Themes with:
+# find /nix/store -path "*qtstyleplugin-kvantum*" -type f -name "*.kvconfig" | sed 's|.*Kvantum/||' | sed 's|/.*||' | sort -u
 { pkgs, username, ... }:
 
-let
-  # Define here the Theme, leave the rest untouched
-  # Dont forget to add the theme to git
-  customThemekvc = ./../../pkgs/theme/amy-dark/Amy-Dark-Kvantum.kvconfig;
-  customThemesvg = ./../../pkgs/theme/amy-dark/Amy-Dark-Kvantum.svg;
-in
 {
   environment.systemPackages = with pkgs; [
     libsForQt5.qtstyleplugin-kvantum
@@ -28,12 +23,9 @@ in
       style.name = "kvantum";
     };
 
-    xdg.configFile."Kvantum/MyCustomTheme/MyCustomTheme.kvconfig".source = customThemekvc;
-    xdg.configFile."Kvantum/MyCustomTheme/MyCustomTheme.svg".source = customThemesvg;
-
     xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
       [General]
-      theme=MyCustomTheme
+      theme=KvCyan
     '';
 
     xdg.configFile."qt5ct/qt5ct.conf".text = ''
@@ -47,4 +39,25 @@ in
     '';
   };
 }
+
+# Available Themes:
+#
+# Light:
+# KvFlatLight
+# KvCurvestLight
+# KvMojaveLight
+#
+# Dark:
+# KvArcDark
+# KvGnomeDark
+# KvAdaptaDark
+# KvSimplicityDark
+#
+# Color:
+# KvArc
+# KvGnome
+# KvMojave
+# KvCyan
+# KvYaru
+# KvAmbiance
 

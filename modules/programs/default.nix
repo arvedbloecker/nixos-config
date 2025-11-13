@@ -12,6 +12,7 @@
     ./standard.nix
     ./swaync.nix
     ./vscode.nix
+    ./wireshark.nix
     ./wofi.nix
     ./zellij.nix
     ./shell.nix
