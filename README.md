@@ -71,3 +71,52 @@ The `config.nix` should look like this:
   # modules.desktop.plasma.enable = true;
 }
 ```
+
+# Structure of this Project
+
+```
+  .
+  ├── default.nix
+  ├── flake.nix
+  ├── hosts
+  │   └── magpie-arved
+  ├── lib
+  ├── modules
+  │   ├── core ──>
+  │   ├── default.nix
+  │   ├── desktop ──>
+  │   ├── home-manager.nix
+  │   ├── nix.nix
+  │   ├── programs ──>
+  │   ├── services ──>
+  │   └── users.nix
+  ├── options.md
+  ├── pkgs
+  │   ├── theme
+  │   └── wallpaper
+  └── secrets.yaml
+```
+
+## flake.nix
+
+This is the central file where external inputs ar being defined and where we set the set the devices after we have added them to `hosts/`. Further general configurations are in `lib/` so that the `flake.nix` stays minimal and to get an easy overview.
+
+## modules/
+
+This is the heart of the configuration. Here are Programm-Specific and Core utilities defined. There are 4 central subfolders: `core`, `desktop`, `programs` and `services`.
+- `core/` defines the central utilities. They should be included from the start at all systems.
+- `desktop/` defines the Desktop-Environments. `niri.nix` is the core file and defines how to interact with the systems. Take a look at the **hotkeys** that are defined here.
+- `services/` is the foder for many relevant services that we use for good experience with out system. `Audio.nix`, `printing.nix` and `waybar.nix` are just some of the relevant services and programs that i dont want to miss.
+- `programs/` defines and configures core programs for the system and sets further settings than just plainly installing them in `hosts/`-folder. 
+
+Every folder has a default.nix that tells the flake what .nix-files to include. By modifying this file you can include your own custom files.
+
+## hosts/
+
+When we want to add a new device with this specific config, you can add them to hosts. In theory it just needs a `default.nix` that is stored in `hosts/<device-name>/default.nix`. Here you define system-specific settings that can be included here in .nix-files or by using the `config.nix`. There hardware-configuration should also be here.
+
+## pkgs/
+
+Non-Nix Files are being stored here. Themes and wallpapers are currently stored here.
+
+

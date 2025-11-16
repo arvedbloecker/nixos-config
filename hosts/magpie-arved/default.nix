@@ -13,6 +13,8 @@
   secrets.enable = true;
 
   users.users.${username}.packages = with pkgs; [
+    discord
+    
     android-studio
     ausweisapp
     bitwarden
