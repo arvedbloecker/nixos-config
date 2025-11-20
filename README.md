@@ -128,7 +128,7 @@ Non-Nix files are stored here. Themes and wallpapers are currently stored here.
 - `Super + R`: Resize Windows
 - `Super + \[|\]`: Stack Windows onto each other
 
-`Alt` + `Key` INSIDE THE SHELL triggers normally the Zellij-Commands. Take a look at their website, since there are only very few custom bindings. This start in locked-mode to not interfere with Helix-Keybindings.
+`Alt` + `Key` INSIDE THE SHELL triggers normally the Zellij-Commands. Take a look at their website, since there are only very few custom bindings. Zellij starts in the locked-mode to not interfere with Helix-Keybindings.
 - `Alt + F`: Open Floating Shell
 - `Alt + T`: New Tab
 - `Alt + N`: New Tab in split Window
