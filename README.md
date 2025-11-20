@@ -126,7 +126,7 @@ Non-Nix files are stored here. Themes and wallpapers are currently stored here.
 - `Super + H|J|K|L`: Navigation between Tabs and Workspaces
 - `Super + Ctrl + H|J|k|L`: Move Windows between Tabs and Workspaces
 - `Super + R`: Resize Windows
-- `Super + \[|\]`: Stack Windows onto each other
+- `Super + [|]`: Stack Windows onto each other
 
 `Alt` + `Key` INSIDE THE SHELL triggers normally the Zellij-Commands. Take a look at their website, since there are only very few custom bindings. Zellij starts in the locked-mode to not interfere with Helix-Keybindings.
 - `Alt + F`: Open Floating Shell
