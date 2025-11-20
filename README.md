@@ -117,3 +117,20 @@ When you want to add a new device with this specific config, you can add it to h
 ### pkgs/
 
 Non-Nix files are stored here. Themes and wallpapers are currently stored here.
+
+## Important Keybindings
+
+`Super` + `Key` triggers actions from Niri that are defined in `modules/desktop/niri.nix`. Take a look there to see all Keybindings related to Niri. Important Bindings are:
+- `Super + P`: Open Firefox
+- `Super + E`: Open Shell
+- `Super + H|J|K|L`: Navigation between Tabs and Workspaces
+- `Super + Ctrl + H|J|k|L`: Move Windows between Tabs and Workspaces
+- `Super + R`: Resize Windows
+- `Super + \[|\]`: Stack Windows onto each other
+
+`Alt` + `Key` INSIDE THE SHELL triggers normally the Zellij-Commands. Take a look at their website, since there are only very few custom bindings. This start in locked-mode to not interfere with Helix-Keybindings.
+- `Alt + F`: Open Floating Shell
+- `Alt + T`: New Tab
+- `Alt + N`: New Tab in split Window
+- `CTRL + G`: Exit Locked Mode
+
