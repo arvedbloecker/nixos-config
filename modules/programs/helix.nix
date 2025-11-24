@@ -44,7 +44,11 @@
 
           # "ui.selection" = { bg="#344c4d"; };
           "ui.whitespace" = { fg="gray"; };
-          "ui.selection" = { bg="#263f40"; };
+          # "ui.selection" = { bg="#263f40"; };
+          # "ui.selection" = { bg="#2a9d8f"; }; #Verdigris (Cyan-Like)
+          "ui.selection" = { bg="#264563"; }; #Charcoal Blue
+          # "ui.selection" = { bg="#3C6E71"; }; # Stormy Teal
+
         };
         ayu_light_transparent = {
           "inherits" = "ayu_light";
