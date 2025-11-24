@@ -7,7 +7,7 @@
     ./power-management.nix
     ./security.nix
 
-    ../../pkgs/system-packages.nix
+    ./system-packages.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
