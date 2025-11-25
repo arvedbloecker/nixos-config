@@ -9,4 +9,16 @@
   programs.direnv.silent = true;
 
   documentation.dev.enable = true; #Documentation
+
+  documentation = {
+    man.enable = true;
+    man.generateCaches = true;
+  };
+
+  programs.fish = {
+    interactiveShellInit = ''
+      set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
+      set -gx MANROFFOPT "-c"
+    '';
+  };
 }
