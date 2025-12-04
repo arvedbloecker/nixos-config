@@ -53,15 +53,6 @@
     openconnect
     networkmanager-openconnect
     networkmanager-openvpn
-
-    # Rust
-    rustc
-    cargo
-    gcc
-    rust-analyzer
-    rustfmt
-    clippy
-    lldb
   ];
 
 }

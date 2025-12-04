@@ -11,7 +11,7 @@ in
   services = {
     blueman.enable = true;
     gnome.gnome-keyring.enable = true;
-    logind.powerKey = "ignore";
+    logind.settings.Login.HandlePowerKey = "ignore";
   };
 
   security.pam.services.niri.enableGnomeKeyring = true;
@@ -59,15 +59,28 @@ in
           TimeoutStopSec = 10;
         };
       };
-
-      
-
       swaybg = {
         description = "swaybg service";
         serviceConfig = {
           Type = "simple";
           ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i ${bgImage}";
           Restart = "on-failure";
+        };
+      };
+
+      swayosd-libinput-backend = {
+        description = "SwayOSD LibInput backend";
+        documentation = [ "https://github.com/ErikReider/SwayOSD" ];
+        wantedBy = [ "graphical-session.target" ];
+        partOf = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.swayosd}/bin/swayosd-server";
+          Restart = "on-failure";
+          RestartSec = 2;
+          StandardOutput = "journal";
+          StandardError = "journal";
         };
       };
 
@@ -85,6 +98,10 @@ in
       };
     };
   };
+
+  services.udev.packages = with pkgs; [
+    swayosd
+  ];
 
   xdg.portal = {
     enable = true;
@@ -149,7 +166,7 @@ in
         "ShowConnected"
         "!ExitItem"
       ];
-    
+   
       services.hypridle.enable = true;
       programs = {
         waybar.enable = true;
@@ -164,7 +181,7 @@ in
             environment = {
               ELM_DISPLAY = "wl";
               GDK_BACKEND = "wayland,x11";
-              MOZ_ENABLE_WAYLAND = "1"; # Run Firefox under Wayland
+              # MOZ_ENABLE_WAYLAND = "1"; # Run Firefox under Wayland
               QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
               SDL_VIDEODRIVER = "wayland";
               CLUTTER_BACKEND = "wayland";
@@ -191,7 +208,6 @@ in
                 { command = sh ++ [ "systemctl --user start kanshi.service" ]; }
                 { command = sh ++ [ "sleep 1 && blueman-applet" ]; }
                 { command = sh ++ [ "id=0" ]; }
-                { command = [ "swayosd-server" ]; }
                 { command = [ "nm-applet" ]; }
               ];
 

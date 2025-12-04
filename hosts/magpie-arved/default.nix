@@ -17,11 +17,10 @@
     
     android-studio
     ausweisapp
-    bitwarden
+    bitwarden-desktop
     brave
     element-desktop
     fwupd
-    ksnip
     nextcloud-client
     obsidian
     onlyoffice-desktopeditors
@@ -29,7 +28,7 @@
     signal-desktop
     simple-scan
     spotify
-    texliveFull
+    # texliveFull
     thunderbird
     vscode
     zotero
@@ -37,6 +36,8 @@
     eog
     evince
     gnome-sound-recorder
+
+    cargo
   ];
 
   hardware.graphics = {

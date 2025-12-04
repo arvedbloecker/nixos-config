@@ -9,7 +9,7 @@
       settings = {
         # Name der .theme-Datei im share-Ordner (oder ~/.config/btop/themes)
         color_theme      = "onedark.theme";
-        theme_background = true;
+        theme_background = false;
         truecolor        = true;
       };
     };
