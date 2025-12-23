@@ -130,7 +130,6 @@
                 ""
                 ""
               ];
-
               "on-click" = "nm-connection-editor";
             };
 
@@ -200,9 +199,7 @@
               };
               "tooltip" = true;
               "tooltip-format" = "{device_alias} ({device_address})";
-
               "on-click" = "blueman-manager";
-
             };
             "network" = {
               "format-wifi" = "{icon} {bandwidthDownBytes}  {bandwidthUpBytes}  ";
@@ -268,8 +265,8 @@
               "custom/vpn"
               "network"
               "clock"
-              "custom/suspend"
-              "custom/shutdown"
+              # "custom/suspend"
+              # "custom/shutdown"
             ];
             "custom/suspend" = {
               "format" = "";
@@ -351,9 +348,7 @@
                 ""
                 ""
               ];
-
-              "on-click" = "blueman-manager";
-
+              "on-click" = "nm-connection-editor";
             };
 
             "pulseaudio" = {
