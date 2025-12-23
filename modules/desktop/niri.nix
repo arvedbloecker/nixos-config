@@ -353,9 +353,9 @@ in
                 "Super+W".action = toggle-column-tabbed-display;
 
                 # Screenshots
-                "Super+Shift+P".action     = screenshot;
-                "Print".action       = screenshot;
-                "Alt+Print".action   = screenshot-window;
+                "Super+Shift+P".action.screenshot = [];
+                "Print".action.screenshot = [];
+                "Alt+Print".action.screenshot-window = [];
 
                 # Session & power
                 "Ctrl+Alt+Delete".action = quit;
