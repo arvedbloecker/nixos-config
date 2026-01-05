@@ -15,6 +15,7 @@
     ./wireshark.nix
     ./wofi.nix
     ./zellij.nix
+    ./zen-browser.nix
     ./shell.nix
   ];
 }
