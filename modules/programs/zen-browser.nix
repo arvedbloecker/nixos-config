@@ -80,12 +80,6 @@ in
                 Alias = "@yt";
               }
               {
-                Name = "Perplexity";
-                URLTemplate = "https://www.perplexity.ai/search?q={searchTerms}";
-                IconURL = "https://www.perplexity.ai/favicon.ico";
-                Alias = "@px";
-              }
-              {
                 Name = "GitHub Code Search";
                 URLTemplate = "https://github.com/search?q={searchTerms}&type=code";
                 IconURL = "https://github.com/favicon.ico";
