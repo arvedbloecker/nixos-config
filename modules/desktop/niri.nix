@@ -11,7 +11,8 @@ in
   services = {
     blueman.enable = true;
     gnome.gnome-keyring.enable = true;
-    logind.settings.Login.HandlePowerKey = "ignore";
+    logind.settings.Login.HandlePowerKey = "poweroff";
+    logind.settings.Login.HandleLidSwitch = "suspend";
   };
 
   security.pam.services.niri.enableGnomeKeyring = true;

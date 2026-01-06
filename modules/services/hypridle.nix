@@ -64,7 +64,17 @@
         pkgs.brightnessctl
       ];
 
-      systemd.user.services.hypridle.wantedBy = [ "graphical-session.target" ];
+      systemd.user.services.hypridle = {
+        wantedBy = [ "graphical-session.target" ];
+        before = [ "systemd-logind.service" ];  # Stoppt vor logind
+        serviceConfig = {
+          Type = "dbus";
+          BusName = "org.freedesktop.hypridle";
+          KillMode = "process";
+          TimeoutStopSec = "5s";
+        };
+      };
+
 
       home-manager.users.${username} =
         { config, ... }:
