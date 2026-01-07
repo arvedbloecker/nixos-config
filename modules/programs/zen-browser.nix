@@ -80,10 +80,54 @@ in
                 Alias = "@yt";
               }
               {
-                Name = "GitHub Code Search";
-                URLTemplate = "https://github.com/search?q={searchTerms}&type=code";
+                Name = "GitHub Repo Search";
+                URLTemplate = "https://github.com/search?q={searchTerms}&type=repositories";
                 IconURL = "https://github.com/favicon.ico";
                 Alias = "@gh";
+              }
+              {
+                Name = "Perplexity";
+                # URLTemplate = "https://www.perplexity.ai/search/?q={searchTerms}";
+                URLTemplate = "https://www.perplexity.ai/search?focus=internet&q=%{searchTerms}";
+                IconURL = "https://www.perplexity.ai/favicon.ico";
+                Alias = "@pp";
+              }
+              {
+                Name = "Codeberg Repositories";
+                # URLTemplate = "https://codeberg.org/search?q={searchTerms}&type=repositories";
+                URLTemplate = "https://codeberg.org/explore/repos?q={searchTerms}&only_show_relevant=true&sort=recentupdate";
+                IconURL = "https://codeberg.org/favicon.ico";
+                Alias = "@cb";
+              }
+              {
+                Name = "Crates IO";
+                URLTemplate = "https://crates.io/search?q={searchTerms}";
+                IconURL = "https://crates.io/favicon.ico";
+                Alias = "@rs";
+              }
+              {
+                Name = "Wikipedia (EN)";
+                URLTemplate = "https://en.wikipedia.org/w/index.php?search={searchTerms}";
+                IconURL = "https://en.wikipedia.org/favicon.ico";
+                Alias = "@we";
+              }
+              {
+                Name = "Wikipedia (DE)";
+                URLTemplate = "https://de.wikipedia.org/w/index.php?search={searchTerms}";
+                IconURL = "https://de.wikipedia.org/favicon.ico";
+                Alias = "@wd";
+              }
+              {
+                Name = "Amazon (DE)";
+                URLTemplate = "https://www.amazon.de/s?k={searchTerms}";
+                IconURL = "https://www.amazon.de/favicon.ico";
+                Alias = "@az";
+              }
+              {
+                Name = "Tagesschau (via DDG)";
+                URLTemplate = "https://duckduckgo.com/?q=site:tagesschau.de+{searchTerms}";
+                IconURL = "https://www.tagesschau.de/favicon.ico";
+                Alias = "@ts";
               }
             ];
           };
