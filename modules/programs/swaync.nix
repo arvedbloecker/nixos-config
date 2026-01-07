@@ -251,7 +251,7 @@ in
             font-size: 17px;
             color: @theme_fg;
             border: none;
-            border-radius: 8px;
+            border-radius: 0px;
             background: none;
             padding: 0;
             margin: 0;
