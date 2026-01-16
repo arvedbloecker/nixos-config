@@ -13,6 +13,7 @@
           enable   = true;
           max-wrap = 25;
         };
+        editor.bufferline = "always";
         # editor.indent-guides = {
         #   render = true;
         #   character = " ";
