@@ -20,6 +20,7 @@
         CPU_ENERGY_PERF_POLICY_ON_AC      = "balance_performance";
         CPU_ENERGY_PERF_POLICY_ON_BAT     = "power";
         RUNTIME_PM_ON_BAT                 = "auto";
+        PCIE_ASPM_ON_AC                   = "default";
         PCIE_ASPM_ON_BAT                  = "powersave";
         USB_AUTOSUSPEND                   = 1;
         USB_EXCLUDE_AUDIO                 = 1;
@@ -30,8 +31,8 @@
         RADEON_DPM_PERF_LEVEL_ON_BAT      = "low";
         PLATFORM_PROFILE_ON_AC            = "balanced";
         PLATFORM_PROFILE_ON_BAT           = "low-power";
-        START_CHARGE_THRESH_BAT0          = 50;
-        STOP_CHARGE_THRESH_BAT0           = 80;
+        START_CHARGE_THRESH_BAT0          = 75;
+        STOP_CHARGE_THRESH_BAT0           = 85;
       };
     };
 
