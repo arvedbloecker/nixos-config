@@ -68,6 +68,12 @@ in
                 Alias = "@nw";
               }
               {
+                Name = "Home Manager Options";
+                URLTemplate = "https://home-manager-options.extranix.com/?query={searchTerms}";
+                IconURL = "https://home-manager-options.extranix.com/favicon.ico";
+                Alias = "@nh";
+              }
+              {
                 Name = "noogle";
                 URLTemplate = "https://noogle.dev/q?term={searchTerms}";
                 IconURL = "https://noogle.dev/favicon.ico";
