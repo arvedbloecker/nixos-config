@@ -1,5 +1,11 @@
-# Custom Settings for each user/pc that might be very individual. It only needs the import of ./hardware-configuration.nix as a bare minimum. 
-{ config, pkgs, username, nixos-hardware, ... }:
+# Custom Settings for each user/pc that might be very individual. It only needs the import of ./hardware-configuration.nix as a bare minimum.
+{
+  inputs,
+  pkgs,
+  username,
+  nixos-hardware,
+  ...
+}:
 
 {
   imports = [
@@ -14,7 +20,7 @@
 
   users.users.${username}.packages = with pkgs; [
     discord
-    
+
     android-studio
     ausweisapp
     bitwarden-desktop
@@ -42,15 +48,6 @@
 
   programs.nix-ld.enable = true;
 
-  # programs.nix-ld.libraries = with pkgs; [
-  #   glibc
-  #   zlib
-  #   gcc.cc.lib
-
-  #   libx11 libxext libxrender libxinerama libxrandr libxcursor libxi libxtst
-  #   alsa-lib freetype fontconfig liberation_ttf glib
-  # ];
-
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -64,11 +61,10 @@
 
   # AMD GPU Power Management
   hardware.amdgpu.opencl.enable = true;
-  
+
   # Fingerprintreader
   #services.fprintd.enable = true;
 
   # Pin on Linux Version 6.12
   boot.kernelPackages = pkgs.linuxPackages_6_18;
 }
-
