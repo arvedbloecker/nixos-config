@@ -1,7 +1,7 @@
 {
   imports = [
     ./btop.nix
-    ./firefox.nix
+    # ./firefox.nix
     ./git.nix
     ./helix.nix
     ./hyprlock.nix

@@ -24,7 +24,6 @@
     android-studio
     ausweisapp
     bitwarden-desktop
-    brave
     element-desktop
     fwupd
     nextcloud-client
