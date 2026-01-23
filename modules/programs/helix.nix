@@ -116,9 +116,5 @@
           fi
         '';
       };
-
-      home.sessionPath = [
-        "$HOME/.local/bin"
-      ];
     };
 }
