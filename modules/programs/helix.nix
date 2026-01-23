@@ -31,7 +31,8 @@
           };
 
           # Open Website with Git
-          keys.normal."C-n" = ":sh ${config.home.homeDirectory}/.local/bin/open-blame-github %{buffer_name}";
+          keys.normal."C-n" =
+            ":sh ${config.home.homeDirectory}/.config/helix/open-blame-github %{buffer_name}";
           # Small git blame
           keys.normal."C-b" =
             ":sh git log -n 5 --format='format:%%h (%%an: %%ar) %%s' --no-patch -L%{cursor_line},+1:%{buffer_name}";
@@ -74,7 +75,7 @@
         };
       };
 
-      home.file.".local/bin/open-blame-github" = {
+      home.file.".config/helix/open-blame-github" = {
         executable = true;
         text = ''
           #!/usr/bin/env bash
