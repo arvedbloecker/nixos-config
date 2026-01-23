@@ -32,7 +32,7 @@
 
           # Open Website with Git
           keys.normal."C-n" =
-            ":sh ${config.home.homeDirectory}/.config/helix/open-blame-github %{buffer_name}";
+            ":sh ${config.home.homeDirectory}/.config/helix/open-blame-github %{buffer_name} %{cursor_line}";
           # Small git blame
           keys.normal."C-b" =
             ":sh git log -n 5 --format='format:%%h (%%an: %%ar) %%s' --no-patch -L%{cursor_line},+1:%{buffer_name}";
@@ -80,6 +80,7 @@
         text = ''
           #!/usr/bin/env bash
           FILE="$1"
+          LINE="$2"
 
           # Git Remote URL auslesen
           REMOTE_URL=$(git config --get remote.origin.url 2>/dev/null)
@@ -106,7 +107,10 @@
             REMOTE_URL="''${REMOTE_URL%.git}"
           fi
 
-          COMMIT=$(git blame -L 1,+1 -- "$FILE" 2>/dev/null | awk '{print $1}' | sed 's/\^//' | head -c 7)
+          # Use provided line number or default to 1
+          LINE="''${LINE:-1}"
+
+          COMMIT=$(git blame -L $LINE,+1 -- "$FILE" 2>/dev/null | awk '{print $1}' | sed 's/\^//' | head -c 7)
 
           if [ -n "$COMMIT" ] && [ "$COMMIT" != "00000000" ]; then
             URL="''${REMOTE_URL}/commit/$COMMIT"
