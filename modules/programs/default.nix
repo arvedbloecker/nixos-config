@@ -14,6 +14,7 @@
     ./vscode.nix
     ./wireshark.nix
     ./wofi.nix
+    ./xdg.nix
     ./zellij.nix
     ./zen-browser.nix
     ./shell.nix

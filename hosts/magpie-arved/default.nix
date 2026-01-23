@@ -42,6 +42,7 @@
     eog
     evince
     gnome-sound-recorder
+    gnome-text-editor
 
     cargo
   ];

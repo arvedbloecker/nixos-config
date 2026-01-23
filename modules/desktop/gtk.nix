@@ -16,7 +16,7 @@
       #   iconTheme.package = pkgs.gruvbox-plus-icons;
       # };
       gtk = {
-        enable = true;
+        enable = false;
         # theme.name = "Ayu";
         # theme.name = "Ayu-Dark";
         # theme.package = pkgs.ayu-theme-gtk;
