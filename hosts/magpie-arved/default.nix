@@ -40,6 +40,17 @@
     cargo
   ];
 
+  programs.nix-ld.enable = true;
+
+  # programs.nix-ld.libraries = with pkgs; [
+  #   glibc
+  #   zlib
+  #   gcc.cc.lib
+
+  #   libx11 libxext libxrender libxinerama libxrandr libxcursor libxi libxtst
+  #   alsa-lib freetype fontconfig liberation_ttf glib
+  # ];
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -57,7 +68,7 @@
   # Fingerprintreader
   #services.fprintd.enable = true;
 
-  # Pin on Linux Version 6.6
-  #boot.kernelPackages = pkgs.linuxPackages_6_6;
+  # Pin on Linux Version 6.12
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
 }
 

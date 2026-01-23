@@ -17,7 +17,7 @@
                 name = "mobile";
                 outputs = [
                   {
-                    criteria = "Samsung Display Corp. 0x419F Unknown";
+                    criteria = "Lenovo Group Limited 0x414B Unknown";
                     mode = "2880x1800";
                     status = "enable";
                     scale = 1.4;
@@ -32,7 +32,7 @@
                 name = "home";
                 outputs = [
                   {
-                    criteria = "Samsung Display Corp. 0x419F Unknown";
+                    criteria = "Lenovo Group Limited 0x414B Unknown";
                     mode = "2880x1800";
                     status = "enable";
                     scale = 1.5;
@@ -54,7 +54,7 @@
                 name = "sra-lab-pc30";
                 outputs = [
                   {
-                    criteria = "Samsung Display Corp. 0x419F Unknown";
+                    criteria = "Lenovo Group Limited 0x414B Unknown";
                     mode = "2880x1800";
                     status = "enable";
                     scale = 1.5;
