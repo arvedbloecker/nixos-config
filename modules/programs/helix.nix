@@ -34,7 +34,7 @@
           keys.normal."C-n" =
             ":sh ${config.home.homeDirectory}/.config/helix/open-blame-github %{buffer_name} %{cursor_line}";
           # Small git blame
-          keys.normal."C-b" =
+          keys.normal."C-v" =
             ":sh git log -n 5 --format='format:%%h (%%an: %%ar) %%s' --no-patch -L%{cursor_line},+1:%{buffer_name}";
           # Open Lazygit
           keys.normal."C-m" = [

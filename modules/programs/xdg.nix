@@ -13,6 +13,7 @@
         defaultApplications = {
           "application/pdf" = "zen.desktop";
           "text/plain" = "kitty-open.desktop";
+          "text/x-c" = "kitty-open.desktop";
         };
       };
     };
