@@ -25,13 +25,14 @@
     ausweisapp
     bitwarden-desktop
     element-desktop
-    fwupd
+    fwupd # install Firmware updates
+    marktext # markdown editor
     nextcloud-client
     obsidian
-    onlyoffice-desktopeditors
+    onlyoffice-desktopeditors # microsoft-like text documents
     qemu
     signal-desktop
-    simple-scan
+    simple-scan # gnome scanner
     spotify
     # texliveFull
     thunderbird
