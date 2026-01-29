@@ -1,5 +1,5 @@
 # This file is for the sway-notificationcenter. It provides the Sidebar to see notifications and control the media-player.
-{  
+{
   config,
   pkgs,
   username,
@@ -150,12 +150,12 @@ in
                   },
                   {
                     "label": "󰜉",
-                    "command": "reboot",
+                    "command": "systemctl reboot",
                     "tooltip": "Reboot"
                   },
                   {
                     "label": "⏻",
-                    "command": "shutdown now",
+                    "command": "systemctl poweroff",
                     "tooltip": "Power Off"
                   }
                 ]
@@ -222,7 +222,7 @@ in
           @define-color orange0              #ffad66;
           @define-color orange1              #ff9d47;
 
-          
+
           /* Palette ─────────────────────────────────────────────────── */
           @define-color theme_fg             @fg0;
           @define-color theme_fg_secondary   @fg1;
@@ -261,7 +261,7 @@ in
           }
 
           /* Control Center ─────────────────────────────────────────── */
-          
+
           .control-center {
             margin: 4px;
             background-color: @theme_bg;
@@ -274,7 +274,7 @@ in
           }
 
           /* Widgets ───────────────────────────────────────────────── */
-          
+
           .widget-mpris,
           .widget-volume,
           .widget-backlight,
@@ -291,7 +291,7 @@ in
           .control-center > box > *:last-child { margin-bottom: 0; }
 
           /* Titel-Module ──────────────────────────────────────────── */
-          
+
           .widget-title {
             background: none;
             border: none;
@@ -310,7 +310,7 @@ in
           .widget-title button:hover { background-color: @button_hover_bg; }
 
           /* MPRIS Widget ─────────────────────────────────────────── */
-          
+
           .widget-mpris .widget-mpris-player {
             background-color: @mpris_player_bg;
             border-radius: 8px;
@@ -326,7 +326,7 @@ in
           .widget-mpris .widget-mpris-player button:disabled { color: @border_medium; }
 
           /* Slider (Volume, Backlight) ───────────────────────────── */
-          
+
           .widget-volume label, .widget-backlight label { font-size: 24px; margin-right: 14px; }
           scale trough { min-height: 12px; border-radius: 6px; background-color: @slider_trough_bg; }
           scale trough progress { background-color: @accent_color; transition: background-color 0.15s ease; }
@@ -337,7 +337,7 @@ in
           scale slider { background-color: @slider_thumb_bg; border-radius: 7px; }
 
           /* Button Grid ──────────────────────────────────────────── */
-          
+
           .widget-buttons-grid > flowboxchild > button {
             background-color: @module_bg; border-radius: 50%; padding: 14px; min-width: 24px; min-height: 24px;
             transition: background-color 0.15s ease;
@@ -351,7 +351,7 @@ in
           }
 
           /* Notification Center & Floating ───────────────────────── */
-          
+
           .control-center-list,
           .floating-notifications .notification-background {
             border-radius: 0px;
@@ -368,17 +368,17 @@ in
           .floating-notifications .notification-row:hover .notification-background {
             background-color: @module_hover_bg;
           }
-          
+
           .control-center .notification .summary,
           .floating-notifications .notification .summary {
             font-weight: 600; color: @theme_fg;
           }
-          
+
           .control-center .notification .body,
           .floating-notifications .notification .body {
             color: @theme_fg_secondary;
           }
-          
+
           .control-center .notification .time,
           .floating-notifications .notification .time {
             font-size: 15px; color: @icon_secondary;
@@ -387,7 +387,7 @@ in
           .notification-row image {
             margin-right: 8px;
           }
-          
+
           .close-button {
             background-color: @close_button_bg; border-radius: 50%; min-width: 24px; min-height: 24px;
             transition: background-color 0.15s ease;
