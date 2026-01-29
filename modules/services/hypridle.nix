@@ -1,4 +1,3 @@
-
 {
   config,
   pkgs,
@@ -13,12 +12,12 @@
     let
       hypridleSettings =
         if (!config.modules.services.hypridle.desktop) then
-        # if false (standard) sets the hypridle on
+          # if false (standard) sets the hypridle on
           {
             general = {
               lock_cmd = "pidof hyprlock || niri msg action do-screen-transition && hyprlock --no-fade-in";
               before_sleep_cmd = "loginctl lock-session";
-              after_sleep_cmd = "hyprctl dispatch dpms on";
+              after_sleep_cmd = "niri msg action power-on-monitors";
             };
 
             listener = [
@@ -38,8 +37,8 @@
               }
               {
                 timeout = 380;
-                on-timeout = "hyprctl dispatch dpms off";
-                on-resume = "hyprctl dispatch dpms on";
+                on-timeout = "niri msg action power-off-monitors";
+                on-resume = "niri msg action power-on-monitors";
               }
               {
                 timeout = 1800;
@@ -48,12 +47,12 @@
             ];
           }
         else
-        # if true then nothing happens on inactivity (empty listener)
+          # if true then nothing happens on inactivity (empty listener)
           {
             general = {
               lock_cmd = "pidof hyprlock || niri msg action do-screen-transition && hyprlock --no-fade-in";
               before_sleep_cmd = "loginctl lock-session";
-              after_sleep_cmd = "hyprctl dispatch dpms on";
+              after_sleep_cmd = "niri msg action power-on-monitors";
             };
 
             listener = [ ];
@@ -63,18 +62,6 @@
       environment.systemPackages = lib.mkIf (!config.modules.services.hypridle.desktop) [
         pkgs.brightnessctl
       ];
-
-      systemd.user.services.hypridle = {
-        wantedBy = [ "graphical-session.target" ];
-        before = [ "systemd-logind.service" ];  # Stoppt vor logind
-        serviceConfig = {
-          Type = "dbus";
-          BusName = "org.freedesktop.hypridle";
-          KillMode = "process";
-          TimeoutStopSec = "5s";
-        };
-      };
-
 
       home-manager.users.${username} =
         { config, ... }:
