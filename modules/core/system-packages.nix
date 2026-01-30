@@ -49,6 +49,8 @@
     # Operating System
     glibc
     glib
+    # System-Information
+    pciutils
 
     openconnect
     networkmanager-openconnect

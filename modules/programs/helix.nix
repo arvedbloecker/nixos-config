@@ -20,6 +20,7 @@
               enable = true;
               max-wrap = 25;
             };
+            mouse = false;
             bufferline = "always";
             whitespace = {
               render = "all";
