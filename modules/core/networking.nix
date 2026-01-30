@@ -1,12 +1,13 @@
 {
-  pkgs, ...
+  pkgs,
+  ...
 }:
 {
   # Activates the NetworkManager-Daemon
   networking.networkmanager = {
     enable = true;
 
-    packages = [
+    plugins = [
       pkgs.networkmanager-openconnect
     ];
   };
