@@ -130,10 +130,10 @@ in
                 Alias = "@az";
               }
               {
-                Name = "Tagesschau (via DDG)";
-                URLTemplate = "https://duckduckgo.com/?q=site:tagesschau.de+{searchTerms}";
-                IconURL = "https://www.tagesschau.de/favicon.ico";
-                Alias = "@ts";
+                Name = "Google Scholar";
+                URLTemplate = "https://scholar.google.com/scholar?q={searchTerms}";
+                IconURL = "https://scholar.google.com/favicon.ico";
+                Alias = "@gs";
               }
             ];
           };

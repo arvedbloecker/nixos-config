@@ -14,6 +14,7 @@
 
         settings = {
           editor = "hx";
+          term = "xterm-256color";
         };
 
         extraConfig = ''

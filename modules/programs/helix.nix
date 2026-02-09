@@ -20,7 +20,8 @@
               enable = true;
               max-wrap = 25;
             };
-            mouse = false;
+            # mouse = false;
+            line-number = "relative";
             bufferline = "always";
             whitespace = {
               render = "all";

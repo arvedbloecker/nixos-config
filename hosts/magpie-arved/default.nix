@@ -45,6 +45,8 @@
     gnome-text-editor
 
     cargo
+    tldr
+    python3
   ];
 
   programs.nix-ld.enable = true;
