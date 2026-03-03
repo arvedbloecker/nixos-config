@@ -1,13 +1,15 @@
 {
   pkgs,
+  config,
+  lib,
   inputs,
   username,
   ...
 }:
 let
-  bgImage = ./../../pkgs/wallpaper/RedBlueMountain.png;
+  bgImage = ./../../../pkgs/wallpaper/RedBlueMountain.png;
 in
-{
+lib.mkIf config.modules.desktop.niri.enable {
   services = {
     blueman.enable = true;
     gnome.gnome-keyring.enable = true;
@@ -250,6 +252,7 @@ in
                 "Super+Space".action = spawn "wofi";
                 "Super+Return".action = spawn "wofi";
                 "Super+Shift+L".action = spawn "loginctl" "lock-session";
+                "Super+Shift+S".action = spawn "script-selector";
 
                 "Super+S".action = sh "swaync-client -t";
                 "Super+A".action = sh "cliphist list | wofi -S dmenu | cliphist decode | wl-copy";

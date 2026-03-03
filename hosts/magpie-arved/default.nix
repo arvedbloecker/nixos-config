@@ -39,6 +39,8 @@
     vscode
     zotero
 
+    hoard
+
     eog
     evince
     gnome-sound-recorder

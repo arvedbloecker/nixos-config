@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   ...
 }:
@@ -18,5 +16,9 @@
 
     programs.dconf.enable = true;
     security.rtkit.enable = true;
+    environment.systemPackages = [
+      pkgs.wiremix
+    ];
   };
+
 }

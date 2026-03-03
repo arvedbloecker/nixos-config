@@ -1,10 +1,12 @@
 # Hyprlock is a lockscreen
 {
   pkgs,
+  config,
+  lib,
   username,
   ...
 }:
-{
+lib.mkIf config.modules.desktop.niri.enable {
   environment.systemPackages = [ pkgs.hyprlock ];
 
   home-manager.users.${username} =

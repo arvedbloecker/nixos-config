@@ -1,10 +1,9 @@
 {
   imports = [
     ./btop.nix
-    # ./firefox.nix
+    ./firefox.nix
     ./git.nix
     ./helix.nix
-    ./hyprlock.nix
     ./kitty.nix
     ./mullvad.nix
     ./networkmanager.nix
@@ -17,6 +16,7 @@
     ./xdg.nix
     ./zellij.nix
     ./zen-browser.nix
+    ./scripts.nix
     ./shell.nix
   ];
 }

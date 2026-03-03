@@ -7,11 +7,10 @@
   home-manager.users.${username} =
     { config, ... }:
     {
-      # KORREKTUR 1: 'xdg.mimeApps' statt 'xdg.mime'
       xdg.mimeApps = {
-        enable = true; # Sicherstellen, dass der Mechanismus aktiv ist
+        enable = true;
         defaultApplications = {
-          "application/pdf" = "zen.desktop";
+          "application/pdf" = "org.gnome.Papers.desktop";
           "text/plain" = "kitty-open.desktop";
           "text/x-c" = "kitty-open.desktop";
         };

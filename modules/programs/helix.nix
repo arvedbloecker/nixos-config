@@ -1,53 +1,38 @@
 { username, pkgs, ... }:
 
+let
+  helixFullConfig = ''
+    theme = "ayu_mirage_transparent"
+
+    [editor]
+    line-number = "relative"
+    bufferline = "always"
+
+    [editor.soft-wrap]
+    enable = true
+    max-wrap = 25
+
+    [editor.whitespace]
+    render = "all"
+
+    [editor.whitespace.characters]
+    tab = "→"
+    space = "·"
+
+    [keys.normal]
+    "C-n" = ":sh ~/.config/helix/open-blame-github %{buffer_name} %{cursor_line}"
+    "C-v" = ":sh git log -n 5 --format='format:%%h (%%an: %%ar) %%s' --no-patch -L%{cursor_line},+1:%{buffer_name}"
+    "C-m" = [ ":write-all", ":new", ":insert-output lazygit", ":buffer-close!", ":redraw", ":reload-all" ]
+  '';
+in
 {
-  environment.systemPackages = with pkgs; [
-    lazygit
-  ];
+  environment.systemPackages = with pkgs; [ lazygit ];
 
   home-manager.users.${username} =
     { config, pkgs, ... }:
     {
-
       programs.helix = {
         enable = true;
-
-        settings = {
-          theme = "ayu_mirage_transparent";
-
-          editor = {
-            soft-wrap = {
-              enable = true;
-              max-wrap = 25;
-            };
-            # mouse = false;
-            line-number = "relative";
-            bufferline = "always";
-            whitespace = {
-              render = "all";
-              characters = {
-                tab = "→";
-                space = "·";
-              };
-            };
-          };
-
-          # Open Website with Git
-          keys.normal."C-n" =
-            ":sh ${config.home.homeDirectory}/.config/helix/open-blame-github %{buffer_name} %{cursor_line}";
-          # Small git blame
-          keys.normal."C-v" =
-            ":sh git log -n 5 --format='format:%%h (%%an: %%ar) %%s' --no-patch -L%{cursor_line},+1:%{buffer_name}";
-          # Open Lazygit
-          keys.normal."C-m" = [
-            ":write-all"
-            ":new"
-            ":insert-output lazygit"
-            ":buffer-close!"
-            ":redraw"
-            ":reload-all"
-          ];
-        };
 
         languages = {
           language = [
@@ -74,7 +59,29 @@
               bg = "#264563";
             };
           };
+
+          ayu_light_transparent = {
+            "inherits" = "ayu_light";
+            "ui.background" = { };
+            "ui.linenr" = "gray";
+            "ui.linenr.selected" = "foreground";
+            "ui.whitespace" = {
+              fg = "gray";
+            };
+            "ui.selection" = {
+              bg = "#b0c4b1";
+            };
+          };
         };
+      };
+
+      xdg.configFile."helix/config-base-nix.toml" = {
+        text = helixFullConfig;
+        onChange = ''
+          rm -f ~/.config/helix/config.toml
+          cp ~/.config/helix/config-base-nix.toml ~/.config/helix/config.toml
+          chmod 644 ~/.config/helix/config.toml
+        '';
       };
 
       home.file.".config/helix/open-blame-github" = {

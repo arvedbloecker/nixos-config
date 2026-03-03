@@ -1,8 +1,10 @@
 {
-  config, pkgs, ...
+  config,
+  pkgs,
+  ...
 }:
 {
-  networking.networkmanager.enable = true;
+  # networking.networkmanager.enable = true;
 
   # networking.wireless.iwd.enable = true;
   # networking.networkmanager.backend = "iwd";

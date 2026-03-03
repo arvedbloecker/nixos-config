@@ -51,7 +51,10 @@
     glib
     # System-Information
     pciutils
+    cyme
+    kmon
 
+    openssl
     openconnect
     networkmanager-openconnect
     networkmanager-openvpn

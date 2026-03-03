@@ -1,10 +1,7 @@
-#Zellij is a terminal multiplexer
 { pkgs, username, ... }:
 
 let
-  # Vollständige, benutzerdefinierte Zellij-Konfiguration in KDL
-  zellijConfig = ''
-    theme "ayu-mirage";
+  zellijBaseConfig = ''
     copy_on_select true;
     default_mode "locked"; 
 
@@ -25,10 +22,7 @@ let
     show_release_notes true;
     show_startup_tips false;
 
-    // Platzsparende UI-Optionen
     pane_frames false;
-    // default_layout "compact";
-    // simplified_ui true;
 
     ui {
       pane_frames { hide_session_name true; };
@@ -36,27 +30,25 @@ let
   '';
 in
 {
-  home-manager.users.${username} = { config, pkgs, ... }:
-  {
-    # Zellij aktivieren mit Fish-Integration
-    programs.zellij = {
-      enable                = true;
-      enableFishIntegration = true;
-    };
+  home-manager.users.${username} =
+    { config, pkgs, ... }:
+    {
+      programs.zellij = {
+        enable = true;
+        enableFishIntegration = true;
+      };
 
-    # Zellij automatisch starten bei Fish-Login
-    programs.fish = {
-      enable = true;
-      interactiveShellInit = ''
-        if status is-interactive
-          eval (zellij setup --generate-auto-start fish)
-        end
-      '';
-    };
+      programs.fish = {
+        enable = true;
+        interactiveShellInit = ''
+          if status is-interactive
+            eval (zellij setup --generate-auto-start fish)
+          end
+        '';
+      };
 
-    # Schreibe die komplette KDL-Konfiguration
-    home.file.".config/zellij/config.kdl" = {
-      text = zellijConfig;
+      home.file.".config/zellij/config-base.kdl" = {
+        text = zellijBaseConfig;
+      };
     };
-  };
 }

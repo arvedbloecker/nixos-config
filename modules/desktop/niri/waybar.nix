@@ -1,12 +1,15 @@
 # This module configures the waybar, a program to provide a very customizable taskbar. https://github.com/Alexays/Waybar/wiki
 {
-  config, lib, pkgs, username, ...
+  config,
+  lib,
+  pkgs,
+  username,
+  ...
 }:
-{
-  config =
-    let
-      waybarSettings =
-        if(config.modules.powerManagement.ppd.enable) then
+lib.mkIf config.modules.desktop.niri.enable (
+  let
+    waybarSettings =
+      if (config.modules.powerManagement.ppd.enable) then
         [
           {
             # General configurations
@@ -29,6 +32,7 @@
               "niri/window"
             ];
             "modules-right" = [
+              "custom/light-dark"
               "idle_inhibitor"
               "cpu"
               "memory"
@@ -42,6 +46,16 @@
               # "custom/suspend"
               # "custom/shutdown"
             ];
+
+            "custom/light-dark" = {
+              "exec" = "$HOME/.config/waybar/light-dark-state.sh";
+              "return-type" = "json";
+              "interval" = 1;
+              "format" = "{}";
+              "on-click" = "$HOME/.config/waybar/light-dark.sh";
+              "tooltip" = "Toggle theme";
+            };
+
             "custom/suspend" = {
               "format" = "";
               "on-click" = "systemctl suspend";
@@ -101,7 +115,7 @@
               "format" = "{player_icon} {title} - {artist}";
               "format-paused" = "{status_icon} {title} - {artist}";
 
-              "player-icons" =  {
+              "player-icons" = {
                 "default" = "󰝚";
                 "spotify" = "󰓇";
                 "firefox" = "󰗃";
@@ -230,10 +244,10 @@
                 "clear-all" = "swaync-client -C -sw";
               };
               "on-click" = "swaync-client -t";
-            }; 
+            };
           }
         ]
-        else
+      else
         [
           {
             # General configurations
@@ -256,6 +270,7 @@
               "niri/window"
             ];
             "modules-right" = [
+              "custom/light-dark"
               "idle_inhibitor"
               "cpu"
               "memory"
@@ -268,6 +283,14 @@
               # "custom/suspend"
               # "custom/shutdown"
             ];
+            "custom/light-dark" = {
+              "exec" = "$HOME/.config/waybar/light-dark-state.sh";
+              "return-type" = "json";
+              "interval" = 1;
+              "format" = "{}"; # Uses the "text" field from the JSON
+              "on-click" = "$HOME/.config/waybar/light-dark.sh";
+              "tooltip" = "Toggle theme";
+            };
             "custom/suspend" = {
               "format" = "";
               "on-click" = "systemctl suspend";
@@ -294,7 +317,7 @@
                 "critical" = 90;
               };
             };
-          
+
             # Functionality of the modules
             "niri/workspaces" = {
               "on-click" = "activate";
@@ -319,7 +342,7 @@
               "format" = "{player_icon} {title} - {artist}";
               "format-paused" = "{status_icon} {title} - {artist}";
 
-              "player-icons" =  {
+              "player-icons" = {
                 "default" = "󰝚";
                 "spotify" = "󰓇";
                 "firefox" = "󰗃";
@@ -450,169 +473,195 @@
                 "clear-all" = "swaync-client -C -sw";
               };
               "on-click" = "swaync-client -t -sw";
-            }; 
+            };
           }
         ];
-    in
-    {
-      # Packages that will be installed with the waybar
-      environment.systemPackages = with pkgs; [
-        easyeffects
-        pwvucontrol
-        helvum
-        swaynotificationcenter
-        wttrbar
-        playerctl
-      ];
+  in
+  {
+    # Packages that will be installed with the waybar
+    environment.systemPackages = with pkgs; [
+      easyeffects
+      pwvucontrol
+      helvum
+      swaynotificationcenter
+      wttrbar
+      playerctl
+    ];
 
-      home-manager.users.${username} =
-        { config, lib, ... }:
-        {
+    home-manager.users.${username} =
+      { ... }:
+      {
 
-          # Files will be put in ~/.config/waybar which can be executed.
-          xdg.configFile = {
-            "waybar/audio_menu.xml".text = ''
-              <?xml version="1.0" encoding="UTF-8"?>
-              <interface>
-                <object class="GtkMenu" id="menu">
-                  <child><object class="GtkMenuItem" id="toggle-input"><property name="label">Toggle Input</property></object></child>
-                  <child><object class="GtkMenuItem" id="toggle-output"><property name="label">Toggle Output</property></object></child>
-                  <child><object class="GtkMenuItem" id="settings"><property name="label">Settings</property></object></child>
-                  <child><object class="GtkMenuItem" id="patchbay"><property name="label">Patchbay</property></object></child>
-                  <child><object class="GtkMenuItem" id="effects"><property name="label">Effects</property></object></child>
-                </object>
-              </interface>
+        # Files will be put in ~/.config/waybar which can be executed.
+        xdg.configFile = {
+          "waybar/audio_menu.xml".text = ''
+            <?xml version="1.0" encoding="UTF-8"?>
+            <interface>
+              <object class="GtkMenu" id="menu">
+                <child><object class="GtkMenuItem" id="toggle-input"><property name="label">Toggle Input</property></object></child>
+                <child><object class="GtkMenuItem" id="toggle-output"><property name="label">Toggle Output</property></object></child>
+                <child><object class="GtkMenuItem" id="settings"><property name="label">Settings</property></object></child>
+                <child><object class="GtkMenuItem" id="patchbay"><property name="label">Patchbay</property></object></child>
+                <child><object class="GtkMenuItem" id="effects"><property name="label">Effects</property></object></child>
+              </object>
+            </interface>
+          '';
+          "waybar/notify_menu.xml".text = ''
+            <?xml version="1.0" encoding="UTF-8"?>
+            <interface>
+              <object class="GtkMenu" id="menu">
+                <child><object class="GtkMenuItem" id="toggle-dnd"><property name="label">Toggle Do Not Disturb</property></object></child>
+                <child><object class="GtkMenuItem" id="clear-all"><property name="label">Clear All Notifications</property></object></child>
+              </object>
+            </interface>
+          '';
+          "waybar/vpn-active.sh" = {
+            text = ''
+              #!/usr/bin/env bash
+
+              # Suche nach aktiven VPN oder WireGuard Verbindungen
+              name=$(nmcli -t -f NAME,TYPE connection show --active \
+                     | awk -F: '$2=="vpn" || $2=="wireguard"{print $1; exit}')
+
+              [ -n "$name" ] \
+                && echo "{\"text\":\"$name\",\"class\":\"connected\",\"percentage\":100}" \
+                || echo '{"text":"","class":"disconnected","percentage":0}'
+
             '';
-            "waybar/notify_menu.xml".text = ''
-              <?xml version="1.0" encoding="UTF-8"?>
-              <interface>
-                <object class="GtkMenu" id="menu">
-                  <child><object class="GtkMenuItem" id="toggle-dnd"><property name="label">Toggle Do Not Disturb</property></object></child>
-                  <child><object class="GtkMenuItem" id="clear-all"><property name="label">Clear All Notifications</property></object></child>
-                </object>
-              </interface>
-            '';
-            "waybar/vpn-active.sh" = {
-              text = ''
-                #!/usr/bin/env bash
-
-                # Suche nach aktiven VPN oder WireGuard Verbindungen
-                name=$(nmcli -t -f NAME,TYPE connection show --active \
-                       | awk -F: '$2=="vpn" || $2=="wireguard"{print $1; exit}')
-
-                [ -n "$name" ] \
-                  && echo "{\"text\":\"$name\",\"class\":\"connected\",\"percentage\":100}" \
-                  || echo '{"text":"","class":"disconnected","percentage":0}'
-
-              '';
-              executable = true;
-            };
+            executable = true;
           };
+          "waybar/light-dark.sh" = {
+            text = ''
+              #!/usr/bin/env bash
+              KEY="/org/gnome/desktop/interface/color-scheme"
+              CURRENT=$(dconf read "$KEY" 2>/dev/null || echo "")
 
-          programs.waybar = {
-            enable = true;
-            settings = waybarSettings;
-
-            # CSS-Styling for the Waybar
-            style = ''
-
-              @define-color bg rgba(33,39,51, 0.9);
-              @define-color border rgba(104, 157, 106, 1);
-              @define-color text #cccac2;
-
-              @define-color warning #ffad66;
-              @define-color critical red;
-                          
-              * {
-                font-size: 10px;
-                font-family: "JetBrainsMono Nerd Font Propo";
-                font-weight: Bold;
-                padding: 0 4px 0 4px;
-                border-radius: 4px;
-              }
-              window#waybar {
-                background: @bg;
-                border: Solid;
-                border-radius: 0px;
-                border-width: 0px;
-                border-color: @border;
-                color: @text;
-              }
-              
-              #workspaces button {
-                background: transparent;
-                border: none;
-                color: @text;
-                margin: 0;
-                transition: none;
-              }
-              #workspaces button.active {
-                background: transparent;
-                border: none;
-                color: @text;
-                margin: 0;
-                transition: none;
-              }
-              /* Stop annoying animations when hovering */
-              #workspaces button:hover {
-                background: transparent;
-                border: none;
-                box-shadow: none;
-                text-shadow: none;
-              }
-
-              #bluetooth, #network, #pulseaudio {
-                margin-left: 2px;
-                margin-right: 2px;
-              }
-
-              /* Box around each element
-              #custom-weather, #mpris {
-                margin: 2px;
-                background-color: rgba(0, 0, 0, 0.3);
-                color: @white;
-              }
-              */
-
-              #idle_inhibitor.activated {
-                color: @warning;
-              }
-              #custom-vpn.connected {
-                color: @warning;
-              }
-              #pulseaudio.muted {
-                color: @warning;
-              }
-
-              #cpu.warning {
-                color: @warning;
-              }
-              #cpu.critical {
-                color: @critical;
-              }
-
-              /* Arbeitsspeicher */
-              #memory.warning {
-                color: @warning;
-              }
-              #memory.critical {
-                color: @critical;
-              }
-
-              /* Akkustand */
-              #battery.warning {
-                color: @warning;
-              }
-              #battery.critical {
-                color: @critical;
-              }
-
-              #power-profiles-daemon.performance {
-                color: @warning;
-              }
-
-              '';
+              if [[ "$CURRENT" == "'prefer-dark'" ]]; then
+                  dconf write "$KEY" "'prefer-light'"
+                  notify-send "Theme" "Switched to Light mode" 2>/dev/null || echo "Switched to Light"
+              else
+                  dconf write "$KEY" "'prefer-dark'"
+                  notify-send "Theme" "Switched to Dark mode" 2>/dev/null || echo "Switched to Dark"
+              fi
+            '';
+            executable = true;
+          };
+          "waybar/light-dark-state.sh" = {
+            text = ''
+              #!/usr/bin/env bash
+              if dconf read /org/gnome/desktop/interface/color-scheme 2>/dev/null | grep -q prefer-dark; then
+                echo '{"text": "", "class": "dark"}'
+              else
+                echo '{"text": "", "class": "light"}'
+              fi
+            '';
+            executable = true;
           };
         };
-    };
-}
+
+        programs.waybar = {
+          enable = true;
+          settings = waybarSettings;
+
+          # CSS-Styling for the Waybar
+          style = ''
+
+            @define-color bg rgba(33,39,51, 0.9);
+            @define-color border rgba(104, 157, 106, 1);
+            @define-color text #cccac2;
+
+            @define-color warning #ffad66;
+            @define-color critical red;
+
+            * {
+              font-size: 10px;
+              font-family: "JetBrainsMono Nerd Font Propo";
+              font-weight: Bold;
+              padding: 0 4px 0 4px;
+              border-radius: 4px;
+            }
+            window#waybar {
+              background: @bg;
+              border: Solid;
+              border-radius: 0px;
+              border-width: 0px;
+              border-color: @border;
+              color: @text;
+            }
+
+            #workspaces button {
+              background: transparent;
+              border: none;
+              color: @text;
+              margin: 0;
+              transition: none;
+            }
+            #workspaces button.active {
+              background: transparent;
+              border: none;
+              color: @text;
+              margin: 0;
+              transition: none;
+            }
+            /* Stop annoying animations when hovering */
+            #workspaces button:hover {
+              background: transparent;
+              border: none;
+              box-shadow: none;
+              text-shadow: none;
+            }
+
+            #bluetooth, #network, #pulseaudio {
+              margin-left: 2px;
+              margin-right: 2px;
+            }
+
+            /* Box around each element
+            #custom-weather, #mpris {
+              margin: 2px;
+              background-color: rgba(0, 0, 0, 0.3);
+              color: @white;
+            }
+            */
+
+            #idle_inhibitor.activated {
+              color: @warning;
+            }
+            #custom-vpn.connected {
+              color: @warning;
+            }
+            #pulseaudio.muted {
+              color: @warning;
+            }
+            #cpu.warning {
+              color: @warning;
+            }
+            #cpu.critical {
+              color: @critical;
+            }
+
+            /* Arbeitsspeicher */
+            #memory.warning {
+              color: @warning;
+            }
+            #memory.critical {
+              color: @critical;
+            }
+
+            /* Akkustand */
+            #battery.warning {
+              color: @warning;
+            }
+            #battery.critical {
+              color: @critical;
+            }
+
+            #power-profiles-daemon.performance {
+              color: @warning;
+            }
+
+          '';
+        };
+      };
+  }
+)

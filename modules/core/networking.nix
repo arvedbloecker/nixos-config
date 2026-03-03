@@ -3,16 +3,25 @@
   ...
 }:
 {
-  # Activates the NetworkManager-Daemon
-  networking.networkmanager = {
-    enable = true;
+  networking.networkmanager.enable = false;
 
-    plugins = [
-      pkgs.networkmanager-openconnect
-    ];
+  networking.wireless.iwd.enable = true;
+  networking.wireless.iwd.settings = {
+    General = {
+      EnableNetworkConfiguration = true;
+    };
+    Network = {
+      NameResolvingService = "systemd";
+    };
   };
 
-  # Activates Bluetooth-Support by starting the BlueZ-Service (bluetoothd)
+  services.resolved.enable = true;
+  environment.systemPackages = [
+    pkgs.iwd
+    pkgs.impala
+    pkgs.bluetui
+  ];
+
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;

@@ -1,11 +1,13 @@
 # Many other apps
 {
-  pkgs, ...
+  pkgs,
+  ...
 }:
 {
   environment.systemPackages = with pkgs; [
-     
-    evince # Dokument Viewer
+
+    papers # evince but modern
+    # evince # Dokument Viewer
     nautilus # File Manager
     eog # Show Photos
   ];
