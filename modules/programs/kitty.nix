@@ -58,7 +58,8 @@
       xdg.configFile."kitty/light-theme.conf".text = ''
         background_opacity 0.95
 
-        background    #f4f2ef
+        # background    #edebea
+        background    #f2eeea
         foreground    #2d3138
         cursor        #c5282e
         selection_foreground #ffffff
