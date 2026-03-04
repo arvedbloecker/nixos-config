@@ -58,28 +58,28 @@
       xdg.configFile."kitty/light-theme.conf".text = ''
         background_opacity 0.95
 
-        background    #ffffff
-        foreground    #5c6166
-        cursor        #f07178
-        selection_foreground #faf4ed
-        selection_background #e6b673
+        background    #f4f2ef
+        foreground    #2d3138
+        cursor        #c5282e
+        selection_foreground #ffffff
+        selection_background #a86200
 
-        color0  #626a73
-        color1  #f07178
-        color2  #86b300
-        color3  #f29718
-        color4  #41a6d9
-        color5  #a37acc
-        color6  #4dbf99
-        color7  #8a9199
-        color8  #4d5566
-        color9  #f07178
-        color10 #86b300
-        color11 #f29718
-        color12 #41a6d9
-        color13 #a37acc
-        color14 #4dbf99
-        color15 #faf4ed
+        color0  #3a4248
+        color1  #c5282e
+        color2  #507000
+        color3  #a86200
+        color4  #1060a0
+        color5  #6844a8
+        color6  #1a7a57
+        color7  #5c6470
+        color8  #2a2f3a
+        color9  #d43a40
+        color10 #5a8000
+        color11 #c47500
+        color12 #1a70c0
+        color13 #7850c0
+        color14 #228a65
+        color15 #8a9199
       '';
     };
 }
