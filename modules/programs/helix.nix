@@ -27,12 +27,15 @@ let
 in
 {
   environment.systemPackages = with pkgs; [ lazygit ];
+  environment.variables.EDITOR = "hx";
+  environment.variables.VISUAL = "hx";
 
   home-manager.users.${username} =
     { config, pkgs, ... }:
     {
       programs.helix = {
         enable = true;
+        defaultEditor = true;
 
         languages = {
           language = [
