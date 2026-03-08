@@ -33,12 +33,12 @@
 
             # Form/search history
             "browser.formfill.remember" = false;
-            "browser.history.folders.enabled" = false; # Optional: less history tracking
+            "browser.history.folders.enabled" = false;
 
             # Vertical tabs (native Firefox sidebar)
             "sidebar.verticalTabs" = true;
             "sidebar.revamp" = true;
-            "sidebar.visibility" = "always"; # or "hide-sidebar" to start collapsed
+            # "sidebar.visibility" = "always"; # or "hide-sidebar" to start collapsed
 
             # Other Zen-like defaults (from your original config)
             "extensions.autoDisableScopes" = 0;
