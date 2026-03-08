@@ -74,6 +74,11 @@ in
             "ui.selection" = {
               bg = "#b0c4b1";
             };
+
+            palette = {
+              orange = "#e67a26";
+              yellow = "#ff9500";
+            };
           };
         };
       };

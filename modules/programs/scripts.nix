@@ -1,15 +1,15 @@
 { pkgs, ... }:
 let
   wifi = pkgs.writeShellScriptBin "wifi" ''
-    ${pkgs.kitty}/bin/kitty ${pkgs.impala}/bin/impala
+    kitty impala
   '';
 
   bluetooth = pkgs.writeShellScriptBin "bluetooth" ''
-    ${pkgs.kitty}/bin/kitty ${pkgs.bluetui}/bin/bluetui
+    kitty bluetui
   '';
 
   audio = pkgs.writeShellScriptBin "audio" ''
-    ${pkgs.kitty}/bin/kitty ${pkgs.wiremix}/bin/wiremix
+    kitty wiremix
   '';
 
   toggle-theme = pkgs.writeShellScriptBin "toggle-theme" ''
