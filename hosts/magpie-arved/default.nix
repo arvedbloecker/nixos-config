@@ -22,6 +22,8 @@
     discord
 
     android-studio
+    antigravity-fhs
+    arduino-ide
     ausweisapp
     bitwarden-desktop
     element-desktop
