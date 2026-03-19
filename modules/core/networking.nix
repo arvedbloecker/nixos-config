@@ -3,17 +3,20 @@
   ...
 }:
 {
-  networking.networkmanager.enable = false;
-
-  networking.wireless.iwd.enable = true;
-  networking.wireless.iwd.settings = {
-    General = {
-      EnableNetworkConfiguration = true;
-    };
-    Network = {
-      NameResolvingService = "systemd";
-    };
+  networking.networkmanager = {
+    enable = true;
+    # wifi.backend = "iwd";
   };
+
+  # networking.wireless.iwd.enable = true;
+  # networking.wireless.iwd.settings = {
+  #   General = {
+  #     EnableNetworkConfiguration = true;
+  #   };
+  #   Network = {
+  #     NameResolvingService = "systemd";
+  #   };
+  # };
 
   services.resolved.enable = true;
   environment.systemPackages = [
