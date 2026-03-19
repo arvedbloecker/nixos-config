@@ -8,6 +8,7 @@
 
     ./core
     ./desktop
+    ./hardware
     ./programs
     ./services
   ];

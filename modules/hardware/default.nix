@@ -1,0 +1,5 @@
+{
+  imports = [
+    ./lenovo-amd.nix
+  ];
+}
