@@ -33,7 +33,7 @@ lib.mkIf config.modules.desktop.niri.enable {
           ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
           Restart = "on-failure";
           RestartSec = 1;
-          TimeoutStopSec = 10;
+          PartOf = [ "graphical-session.target" ];
         };
       };
       niri-flake-polkit.enable = false;
@@ -47,7 +47,7 @@ lib.mkIf config.modules.desktop.niri.enable {
           StandardError = "journal";
           Restart = "on-failure";
           RestartSec = 1;
-          TimeoutStopSec = 10;
+          PartOf = [ "graphical-session.target" ];
         };
       };
       cliphist-image = {
@@ -59,7 +59,7 @@ lib.mkIf config.modules.desktop.niri.enable {
           StandardError = "journal";
           Restart = "on-failure";
           RestartSec = 1;
-          TimeoutStopSec = 10;
+          PartOf = [ "graphical-session.target" ];
         };
       };
       swaybg = {
@@ -68,6 +68,7 @@ lib.mkIf config.modules.desktop.niri.enable {
           Type = "simple";
           ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i ${bgImage}";
           Restart = "on-failure";
+          PartOf = [ "graphical-session.target" ];
         };
       };
 
@@ -84,6 +85,7 @@ lib.mkIf config.modules.desktop.niri.enable {
           RestartSec = 2;
           StandardOutput = "journal";
           StandardError = "journal";
+          PartOf = [ "graphical-session.target" ];
         };
       };
 
@@ -95,8 +97,9 @@ lib.mkIf config.modules.desktop.niri.enable {
           Type = "notify";
           ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
           NotifyAccess = "all";
-          Restart = "always";
+          Restart = "on-failure";
           RestartSec = 2;
+          PartOf = [ "graphical-session.target" ];
         };
       };
     };
