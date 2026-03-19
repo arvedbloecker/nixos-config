@@ -9,7 +9,9 @@
 
     powerManagement.tlp.enable = true;
     # powerManagement.ppd.enable = true;
-    powerManagement.autoCpuFreq.enable = true;
+    # powerManagement.autoCpuFreq.enable = true;
+
+    hardware.lenovo-amd.enable = true;
 
     services.storage.enable = true;
     # programs.udiskie.enable = true;
