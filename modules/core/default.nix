@@ -6,6 +6,7 @@
     ./networking.nix
     ./power-management.nix
     ./security.nix
+    ./systemd.nix
 
     ./system-packages.nix
   ];
