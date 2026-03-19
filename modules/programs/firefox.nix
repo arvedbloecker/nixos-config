@@ -38,7 +38,6 @@
             # Vertical tabs (native Firefox sidebar)
             "sidebar.verticalTabs" = true;
             "sidebar.revamp" = true;
-            # "sidebar.visibility" = "always"; # or "hide-sidebar" to start collapsed
 
             # Other Zen-like defaults (from your original config)
             "extensions.autoDisableScopes" = 0;
@@ -46,10 +45,15 @@
 
             # Spellcheck: German + English
             "layout.spellcheckDefault" = 2; # 0=off, 1=inline, 2=bottom window
-            "spellchecker.dictionary" = "de-DE,en-US"; # Default languages (comma-separated)
+            "spellchecker.dictionary" = "de-DE,en-US";
 
             # Optional: Enable multilingual spellcheck
             "layout.spellcheckDefaultMultilingual" = true;
+
+            "widget.wayland.fractional-scale.enabled" = true;
+            # "layout.css.devPixelsPerPx" = -1.0; # Auto-detect Scale (oder 1/1.5 = 0.6667)
+            # "gfx.webrender.all" = true;
+            # "widget.non-native-theme.enabled" = true; # GTK-Theme ignorieren für konsistente Icons
           };
 
           search = {
@@ -139,7 +143,7 @@
           DisableTelemetry = true;
 
           ExtensionSettings = {
-            "*".installation_mode = "blocked";
+            # "*".installation_mode = "blocked";
           }
           // (extension "ublock-origin" "uBlock0@raymondhill.net")
           // (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
