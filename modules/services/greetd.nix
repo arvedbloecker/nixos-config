@@ -1,6 +1,18 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
+let
+  bgImage = ./../../pkgs/wallpaper/RedBlueMountain.png;
+in
 {
-  # 1. Configure the foot terminal for a seamless look
+  boot.kernelParams = [
+    "quiet"
+    "splash"
+    "loglevel=3"
+    "console=tty12"
+  ];
+  boot.consoleLogLevel = 0;
+  boot.initrd.systemd.enable = true;
+  boot.plymouth.enable = true;
+
   environment.etc."greetd/foot.ini".text = ''
     [colors]
     background=1f2439
@@ -11,23 +23,39 @@
     pad=20x20
   '';
 
-  # 2. Configure greetd to launch tuigreet inside foot and cage
+  environment.etc."greetd/niri-greeter.kdl".text =
+    let
+      theme = "border=#ffad66;text=white;prompt=#ffad66;time=white;action=#ffad66;button=#ffad66;container=#1f2439;input=white";
+      tuigreetCmd = "${pkgs.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd niri-session --theme '${theme}'";
+    in
+    ''
+      animations { off; }
+
+      hotkey-overlay {
+        skip-at-startup;
+      }
+
+      spawn-at-startup "${pkgs.swaybg}/bin/swaybg" "-m" "fill" "-i" "${bgImage}"
+      spawn-at-startup "${pkgs.foot}/bin/foot" "--fullscreen" "--config=/etc/greetd/foot.ini" \
+        "--" "${pkgs.bash}/bin/sh" "-c" \
+        "COLORTERM=truecolor ${tuigreetCmd}; ${pkgs.niri}/bin/niri msg action quit --skip-confirmation"
+    '';
+
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command =
-          let
-            theme = "border=#ffad66;text=white;prompt=#ffad66;time=white;action=#ffad66;button=#ffad66;container=#1f2439;input=white";
-            tuigreetCmd = "${pkgs.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd niri-session --theme '${theme}'";
-          in
-          # cage starts a minimal Wayland compositor, foot provides a TrueColor terminal
-          "${pkgs.cage}/bin/cage -s -- ${pkgs.foot}/bin/foot --config=/etc/greetd/foot.ini -- ${pkgs.bash}/bin/sh -c 'COLORTERM=truecolor ${tuigreetCmd}'";
+        command = "${pkgs.niri}/bin/niri --config /etc/greetd/niri-greeter.kdl";
         user = "greeter";
       };
     };
   };
 
-  # Graphical session handles the display better than TTY console
-  services.kmscon.enable = false;
+  systemd.services.greetd.serviceConfig = {
+    Type = lib.mkForce "simple";
+    StandardInput = "tty";
+    StandardOutput = "null";
+    StandardError = "journal";
+    TTYReset = true;
+  };
 }
