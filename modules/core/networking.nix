@@ -5,23 +5,23 @@
 {
   networking.networkmanager = {
     enable = true;
-    # wifi.backend = "iwd";
+    wifi.backend = "iwd";
   };
 
-  # networking.wireless.iwd.enable = true;
-  # networking.wireless.iwd.settings = {
-  #   General = {
-  #     EnableNetworkConfiguration = true;
-  #   };
-  #   Network = {
-  #     NameResolvingService = "systemd";
-  #   };
-  # };
+  networking.wireless.iwd.enable = true;
+  networking.wireless.iwd.settings = {
+    General = {
+      EnableNetworkConfiguration = false;
+    };
+    Network = {
+      NameResolvingService = "systemd";
+    };
+  };
 
   services.resolved.enable = true;
   environment.systemPackages = [
-    pkgs.iwd
-    pkgs.impala
+    # pkgs.iwd
+    # pkgs.impala
     pkgs.bluetui
   ];
 

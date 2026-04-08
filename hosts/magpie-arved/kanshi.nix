@@ -54,7 +54,7 @@
           {
             profile = {
               # Laptop screen below external Screen
-              name = "sra-lab-pc30";
+              name = "lab-pc30";
               outputs = [
                 {
                   criteria = "Lenovo Group Limited 0x414B Unknown";
@@ -67,6 +67,29 @@
                 {
                   criteria = "Dell Inc. DELL U2715H GH85D86M06FS";
                   mode = "2560x1440";
+                  status = "enable";
+                  scale = 1.0;
+                  position = "0,0";
+                }
+              ];
+            };
+          }
+          {
+            profile = {
+              # Laptop screen below external Screen
+              name = "family";
+              outputs = [
+                {
+                  criteria = "Lenovo Group Limited 0x414B Unknown";
+                  mode = "2880x1800";
+                  status = "enable";
+                  scale = 1.5;
+                  # 1280 comes from 1920 / 1.5 (Scaling) = 1280
+                  position = "${builtins.toString ((1920 - 1280) / 2)},${builtins.toString 1080}";
+                }
+                {
+                  criteria = "PNP(AOC) 27G2G4 0x0001AA0D";
+                  mode = "1920x1080@120.000";
                   status = "enable";
                   scale = 1.0;
                   position = "0,0";

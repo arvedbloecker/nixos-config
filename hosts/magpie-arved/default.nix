@@ -1,6 +1,5 @@
 # Custom Settings for each user/pc that might be very individual. It only needs the import of ./hardware-configuration.nix as a bare minimum.
 {
-  inputs,
   pkgs,
   username,
   nixos-hardware,
@@ -72,6 +71,6 @@
   # Fingerprintreader
   #services.fprintd.enable = true;
 
-  # Pin on Linux Version 6.12
+  # Pin on Linux Version X
   boot.kernelPackages = pkgs.linuxPackages_6_18;
 }

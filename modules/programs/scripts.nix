@@ -34,11 +34,20 @@ let
         dconf write "$KEY" "'prefer-light'"
         
         # 1. Kitty
+        rm -f "$KITTY_CONF"
         cp "$HOME/.config/kitty/light-theme.conf" "$KITTY_CONF"
 
         # 2. Helix
         # Tausche einfach die Theme-Zeile am Anfang der Datei aus!
-        sed -i 's/^theme = .*/theme = "ayu_light_transparent"/' "$HELIX_CONF"
+        # Falls es ein Symlink ist, erst löschen und als normale Datei neu anlegen
+        if [ -L "$HELIX_CONF" ]; then
+          TEMP_HELIX=$(mktemp)
+          sed 's/^theme = .*/theme = "ayu_light_transparent"/' "$HELIX_CONF" > "$TEMP_HELIX"
+          rm -f "$HELIX_CONF"
+          mv "$TEMP_HELIX" "$HELIX_CONF"
+        else
+          sed -i 's/^theme = .*/theme = "ayu_light_transparent"/' "$HELIX_CONF"
+        fi
         
         # 3. Zellij
         rm -f "$ZELLIJ_CONF"
@@ -51,11 +60,20 @@ let
         dconf write "$KEY" "'prefer-dark'"
         
         # 1. Kitty
+        rm -f "$KITTY_CONF"
         cp "$HOME/.config/kitty/dark-theme.conf" "$KITTY_CONF"
 
         # 2. Helix
         # Tausche einfach die Theme-Zeile am Anfang der Datei aus!
-        sed -i 's/^theme = .*/theme = "ayu_mirage_transparent"/' "$HELIX_CONF"
+        # Falls es ein Symlink ist, erst löschen und als normale Datei neu anlegen
+        if [ -L "$HELIX_CONF" ]; then
+          TEMP_HELIX=$(mktemp)
+          sed 's/^theme = .*/theme = "ayu_mirage_transparent"/' "$HELIX_CONF" > "$TEMP_HELIX"
+          rm -f "$HELIX_CONF"
+          mv "$TEMP_HELIX" "$HELIX_CONF"
+        else
+          sed -i 's/^theme = .*/theme = "ayu_mirage_transparent"/' "$HELIX_CONF"
+        fi
         
         # 3. Zellij
         rm -f "$ZELLIJ_CONF"

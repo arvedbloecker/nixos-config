@@ -19,6 +19,7 @@
       "networkmanager"
       "wheel"
       "audio"
+      "video"
       "scanner"
       "disk"
       "storage"

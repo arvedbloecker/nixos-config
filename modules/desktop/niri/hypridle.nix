@@ -5,12 +5,12 @@
   username,
   ...
 }:
-lib.mkIf config.modules.desktop.niri.enable (
+lib.mkIf config.modules.desktop.enable (
   let
     hypridleSettings = {
       general = {
         lock_cmd = "pidof hyprlock || niri msg action do-screen-transition && hyprlock --no-fade-in";
-        before_sleep_cmd = "loginctl lock-session";
+        before_sleep_cmd = "loginctl lock-session && sleep 1";
         after_sleep_cmd = "niri msg action power-on-monitors";
       };
 

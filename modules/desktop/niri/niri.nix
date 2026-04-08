@@ -9,12 +9,15 @@
 let
   bgImage = ./../../../pkgs/wallpaper/RedBlueMountain.png;
 in
-lib.mkIf config.modules.desktop.niri.enable {
+lib.mkIf config.modules.desktop.enable {
   services = {
     blueman.enable = true;
     gnome.gnome-keyring.enable = true;
-    logind.settings.Login.HandlePowerKey = "poweroff";
-    logind.settings.Login.HandleLidSwitch = "suspend";
+    logind.settings.Login = {
+      HandlePowerKey = "poweroff";
+      HandleLidSwitch = "suspend";
+      LidSwitchIgnoreInhibit = "yes";
+    };
   };
 
   security.pam.services.niri.enableGnomeKeyring = true;
@@ -109,26 +112,6 @@ lib.mkIf config.modules.desktop.niri.enable {
     swayosd
   ];
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-gnome
-    ];
-    config = {
-      common = {
-        default = [
-          "gnome"
-          "gtk"
-        ];
-        "org.freedesktop.impl.portal.Access" = [ "gtk" ];
-        "org.freedesktop.impl.portal.Notification" = [ "gtk" ];
-        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-        "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
-      };
-    };
-  };
-
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
   niri-flake.cache.enable = false;
 
@@ -151,6 +134,9 @@ lib.mkIf config.modules.desktop.niri.enable {
     wl-color-picker
     wofi-power-menu
     xwayland-satellite
+    gst_all_1.gst-plugins-bad
+    gst_all_1.gst-plugins-good
+    gst_all_1.gst-plugins-base
   ];
 
   programs = {
@@ -189,6 +175,7 @@ lib.mkIf config.modules.desktop.niri.enable {
               GDK_BACKEND = "wayland,x11";
               # MOZ_ENABLE_WAYLAND = "1"; # Run Firefox under Wayland
               QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+              QT_QPA_PLATFORMTHEME = "qt6ct";
               SDL_VIDEODRIVER = "wayland";
               CLUTTER_BACKEND = "wayland";
             };
@@ -213,8 +200,9 @@ lib.mkIf config.modules.desktop.niri.enable {
                 { command = sh ++ [ "systemctl --user start swaync.service" ]; }
                 { command = sh ++ [ "systemctl --user start kanshi.service" ]; }
                 { command = sh ++ [ "sleep 1 && blueman-applet" ]; }
-                { command = sh ++ [ "id=0" ]; }
                 { command = [ "nm-applet" ]; }
+                { command = [ "dbus-send" "--session" "--print-reply" "--dest=org.freedesktop.impl.portal.PermissionStore" "/org/freedesktop/impl/portal/PermissionStore" "org.freedesktop.impl.portal.PermissionStore.SetPermission" "string:devices" "boolean:true" "string:camera" "string:org.gnome.Snapshot" "array:string:yes" ]; }
+                { command = [ "dbus-send" "--session" "--print-reply" "--dest=org.freedesktop.impl.portal.PermissionStore" "/org/freedesktop/impl/portal/PermissionStore" "org.freedesktop.impl.portal.PermissionStore.SetPermission" "string:devices" "boolean:true" "string:camera" "string:" "array:string:yes" ]; }
               ];
 
             input = {

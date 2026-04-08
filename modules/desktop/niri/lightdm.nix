@@ -4,7 +4,7 @@
   lib,
   ...
 }:
-lib.mkIf config.modules.desktop.niri.enable {
+lib.mkIf config.modules.desktop.enable {
   services.xserver.displayManager.lightdm = {
     enable = true;
     background = ../../../pkgs/wallpaper/RedBlueMountain.png;

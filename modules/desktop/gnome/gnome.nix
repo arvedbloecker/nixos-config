@@ -5,12 +5,14 @@
   username,
   ...
 }:
-lib.mkIf config.modules.desktop.gnome.enable {
+lib.mkIf config.modules.desktop.enable {
     services = {
-      xserver.desktopManager.gnome.enable = true;
-      xserver.displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
+      displayManager.gdm.enable = false;
       gnome.gnome-keyring.enable = true;
     };
+
+    security.pam.services.greetd.enableGnomeKeyring = true;
 
     programs.dconf.enable = true;
 
@@ -30,6 +32,11 @@ lib.mkIf config.modules.desktop.gnome.enable {
       { pkgs, ... }:
       {
         dconf.settings = {
+          "org/gnome/desktop/privacy" = {
+            camera-enabled = true;
+            disable-camera = false;
+          };
+
           "org/gnome/shell" = {
             enabled-extensions = [ "paperwm@paperwm.github.com" ];
           };

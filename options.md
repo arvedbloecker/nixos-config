@@ -2,30 +2,12 @@
 
 Setting these options will change the outcome.
 
-### `modules.desktop.niri.enable`
+### `modules.desktop.enable`
 type: `boolean`
 default: `false`
 possible values: `true`, `false`
 
-Enables the niri Wayland compositor and all associated services (waybar, hypridle, swaync, cliphist, etc.).
-
----
-
-### `modules.desktop.gnome.enable`
-type: `boolean`
-default: `false`
-possible values: `true`, `false`
-
-Enables the GNOME desktop environment with GDM and the PaperWM tiling extension.
-
----
-
-### `modules.desktop.plasma.enable`
-type: `boolean`
-default: `false`
-possible values: `true`, `false`
-
-Enables the Plasma6 Desktop environment.
+Enables the desktop environment suite, including the niri Wayland compositor (with waybar, hypridle, swaync, cliphist, etc.), GNOME (with PaperWM), and KDE Plasma 6.
 
 
 

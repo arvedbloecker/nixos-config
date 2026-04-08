@@ -66,7 +66,7 @@ The `config.nix` should look like this:
 }:
 {
   # List here all the configs that you want to set.
-  # modules.desktop.plasma.enable = true;
+  # modules.desktop.enable = true;
 }
 ```
 

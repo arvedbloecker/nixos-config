@@ -1,12 +1,15 @@
-{ lib, pkgs, config, username, ... }:
-
+{
+  pkgs,
+  username,
+  ...
+}:
 {
   environment.systemPackages = [
     pkgs.wireshark
   ];
 
-  users.groups.wireshark = {};
-  
+  users.groups.wireshark = { };
+
   users.users.${username}.extraGroups = [ "wireshark" ];
 
   security.wrappers.dumpcap = {

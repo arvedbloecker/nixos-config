@@ -13,6 +13,20 @@ in
   boot.initrd.systemd.enable = true;
   boot.plymouth.enable = true;
 
+  services.displayManager.sessionPackages = [
+    pkgs.niri
+  ];
+
+  environment.etc."share/wayland-sessions/gnome.desktop".text = ''
+    [Desktop Entry]
+    Name=GNOME
+    Comment=This session logs you into GNOME
+    Exec=${pkgs.gnome-session}/bin/gnome-session
+    TryExec=${pkgs.gnome-session}/bin/gnome-session
+    Type=Application
+    DesktopNames=GNOME
+  '';
+
   environment.etc."greetd/foot.ini".text = ''
     [colors]
     background=1f2439
@@ -26,7 +40,7 @@ in
   environment.etc."greetd/niri-greeter.kdl".text =
     let
       theme = "border=#ffad66;text=white;prompt=#ffad66;time=white;action=#ffad66;button=#ffad66;container=#1f2439;input=white";
-      tuigreetCmd = "${pkgs.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd niri-session --theme '${theme}'";
+      tuigreetCmd = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session --asterisks --sessions /run/current-system/sw/share/wayland-sessions:/run/current-system/sw/share/xsessions --theme '${theme}'";
     in
     ''
       animations { off; }

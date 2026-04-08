@@ -6,7 +6,7 @@
   username,
   ...
 }:
-lib.mkIf config.modules.desktop.niri.enable (
+lib.mkIf config.modules.desktop.enable (
   let
     waybarSettings =
       if (config.modules.powerManagement.ppd.enable) then

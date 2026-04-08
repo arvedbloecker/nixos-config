@@ -6,7 +6,7 @@
   username,
   ...
 }:
-lib.mkIf config.modules.desktop.niri.enable {
+lib.mkIf config.modules.desktop.enable {
   environment.systemPackages = [ pkgs.hyprlock ];
 
   home-manager.users.${username} =

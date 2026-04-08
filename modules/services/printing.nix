@@ -1,5 +1,6 @@
 {
-   pkgs, ...
+  pkgs,
+  ...
 }:
 {
   services = {
@@ -12,7 +13,7 @@
     avahi.enable = true;
     avahi.openFirewall = true;
     avahi.nssmdns4 = true;
-    printing.browsing = true;
+    # printing.browsing = true;
 
   };
 
@@ -32,5 +33,4 @@
     ensureDefaultPrinter = "Brother_HL2350SW";
   };
 
-  
 }

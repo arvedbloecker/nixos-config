@@ -4,8 +4,7 @@
 }:
 {
   modules = {
-    desktop.niri.enable = true;
-    # desktop.gnome.enable = true;
+    desktop.enable = true;
 
     powerManagement.tlp.enable = true;
     # powerManagement.ppd.enable = true;

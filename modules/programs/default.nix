@@ -15,7 +15,7 @@
     ./wofi.nix
     ./xdg.nix
     ./zellij.nix
-    ./zen-browser.nix
+    # ./zen-browser.nix
     ./scripts.nix
     ./shell.nix
   ];
