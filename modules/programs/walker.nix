@@ -1,124 +1,196 @@
 {
+  pkgs,
   username,
   inputs,
+  lib,
   ...
-}: {
+}:
+{
   home-manager.users.${username} = {
-    imports = [inputs.walker.homeManagerModules.default];
+    imports = [ inputs.walker.homeManagerModules.default ];
 
     home.packages = with pkgs; [
-      bitwarden-cli
+      wtype
+      wl-clipboard
+      libnotify
+      sqlite
+      rbw
+      pinentry-gnome3
     ];
 
     programs.walker = {
       enable = true;
       runAsService = true;
 
-      # All options from the config.toml can be used here
       config = {
+        terminal = "${pkgs.kitty}/bin/kitty";
         theme = "ayu-mirage";
-        app_launch_prefix = "";
-        search.placeholder = "Search...";
-        ui.width = 512;
-        ui.height = 384;
-        
-        # Modules configuration
-        providers.prefixes = [
-          {
-            provider = "applications";
-            prefix = "";
-          }
-          {
-            provider = "calc";
-            prefix = "=";
-          }
-          {
-            provider = "files";
-            prefix = "/";
-          }
-          {
-            provider = "websearch";
-            prefix = "@";
-          }
-          {
-            provider = "clipboard";
-            prefix = ":";
-          }
-          {
-            provider = "symbols";
-            prefix = ".";
-          }
-          {
-            provider = "todo";
-            prefix = "!";
-          }
-          {
-            provider = "bitwarden";
-            prefix = "bw";
-          }
-          {
-            provider = "nirisessions";
-            prefix = "ns";
-          }
-          {
-            provider = "unicode";
-            prefix = "u";
-          }
-          {
-            provider = "bluetooth";
-            prefix = "bt";
-          }
-          {
-            provider = "playerctl";
-            prefix = "p";
-          }
-          {
-            provider = "wireplumber";
-            prefix = "wp";
-          }
-        ];
+        force_keyboard_focus = false;
+        close_when_open = true;
+        click_to_close = true;
+        as_window = false;
+        single_click_activation = true;
+        selection_wrap = false;
+        global_argument_delimiter = "#";
+        exact_search_prefix = "'";
+        disable_mouse = false;
+        debug = true;
+
+        shell = {
+          exclusive_zone = -1;
+          layer = "overlay";
+        };
+
+        keybinds = {
+          close = [ "Escape" ];
+          next = [ "Down" ];
+          previous = [ "Up" ];
+          left = [ "Left" ];
+          right = [ "Right" ];
+          toggle_exact = [ "ctrl e" ];
+          resume_last_query = [ "ctrl r" ];
+        };
+
+        providers = {
+          default = [
+            "desktopapplications"
+            "calc"
+            "websearch"
+            "bookmarks"
+            "bitwarden"
+          ];
+          empty = [ "desktopapplications" ];
+          max_results = 50;
+
+          bookmarks = {
+            path = "/home/arved/.mozilla/firefox/default/places.sqlite";
+          };
+
+          prefixes = [
+            {
+              provider = "runner";
+              prefix = ">";
+            }
+            {
+              provider = "files";
+              prefix = "/";
+            }
+            {
+              provider = "symbols";
+              prefix = ".";
+            }
+            {
+              provider = "calc";
+              prefix = "=";
+            }
+            {
+              provider = "websearch";
+              prefix = "@";
+            }
+            {
+              provider = "clipboard";
+              prefix = ":";
+            }
+            {
+              provider = "bitwarden";
+              prefix = "bw";
+            }
+            {
+              provider = "bookmarks";
+              prefix = "%";
+            }
+            {
+              provider = "windows";
+              prefix = "$";
+            }
+          ];
+        };
       };
 
       themes = {
         "ayu-mirage" = {
           style = ''
+            @define-color bg #212733;
+            @define-color fg #d9d7ce;
+            @define-color accent #ffad66;
+            @define-color selection #343f4c;
+            @define-color border #343f4c;
+
             * {
-              color: #d9d7ce;
+              all: unset;
               font-family: "JetBrainsMono Nerd Font";
               font-size: 16px;
             }
 
-            #window {
+            .window {
               background-color: transparent;
             }
 
-            #box {
-              background-color: #212733;
-              border: 2px solid #ffad66;
-              padding: 10px;
+            .box-wrapper {
+              background-color: @bg;
+              border: 3px solid @accent;
+              padding: 20px;
+              border-radius: 0px;
+              box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+              min-width: 600px;
+              min-height: 400px;
             }
 
-            #input {
-              border-bottom: 2px solid #ffad66;
-              margin-bottom: 10px;
-              padding: 8px;
+            .input {
+              color: @fg;
+              background-color: #191e2a;
+              padding: 15px;
+              margin-bottom: 20px;
+              border: 2px solid @accent;
+              caret-color: @accent;
+              font-size: 18px;
             }
 
-            #list {
-              /* List container */
+            .input placeholder {
+              opacity: 0.4;
+              color: @fg;
             }
 
-            #item {
-              padding: 6px;
+            .list {
+              color: @fg;
             }
 
-            #item:selected {
-              background-color: #343f4c;
-              border-left: 4px solid #ffad66;
+            .item-box {
+              padding: 12px 20px;
+              margin: 4px 0;
+              transition: background-color 200ms ease;
             }
 
-            #text {
-              margin-left: 10px;
+            child:selected .item-box,
+            row:selected .item-box {
+              background-color: @selection;
+              border-left: 5px solid @accent;
+            }
+
+            .item-text {
+              font-weight: bold;
+              margin-left: 15px;
+              color: @fg;
+            }
+
+            .item-subtext {
+              font-size: 13px;
+              opacity: 0.5;
+              margin-left: 15px;
+              color: @fg;
+            }
+
+            .preview {
+              border: 1px solid @border;
+              padding: 15px;
+              margin-left: 15px;
+              background-color: #191e2a;
+              color: @fg;
+            }
+
+            .calc .item-text {
+              color: @accent;
+              font-size: 24px;
             }
           '';
         };

@@ -12,7 +12,8 @@
     ./swaync.nix
     ./vscode.nix
     ./wireshark.nix
-    ./wofi.nix
+    # ./wofi.nix
+    ./walker.nix
     ./xdg.nix
     ./zellij.nix
     # ./zen-browser.nix
