@@ -1,6 +1,7 @@
 {
   imports = [
     ./android-studio.nix
+    ./ausweisapp.nix
     ./firefox.nix
     ./mullvad.nix
     ./swaync.nix

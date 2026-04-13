@@ -15,6 +15,7 @@
 
     apps = {
       android-studio.enable = true;
+      ausweisapp.enable = true;
       firefox.enable = true;
       mullvad.enable = true;
       vscode.enable = true;

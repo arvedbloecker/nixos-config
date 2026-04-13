@@ -41,6 +41,7 @@ default: `false`
 
 Available applications:
 - `android-studio`: Android Studio IDE with KVM and ADB support.
+- `ausweisapp`: Ausweisapp - german identification software.
 - `firefox`: Firefox web browser with custom profile and search engines.
 - `mullvad`: Mullvad VPN service.
 - `swaync`: Sway Notification Center.
