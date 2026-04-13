@@ -192,6 +192,38 @@
               color: @accent;
               font-size: 24px;
             }
+
+            /* ── Actions ── */
+            .keybinds-wrapper {
+              border: 1px solid alpha(@border, 0.45);
+              background-color: #191e2a;
+              border-radius: 4px;
+              padding: 6px 12px;
+              margin-top: 10px;
+              opacity: 0.75;
+            }
+
+            .keybind {
+              padding: 2px 8px;
+              margin: 2px 0;
+            }
+
+            .keybind-bind {
+              color: @accent;
+              font-size: 11px;
+              font-weight: bold;
+              background-color: alpha(@accent, 0.10);
+              border: 1px solid alpha(@accent, 0.30);
+              border-radius: 3px;
+              padding: 1px 5px;
+              margin-right: 4px;
+            }
+
+            .keybind-label {
+              color: @fg;
+              font-size: 11px;
+              opacity: 0.45;
+            }
           '';
         };
       };
