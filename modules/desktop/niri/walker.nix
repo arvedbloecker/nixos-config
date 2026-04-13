@@ -3,10 +3,9 @@
   username,
   inputs,
   lib,
-  config,
   ...
 }:
-lib.mkIf config.modules.desktop.enable {
+{
   home-manager.users.${username} = {
     imports = [ inputs.walker.homeManagerModules.default ];
 
@@ -18,6 +17,13 @@ lib.mkIf config.modules.desktop.enable {
       rbw
       pinentry-gnome3
     ];
+
+    home.file.".config/elephant/websearch.toml".text = ''
+      [[entries]]
+      default = true
+      name = "DuckDuckGo"
+      url = "https://duckduckgo.com/?q=%TERM%"
+    '';
 
     programs.walker = {
       enable = true;
