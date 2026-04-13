@@ -162,7 +162,7 @@ lib.mkIf config.modules.desktop.enable {
       services.hypridle.enable = true;
       programs = {
         waybar.enable = true;
-        wofi.enable = true;
+        # wofi.enable = true;
 
         niri = {
           settings = {
@@ -201,8 +201,36 @@ lib.mkIf config.modules.desktop.enable {
                 { command = sh ++ [ "systemctl --user start kanshi.service" ]; }
                 { command = sh ++ [ "sleep 1 && blueman-applet" ]; }
                 { command = [ "nm-applet" ]; }
-                { command = [ "dbus-send" "--session" "--print-reply" "--dest=org.freedesktop.impl.portal.PermissionStore" "/org/freedesktop/impl/portal/PermissionStore" "org.freedesktop.impl.portal.PermissionStore.SetPermission" "string:devices" "boolean:true" "string:camera" "string:org.gnome.Snapshot" "array:string:yes" ]; }
-                { command = [ "dbus-send" "--session" "--print-reply" "--dest=org.freedesktop.impl.portal.PermissionStore" "/org/freedesktop/impl/portal/PermissionStore" "org.freedesktop.impl.portal.PermissionStore.SetPermission" "string:devices" "boolean:true" "string:camera" "string:" "array:string:yes" ]; }
+                {
+                  command = [
+                    "dbus-send"
+                    "--session"
+                    "--print-reply"
+                    "--dest=org.freedesktop.impl.portal.PermissionStore"
+                    "/org/freedesktop/impl/portal/PermissionStore"
+                    "org.freedesktop.impl.portal.PermissionStore.SetPermission"
+                    "string:devices"
+                    "boolean:true"
+                    "string:camera"
+                    "string:org.gnome.Snapshot"
+                    "array:string:yes"
+                  ];
+                }
+                {
+                  command = [
+                    "dbus-send"
+                    "--session"
+                    "--print-reply"
+                    "--dest=org.freedesktop.impl.portal.PermissionStore"
+                    "/org/freedesktop/impl/portal/PermissionStore"
+                    "org.freedesktop.impl.portal.PermissionStore.SetPermission"
+                    "string:devices"
+                    "boolean:true"
+                    "string:camera"
+                    "string:"
+                    "array:string:yes"
+                  ];
+                }
               ];
 
             input = {
@@ -240,13 +268,13 @@ lib.mkIf config.modules.desktop.enable {
                 "Super+E".action = spawn "kitty";
                 "Super+P".action = spawn "firefox";
                 # "Super+P".action = spawn "zen";
-                "Super+Space".action = spawn "wofi";
-                "Super+Return".action = spawn "wofi";
+                "Super+Space".action = spawn "walker";
+                "Super+Return".action = spawn "walker";
                 "Super+Shift+L".action = spawn "loginctl" "lock-session";
                 "Super+Shift+S".action = spawn "script-selector";
 
-                "Super+S".action = sh "swaync-client -t";
-                "Super+A".action = sh "cliphist list | wofi -S dmenu | cliphist decode | wl-copy";
+                # "Super+S".action = sh "swaync-client -t";
+                "Super+A".action = spawn "walker" "--modules" "clipboard";
 
                 "XF86AudioMute".action = sh "swayosd-client --output-volume=mute-toggle";
                 "XF86AudioPlay".action = sh "playerctl play-pause";
@@ -452,7 +480,7 @@ lib.mkIf config.modules.desktop.enable {
                   { app-id = "nm-connection-editor"; }
                   { app-id = "com.saivert.pwvucontrol"; }
                   { app-id = "org.pipewire.Helvum"; }
-                  { app-id = "com.github.wwmm.easyeffects"; }
+                  # { app-id = "com.github.wwmm.easyeffects"; }
                   { app-id = "wdisplays"; }
                 ];
                 open-floating = true;
