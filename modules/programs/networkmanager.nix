@@ -9,10 +9,15 @@
   # networking.wireless.iwd.enable = true;
   # networking.networkmanager.backend = "iwd";
 
+  networking.networkmanager.plugins = with pkgs; [
+    networkmanager-openconnect
+  ];
+
   environment.systemPackages = with pkgs; [
     wireguard-tools
     networkmanager
     networkmanagerapplet
+    openconnect
   ];
 
   networking.firewall.checkReversePath = "loose";

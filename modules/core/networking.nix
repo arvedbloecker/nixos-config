@@ -6,6 +6,16 @@
   networking.networkmanager = {
     enable = true;
     wifi.backend = "iwd";
+    wifi.powersave = false;
+    settings = {
+      connection = {
+        "ipv4.forwarding" = 0;
+        "ipv6.forwarding" = 0;
+      };
+      device = {
+        "wifi.scan-rand-mac-address" = "no";
+      };
+    };
   };
 
   networking.wireless.iwd.enable = true;

@@ -8,6 +8,7 @@
   boot.kernelParams = [
     "amd_pstate=active"
     "rtc_cmos.use_acpi_alarm=1"
+    "ath11k_pci.disable_aspm=1"
     # "quiet"
     # "loglevel=3"
     # "systemd.show_status=auto" # or false
