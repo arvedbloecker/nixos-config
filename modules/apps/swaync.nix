@@ -1,13 +1,14 @@
-# This file is for the sway-notificationcenter. It provides the Sidebar to see notifications and control the media-player.
 {
   config,
   pkgs,
+  lib,
   username,
   ...
 }:
 let
+  cfg = config.modules.apps.swaync;
   powerSettings =
-    if (config.modules.powerManagement.ppd.enable) then
+    if (config.modules.powerManagement.profile == "ppd") then
       ''
         ,
               "menu#power-profiles": {
@@ -29,7 +30,7 @@ let
                 ]
               }
       ''
-    else if (config.modules.powerManagement.tlp.enable) then
+    else if (config.modules.powerManagement.profile == "tlp") then
       ''
         ,
               "menu#power-profiles": {
@@ -51,11 +52,16 @@ let
       "";
 in
 {
-  environment.systemPackages = with pkgs; [
-    swaynotificationcenter
-    wdisplays
-    wofi
-  ];
+  options.modules.apps.swaync = {
+    enable = lib.mkEnableOption "sway-notificationcenter";
+  };
+
+  config = lib.mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      swaynotificationcenter
+      wdisplays
+      wofi
+    ];
 
   services.cpupower-gui.enable = true;
 
@@ -396,4 +402,5 @@ in
         '';
       };
     };
+  };
 }

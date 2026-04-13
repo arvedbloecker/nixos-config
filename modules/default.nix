@@ -11,5 +11,6 @@
     ./hardware
     ./programs
     ./services
+    ./apps
   ];
 }

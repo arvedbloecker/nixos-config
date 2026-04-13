@@ -8,7 +8,7 @@
 }:
 lib.mkIf config.modules.desktop.enable (
   let
-    ppdEnabled = config.modules.powerManagement.ppd.enable;
+    ppdEnabled = config.modules.powerManagement.profile == "ppd";
     waybarSettings = [
       {
         # General configurations

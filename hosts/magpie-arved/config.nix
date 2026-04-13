@@ -6,14 +6,20 @@
   modules = {
     desktop.enable = true;
 
-    powerManagement.tlp.enable = true;
-    # powerManagement.ppd.enable = true;
-    # powerManagement.autoCpuFreq.enable = true;
+    powerManagement.profile = "tlp";
 
     hardware.lenovo-amd.enable = true;
 
     services.storage.enable = true;
     # programs.udiskie.enable = true;
+
+    apps = {
+      android-studio.enable = true;
+      firefox.enable = true;
+      mullvad.enable = true;
+      vscode.enable = true;
+      swaync.enable = true;
+    };
   };
 
   # Enable Sops and Sops-Connected Modules

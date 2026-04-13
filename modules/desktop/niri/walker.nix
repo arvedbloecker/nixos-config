@@ -3,9 +3,10 @@
   username,
   inputs,
   lib,
+  config,
   ...
 }:
-{
+lib.mkIf config.modules.desktop.enable {
   home-manager.users.${username} = {
     imports = [ inputs.walker.homeManagerModules.default ];
 

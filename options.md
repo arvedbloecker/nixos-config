@@ -20,31 +20,33 @@ Sets the desktop config for hypridle (disables brightness changes and suspend). 
 
 ### Laptop Power Management
 
-It is recommended to use only one of the three available options, otherwise they will get in conflict with each other.
+#### `modules.powerManagement.profile`
 
-#### `modules.powerManagement.tlp.enable`
+type: `enum [ "tlp" "ppd" "autoCpuFreq" "none" ]`
+default: `none`
 
-type: boolean
-default: false
-possible values: true, false
+Selects the power management tool to use. These are mutually exclusive.
+- `tlp`: Enables TLP for laptop power management.
+- `ppd`: Enables power-profiles-daemon.
+- `autoCpuFreq`: Enables auto-cpufreq.
+- `none`: Disables custom power management profiles.
 
-Enables tlp (for laptop power-management).
+### Applications
 
-#### `modules.powerManagement.ppd.enable`
+These applications are non-essential but specifically configured. They can be toggled on or off.
 
-type: boolean
-default: false
-possible values: true, false
-
-Enables power-profiles-daemon (for laptop power-management)
-
-#### `modules.powerManagment.autoCpuFreq.enable`
-
+#### `modules.apps.<name>.enable`
 type: `boolean`
 default: `false`
-possible values: `true`, `false`
 
-Enables autoCpuFreq (for laptop power-management).
+Available applications:
+- `android-studio`: Android Studio IDE with KVM and ADB support.
+- `firefox`: Firefox web browser with custom profile and search engines.
+- `mullvad`: Mullvad VPN service.
+- `swaync`: Sway Notification Center.
+- `vscode`: Visual Studio Code.
+- `wireshark`: Wireshark network protocol analyzer.
+- `zen-browser`: Zen Browser (Firefox-based).
 
 ### Secrets
 

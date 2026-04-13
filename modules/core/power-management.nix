@@ -8,14 +8,16 @@
 {
 
   options.modules.powerManagement = {
-    tlp.enable = lib.mkEnableOption "enable tlp";
-    ppd.enable = lib.mkEnableOption "enable power-profiles-daemon";
-    autoCpuFreq.enable = lib.mkEnableOption "enable auto-cpufreq";
+    profile = lib.mkOption {
+      type = lib.types.enum [ "tlp" "ppd" "autoCpuFreq" "none" ];
+      default = "none";
+      description = "Which power management profile to use.";
+    };
   };
 
   config = {
 
-    services.tlp = lib.mkIf (config.modules.powerManagement.tlp.enable) {
+    services.tlp = lib.mkIf (config.modules.powerManagement.profile == "tlp") {
       enable = true;
       settings = {
         TLP_ENABLE = 1;
@@ -51,18 +53,18 @@
       };
     };
 
-    services.power-profiles-daemon.enable = config.modules.powerManagement.ppd.enable;
+    services.power-profiles-daemon.enable = config.modules.powerManagement.profile == "ppd";
 
     environment.systemPackages =
       with pkgs;
-      [
+      lib.optionals (config.modules.powerManagement.profile == "tlp") [
         tlp
       ]
-      ++ lib.optionals config.modules.powerManagement.autoCpuFreq.enable [
+      ++ lib.optionals (config.modules.powerManagement.profile == "autoCpuFreq") [
         auto-cpufreq
       ];
 
-    systemd.services.auto-cpufreq = lib.mkIf config.modules.powerManagement.autoCpuFreq.enable {
+    systemd.services.auto-cpufreq = lib.mkIf (config.modules.powerManagement.profile == "autoCpuFreq") {
       description = "auto-cpufreq daemon";
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
