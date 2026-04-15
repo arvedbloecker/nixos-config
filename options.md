@@ -18,6 +18,13 @@ possible values: `true`, `false`
   
 Sets the desktop config for hypridle (disables brightness changes and suspend). `false` means that hypridle is active and `true` disables the suspend.
 
+### `modules.desktop.walker.bitwarden.enable`
+type: `boolean`
+default: `true`
+possible values: `true`, `false`
+
+Enables the Bitwarden extension for Walker. This is part of the Walker launcher, which is automatically enabled when the desktop environment is active.
+
 ### Laptop Power Management
 
 #### `modules.powerManagement.profile`
