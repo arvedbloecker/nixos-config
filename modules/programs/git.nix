@@ -21,8 +21,8 @@ in
       sops.templates."gitconfig" = {
         content = ''
           [user]
-              name  = ${config.sops.placeholder."git/username"}
-              email = ${config.sops.placeholder."git/email"}
+              name  = ${config.sops.placeholder.git_username}
+              email = ${config.sops.placeholder.git_email}
 
           [init]
               defaultBranch = main

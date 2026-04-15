@@ -1,4 +1,10 @@
-{ lib, config, pkgs, username, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  username,
+  ...
+}:
 
 {
   options.secrets = {
@@ -16,34 +22,35 @@
       defaultSopsFormat = "yaml";
       age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
 
-      secrets."git/username" = {
+      secrets.git_username = {
+        key = "git/username";
         owner = username;
         mode = "0400";
       };
-
-      secrets."git/email" = {
+      secrets.git_email = {
+        key = "git/email";
         owner = username;
         mode = "0400";
       };
-
-      secrets."ssh/github" = {
+      secrets.primary_email = {
+        key = "user/primary-email";
         owner = username;
-        path = "/home/${username}/.ssh/id_github";
       };
+    };
 
-      secrets."ssh/gitlab" = {
+    sops.templates = {
+      "rbw-config" = {
+        content = ''
+          {
+            "base_url": null,
+            "email": "${config.sops.placeholder.primary_email}",
+            "identity_url": null,
+            "lock_timeout": 3600,
+            "pinentry": "${pkgs.pinentry-gnome3}/bin/pinentry"
+          }
+        '';
         owner = username;
-        path = "/home/${username}/.ssh/id_gitlab";
-      };
-
-      secrets."ssh/codeberg" = {
-        owner = username;
-        path = "/home/${username}/.ssh/id_codeberg";
-      };
-
-      secrets."ssh/server" = {
-        owner = username;
-        path = "/home/${username}/.ssh/id_server";
+        path = "/home/${username}/.config/rbw/config.json";
       };
     };
   };
