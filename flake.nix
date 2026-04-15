@@ -55,14 +55,14 @@
     in
     {
       nixosConfigurations = lib.genHosts {
-        magpie-arved = {
+        magpie = {
           username = "arved";
           userDescription = "Arved Bloecker";
           hostname = "magpie";
           # Generate the hashedPassword with mkpasswd
           hashedPassword = "$y$j9T$b2Obca/x4HHLzhGeiTBqr/$G.8GGokLUklJ0qnDKx.3l4pvnQWKNP/X.PROPM0BPIC";
         };
-        bluejay-arved = {
+        bluejay = {
           username = "arved";
           userDescription = "Arved Bloecker";
           hostname = "bluejay";

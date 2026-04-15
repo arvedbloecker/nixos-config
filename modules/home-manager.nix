@@ -3,7 +3,7 @@
 }:
 {
   home-manager.useGlobalPkgs = true;
-  home-manager.backupFileExtension = "backup";
+  home-manager.backupFileExtension = "hm-backup";
   home-manager.users.${username} =
     { config, ... }:
     {

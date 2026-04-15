@@ -16,17 +16,12 @@
       #   iconTheme.package = pkgs.gruvbox-plus-icons;
       # };
       gtk = {
-        enable = false;
-        # theme.name = "Ayu";
-        # theme.name = "Ayu-Dark";
-        # theme.package = pkgs.ayu-theme-gtk;
-
+        enable = true;
         theme.name = "Arc-Dark";
-        # theme.name = "Ayu-Dark";
         theme.package = pkgs.arc-theme;
 
-        iconTheme.name = "Gruvbox-Plus-Dark";
-        iconTheme.package = pkgs.gruvbox-plus-icons;
+        iconTheme.name = "Adwaita";
+        iconTheme.package = pkgs.adwaita-icon-theme;
       };
     };
 }

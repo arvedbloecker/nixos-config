@@ -4,6 +4,7 @@ let
   zellijBaseConfig = ''
     copy_on_select true;
     default_mode "locked"; 
+    on_force_close "quit";
 
     keybinds {
       shared {
