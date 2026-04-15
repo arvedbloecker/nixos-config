@@ -14,8 +14,6 @@
       wl-clipboard
       libnotify
       sqlite
-      rbw
-      pinentry-gnome3
     ];
 
     home.file.".config/elephant/websearch.toml".text = ''
@@ -24,6 +22,15 @@
       name = "DuckDuckGo"
       url = "https://duckduckgo.com/?q=%TERM%"
     '';
+
+    programs.rbw = {
+      enable = true;
+      settings = {
+        email = "deine@email.de"; # TODO
+        lock_timeout = 3600;
+        pinentry = pkgs.pinentry-gnome3;
+      };
+    };
 
     programs.walker = {
       enable = true;
@@ -97,6 +104,10 @@
             {
               provider = "clipboard";
               prefix = ":";
+            }
+            {
+              provider = "playerctl";
+              prefix = "~";
             }
             {
               provider = "bitwarden";

@@ -11,5 +11,6 @@
     ./zellij.nix
     ./scripts.nix
     ./shell.nix
+    ./ssh.nix
   ];
 }

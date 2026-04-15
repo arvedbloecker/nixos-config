@@ -25,6 +25,26 @@
         owner = username;
         mode = "0400";
       };
+
+      secrets."ssh/github" = {
+        owner = username;
+        path = "/home/${username}/.ssh/id_github";
+      };
+
+      secrets."ssh/gitlab" = {
+        owner = username;
+        path = "/home/${username}/.ssh/id_gitlab";
+      };
+
+      secrets."ssh/codeberg" = {
+        owner = username;
+        path = "/home/${username}/.ssh/id_codeberg";
+      };
+
+      secrets."ssh/server" = {
+        owner = username;
+        path = "/home/${username}/.ssh/id_server";
+      };
     };
   };
 }
