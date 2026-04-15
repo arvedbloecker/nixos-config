@@ -12,7 +12,7 @@
     ./hardware-configuration.nix
     ./kanshi.nix
 
-    # nixos-hardware.nixosModules.lenovo-thinkpad-p14s-amd-gen5
+    nixos-hardware.nixosModules.lenovo-thinkpad-p14s-amd-gen5
   ];
 
   secrets.enable = true;
@@ -37,6 +37,7 @@
     spotify
     # texliveFull
     thunderbird
+    vscode
     zotero
 
     hoard
@@ -58,8 +59,14 @@
     enable32Bit = true;
   };
 
+  programs.ausweisapp.enable = true;
+  programs.ausweisapp.openFirewall = true;
+
   # Thinkpad Specific Power Management Features
-  # services.thermald.enable = true;
+  services.thermald.enable = true;
+
+  # AMD GPU Power Management
+  hardware.amdgpu.opencl.enable = true;
 
   # Fingerprintreader
   #services.fprintd.enable = true;
