@@ -1,4 +1,5 @@
-# This module configures the waybar, a program to provide a very customizable taskbar. https://github.com/Alexays/Waybar/wiki
+# This module configures the waybar, a program to provide a very customizable taskbar.
+# https://github.com/Alexays/Waybar/wiki
 {
   config,
   lib,
@@ -32,16 +33,19 @@ lib.mkIf config.modules.desktop.enable (
         ];
 
         "modules-right" = [
-          "cpu"
-          "memory"
-          "pulseaudio"
+          "custom/microphone"
+          "custom/camera"
           "idle_inhibitor"
-          "bluetooth"
         ]
         ++ lib.optionals ppdEnabled [ "power-profiles-daemon" ]
         ++ [
+          "cpu"
+          "memory"
+          "bluetooth"
+          "pulseaudio"
           "custom/vpn"
           "network"
+          "custom/notifications"
           "battery"
           "clock"
         ];
@@ -135,7 +139,6 @@ lib.mkIf config.modules.desktop.enable (
             "activated" = "󰛨";
             "deactivated" = "󰌶";
           };
-          # optional: startet direkt aktiviert
           "start-activated" = false;
         };
         "bluetooth" = {
@@ -153,15 +156,29 @@ lib.mkIf config.modules.desktop.enable (
           "tooltip-format" = "{device_alias} ({device_address})";
           "on-click" = "blueman-manager";
         };
+        "custom/microphone" = {
+          "exec" = "$HOME/.config/waybar/microphone-usage.sh";
+          "return-type" = "json";
+          "interval" = 3;
+          "format" = "{}";
+          "tooltip" = true;
+        };
+        "custom/camera" = {
+          "exec" = "$HOME/.config/waybar/camera-usage.sh";
+          "return-type" = "json";
+          "interval" = 3;
+          "format" = "{}";
+          "tooltip" = true;
+        };
         "custom/vpn" = {
-          "format" = "{icon} {text}";
+          "format" = "{text}";
           "exec" = "$HOME/.config/waybar/vpn-active.sh";
           "return-type" = "json";
-          "interval" = 5;
-          "format-icons" = [
-            ""
-            ""
-          ];
+          "interval" = 3;
+          # "format-icons" = [
+          #   ""
+          #   ""
+          # ];
           "on-click" = "nm-connection-editor";
         };
         "network" = {
@@ -190,8 +207,6 @@ lib.mkIf config.modules.desktop.enable (
             "warning" = 30;
             "critical" = 15;
           };
-          # "warning" = 30;
-          # "critical" = 15;
           "format-icons" = {
             "charging" = "󰚥";
             "discharging" = [
@@ -219,9 +234,17 @@ lib.mkIf config.modules.desktop.enable (
           "menu" = "on-click-right";
           "menu-file" = "~/.config/waybar/notify_menu.xml";
           "menu-actions" = {
-            "toggle-dnd" = "swaync-client -d -sw";
-            "clear-all" = "swaync-client -C -sw";
+            "toggle-dnd" = "fnott-toggle-dnd";
+            "clear-all" = "fnottctl dismiss all";
           };
+        };
+        "custom/notifications" = {
+          "exec" = "$HOME/.config/waybar/fnott-status.sh";
+          "return-type" = "json";
+          "interval" = 2;
+          "on-click" = "$HOME/.config/waybar/fnott-toggle.sh";
+          "on-click-right" = "fnottctl dismiss all";
+          "tooltip" = true;
         };
 
         ########### Optional ###############
@@ -245,9 +268,10 @@ lib.mkIf config.modules.desktop.enable (
       easyeffects
       pwvucontrol
       helvum
-      swaynotificationcenter
+      # swaynotificationcenter
       wttrbar
       playerctl
+      psmisc # provides fuser for camera-usage.sh
     ];
 
     home-manager.users.${username} =
@@ -272,7 +296,7 @@ lib.mkIf config.modules.desktop.enable (
             <?xml version="1.0" encoding="UTF-8"?>
             <interface>
               <object class="GtkMenu" id="menu">
-                <child><object class="GtkMenuItem" id="toggle-dnd"><property name="label">Toggle Do Not Disturb</property></object></child>
+                <child><object class="GtkMenuItem" id="toggle-dnd"><property name="label">Pause Notifications</property></object></child>
                 <child><object class="GtkMenuItem" id="clear-all"><property name="label">Clear All Notifications</property></object></child>
               </object>
             </interface>
@@ -289,6 +313,108 @@ lib.mkIf config.modules.desktop.enable (
                 && echo "{\"text\":\"$name\",\"class\":\"connected\",\"percentage\":100}" \
                 || echo '{"text":"","class":"disconnected","percentage":0}'
 
+            '';
+            executable = true;
+          };
+          "waybar/microphone-usage.sh" = {
+            text = ''
+              #!/usr/bin/env bash
+
+              declare -A pids
+
+              for status_file in /proc/asound/card*/pcm*c/sub*/status; do
+                [[ -f "$status_file" ]] || continue
+                content=$(< "$status_file")
+                [[ "$content" == *"state: RUNNING"* ]] || continue
+
+                while IFS= read -r line; do
+                  line="''${line#"''${line%%[![:space:]]*}"}"
+                  if [[ "$line" == owner_pid* ]]; then
+                    pid="''${line#*:}"
+                    pid="''${pid// /}"
+                    if [[ "$pid" =~ ^[0-9]+$ ]] && (( pid > 0 )); then
+                      pids["$pid"]=1
+                    fi
+                  fi
+                done <<< "$content"
+              done
+
+              names=()
+              for pid in "''${!pids[@]}"; do
+                if [[ -r "/proc/$pid/comm" ]]; then
+                  name=$(< "/proc/$pid/comm")
+                  [[ -n "$name" ]] && names+=("$name")
+                fi
+              done
+
+              if [[ ''${#names[@]} -gt 0 ]]; then
+                apps=$(printf '%s, ' "''${names[@]}")
+                apps="''${apps%, }"
+                echo "{\"text\": \"󰍬\", \"tooltip\": \"Microphone in use by: ''${apps}\", \"class\": \"in-use\"}"
+              else
+                echo '{"text": "", "class": "idle"}'
+              fi
+            '';
+            executable = true;
+          };
+          "waybar/camera-usage.sh" = {
+            text = ''
+              #!/usr/bin/env bash
+
+              declare -A pids_seen
+
+              shopt -s nullglob
+              video_devices=(/dev/video*)
+              shopt -u nullglob
+
+              if (( ''${#video_devices[@]} == 0 )); then
+                echo '{"text": "", "class": "idle"}'
+                exit 0
+              fi
+
+              for pid in $(fuser "''${video_devices[@]}" 2>/dev/null || true); do
+                if [[ "$pid" =~ ^[0-9]+$ ]]; then
+                  pids_seen["$pid"]=1
+                fi
+              done
+
+              names=()
+              for pid in "''${!pids_seen[@]}"; do
+                if [[ -r "/proc/$pid/comm" ]]; then
+                  name=$(< "/proc/$pid/comm")
+                  [[ -n "$name" ]] && names+=("$name")
+                fi
+              done
+
+              if [[ ''${#names[@]} -gt 0 ]]; then
+                apps=$(printf '%s, ' "''${names[@]}")
+                apps="''${apps%, }"
+                echo "{\"text\": \"󰄀\", \"tooltip\": \"Camera in use by: ''${apps}\", \"class\": \"in-use\"}"
+              else
+                echo '{"text": "", "class": "idle"}'
+              fi
+            '';
+            executable = true;
+          };
+          "waybar/fnott-status.sh" = {
+            text = ''
+              #!/usr/bin/env bash
+              if systemctl --user is-active --quiet fnott.service; then
+                  echo '{"text": "󰂚", "class": "on", "tooltip": "Notifications: ON"}'
+              else
+                  echo '{"text": "󰂛", "class": "off", "tooltip": "Notifications: OFF"}'
+              fi
+            '';
+            executable = true;
+          };
+          "waybar/fnott-toggle.sh" = {
+            text = ''
+              #!/usr/bin/env bash
+              if systemctl --user is-active --quiet fnott.service; then
+                  systemctl --user stop fnott.service
+              else
+                  systemctl --user start fnott.service
+              fi
             '';
             executable = true;
           };
@@ -393,6 +519,20 @@ lib.mkIf config.modules.desktop.enable (
 
             #power-profiles-daemon.performance {
               color: @warning;
+            }
+
+            /* Microphone & Camera indicators */
+            #custom-microphone.in-use {
+              color: @warning;
+            }
+            #custom-camera.in-use {
+              color: @warning;
+            }
+            #custom-notifications.off {
+              color: @warning;
+            }
+            #custom-notifications.on {
+              color: @text;
             }
 
           '';

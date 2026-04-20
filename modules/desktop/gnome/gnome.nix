@@ -113,7 +113,6 @@ lib.mkIf config.modules.desktop.enable {
               "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
               "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
               "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/"
-              "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/"
             ];
           };
 
@@ -141,11 +140,11 @@ lib.mkIf config.modules.desktop.enable {
             binding = "<Super><Shift>l";
           };
 
-          "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4" = {
-            name = "SwayNC Toggle";
-            command = "swaync-client -t";
-            binding = "<Super>s";
-          };
+          # "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4" = {
+          #   name = "SwayNC Toggle";
+          #   command = "swaync-client -t";
+          #   binding = "<Super>s";
+          # };
         };
       };
   }

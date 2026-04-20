@@ -127,13 +127,15 @@ lib.mkIf config.modules.desktop.enable {
     kitty
     networkmanagerapplet
     playerctl
-    swaynotificationcenter
+    # swaynotificationcenter
     swayosd
     wl-clipboard
     # wl-clip-persist
     wl-color-picker
     wofi-power-menu
     xwayland-satellite
+    libnotify
+    ibus
     gst_all_1.gst-plugins-bad
     gst_all_1.gst-plugins-good
     gst_all_1.gst-plugins-base
@@ -173,7 +175,7 @@ lib.mkIf config.modules.desktop.enable {
             environment = {
               ELM_DISPLAY = "wl";
               GDK_BACKEND = "wayland,x11";
-              # MOZ_ENABLE_WAYLAND = "1"; # Run Firefox under Wayland
+              MOZ_ENABLE_WAYLAND = "1"; # Run Firefox under Wayland
               QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
               QT_QPA_PLATFORMTHEME = "qt6ct";
               SDL_VIDEODRIVER = "wayland";
@@ -197,8 +199,10 @@ lib.mkIf config.modules.desktop.enable {
                 { command = sh ++ [ "systemctl --user start waybar.service" ]; }
                 { command = sh ++ [ "systemctl --user start xwayland-satellite.service" ]; }
                 { command = sh ++ [ "systemctl --user start swaybg.service" ]; }
-                { command = sh ++ [ "systemctl --user start swaync.service" ]; }
+                # { command = sh ++ [ "systemctl --user start swaync.service" ]; }
+                { command = sh ++ [ "systemctl --user start fnott.service" ]; }
                 { command = sh ++ [ "systemctl --user start kanshi.service" ]; }
+                { command = [ "ibus-daemon" "--wayland" "--daemonize" "--replace" ]; }
                 { command = sh ++ [ "sleep 1 && blueman-applet" ]; }
                 { command = [ "nm-applet" ]; }
                 {
@@ -272,6 +276,7 @@ lib.mkIf config.modules.desktop.enable {
                 "Super+Return".action = spawn "walker";
                 "Super+Shift+L".action = spawn "loginctl" "lock-session";
                 "Super+Shift+S".action = spawn "script-selector";
+                "Super+N".action = spawn "fnottctl" "dismiss";
 
                 # "Super+S".action = sh "swaync-client -t";
                 "Super+A".action = spawn "walker" "--modules" "clipboard";

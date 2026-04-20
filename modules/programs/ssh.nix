@@ -142,7 +142,7 @@
         "id_gitlab" = {
           content = sshKeyTemplate "id_gitlab";
           owner = username;
-          path = "/home/${username}/.ssh/gitlab-blckr";
+          path = "/home/${username}/.ssh/gitlab";
         };
         "id_codeberg_blckr" = {
           content = sshKeyTemplate "id_codeberg";
@@ -262,19 +262,16 @@
               IdentitiesOnly yes
           '';
           owner = username;
-          path = "/home/${username}/.ssh/config_sops";
+          path = "/home/${username}/.ssh/config";
         };
       };
   };
 
-  home-manager.users.${username}.programs.ssh = {
-    enable = true;
-    enableDefaultConfig = false;
-    extraConfig = ''
-      Include ${config.sops.templates.ssh-config.path}
-    '';
-    matchBlocks = {
-      "*" = { };
+  home-manager.users.${username} = {
+    programs.ssh = {
+      enable = true;
+      enableDefaultConfig = false;
     };
+    home.file.".ssh/config".enable = false;
   };
 }

@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   # Local Setting
   time.timeZone = "Europe/Berlin";
@@ -14,7 +15,10 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  # Is already defined in NIRI
+  i18n.inputMethod = {
+    enable = false;
+  };
+
   # Keyboard-Setting
   # services.xserver.xkb = {
   #   layout = "us";

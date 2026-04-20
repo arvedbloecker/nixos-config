@@ -21,7 +21,8 @@
       firefox.enable = true;
       # mullvad.enable = true;
       vscode.enable = true;
-      swaync.enable = true;
+      fnott.enable = true;
+      # swaync.enable = true;
     };
   };
 
