@@ -31,10 +31,13 @@ in
         mpv
         sound-theme-freedesktop
         (pkgs.writeShellScriptBin "fnott-toggle-dnd" ''
-          if systemctl --user is-active --quiet fnott.service; then
-            systemctl --user stop fnott.service
+          STATE_FILE="$HOME/.cache/fnott-paused"
+          if [ -f "$STATE_FILE" ]; then
+            fnottctl unpause
+            rm "$STATE_FILE"
           else
-            systemctl --user start fnott.service
+            fnottctl pause
+            touch "$STATE_FILE"
           fi
         '')
       ];
@@ -45,7 +48,7 @@ in
           main = {
             anchor = "top-right";
             stacking-order = "top-down";
-            min-width = 400;
+            min-width = 500;
             max-width = 500;
             edge-margin-vertical = 10;
             edge-margin-horizontal = 10;
@@ -66,22 +69,26 @@ in
             summary-color = "${colors.fg}ff";
             body-font = "JetBrainsMono Nerd Font:size=11";
             body-color = "${colors.fg}ff";
+
+            # Persistent notifications
+            default-timeout = 0;
+            max-timeout = 0;
           };
 
           low = {
-            default-timeout = 0;
             background = "${colors.bg}ff";
             border-color = "${colors.blue}ff";
+            default-timeout = 8;
           };
 
           normal = {
-            default-timeout = 0;
+            default-timeout = 40;
           };
 
           critical = {
-            default-timeout = 0;
             background = "${colors.bg}ff";
             border-color = "${colors.red}ff";
+            default-timeout = 0;
           };
         };
       };

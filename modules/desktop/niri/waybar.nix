@@ -399,10 +399,10 @@ lib.mkIf config.modules.desktop.enable (
           "waybar/fnott-status.sh" = {
             text = ''
               #!/usr/bin/env bash
-              if systemctl --user is-active --quiet fnott.service; then
-                  echo '{"text": "󰂚", "class": "on", "tooltip": "Notifications: ON"}'
+              if [ -f "$HOME/.cache/fnott-paused" ]; then
+                  echo '{"text": "󰂛", "class": "off", "tooltip": "Notifications: OFF (DND)"}'
               else
-                  echo '{"text": "󰂛", "class": "off", "tooltip": "Notifications: OFF"}'
+                  echo '{"text": "󰂚", "class": "on", "tooltip": "Notifications: ON"}'
               fi
             '';
             executable = true;
@@ -410,10 +410,13 @@ lib.mkIf config.modules.desktop.enable (
           "waybar/fnott-toggle.sh" = {
             text = ''
               #!/usr/bin/env bash
-              if systemctl --user is-active --quiet fnott.service; then
-                  systemctl --user stop fnott.service
+              STATE_FILE="$HOME/.cache/fnott-paused"
+              if [ -f "$STATE_FILE" ]; then
+                  fnottctl unpause
+                  rm "$STATE_FILE"
               else
-                  systemctl --user start fnott.service
+                  fnottctl pause
+                  touch "$STATE_FILE"
               fi
             '';
             executable = true;
