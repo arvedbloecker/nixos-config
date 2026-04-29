@@ -10,6 +10,7 @@
 lib.mkIf config.modules.desktop.enable (
   let
     ppdEnabled = config.modules.powerManagement.profile == "ppd";
+    fnottEnabled = config.modules.apps.fnott.enable == true;
     waybarSettings = [
       {
         # General configurations
@@ -37,7 +38,9 @@ lib.mkIf config.modules.desktop.enable (
           "custom/camera"
           "idle_inhibitor"
         ]
-        ++ lib.optionals ppdEnabled [ "power-profiles-daemon" ]
+        ++ lib.optionals ppdEnabled [
+          "power-profiles-daemon"
+        ]
         ++ [
           "cpu"
           "memory"
@@ -45,7 +48,11 @@ lib.mkIf config.modules.desktop.enable (
           "pulseaudio"
           "custom/vpn"
           "network"
+        ]
+        ++ lib.optionals fnottEnabled [
           "custom/notifications"
+        ]
+        ++ [
           "battery"
           "clock"
         ];
