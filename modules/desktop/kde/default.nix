@@ -10,14 +10,9 @@ lib.mkIf config.modules.desktop.enable {
     desktopManager.plasma6.enable = true;
   };
 
-  security.pam.services.greetd.kwallet = {
-    enable = true;
-    package = pkgs.kdePackages.kwallet-pam;
-  };
 
   environment.systemPackages = with pkgs.kdePackages; [
     plasma-workspace
-    kwallet-pam
     qtstyleplugin-kvantum
   ];
 
@@ -33,5 +28,13 @@ lib.mkIf config.modules.desktop.enable {
     dolphin
     ark
     kcalc
+    baloo
+    discover
+    krdp
+    spectacle
+    drkonqi
+    plasma-welcome
+    print-manager
+    kwallet
   ];
 }

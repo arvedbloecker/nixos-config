@@ -21,7 +21,20 @@ lib.mkIf config.modules.desktop.enable {
       gnome-tour
       epiphany # web browser
       geary # mail client
-      evince # document viewer – reinstall per-user if desired
+      evince # document viewer
+      baobab
+      gnome-characters
+      gnome-contacts
+      gnome-font-viewer
+      gnome-logs
+      gnome-maps
+      gnome-music
+      gnome-weather
+      gnome-connections
+      gnome-calculator
+      gnome-calendar
+      totem
+      yelp
     ];
 
     environment.systemPackages = with pkgs; [

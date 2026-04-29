@@ -21,6 +21,8 @@
       "audio"
       "video"
       "scanner"
+      "tty"
+      "dialout"
       "disk"
       "storage"
     ];

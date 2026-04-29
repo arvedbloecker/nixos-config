@@ -97,6 +97,29 @@
               ];
             };
           }
+          {
+            profile = {
+              # Laptop screen below external Screen
+              name = "lab-pcxx";
+              outputs = [
+                {
+                  criteria = "Lenovo Group Limited 0x414B Unknown";
+                  mode = "2880x1800";
+                  status = "enable";
+                  scale = 1.5;
+                  # 1920 comes from 2880 / 1.5 (Scaling) = 1920
+                  position = "${builtins.toString ((2560 - 1920) / 2)},${builtins.toString 1440}";
+                }
+                {
+                  criteria = "Dell Inc. DELL P2723DE B35B0N3";
+                  mode = "2560x1440@59.951";
+                  status = "enable";
+                  scale = 1.0;
+                  position = "0,0";
+                }
+              ];
+            };
+          }
         ];
       };
     };

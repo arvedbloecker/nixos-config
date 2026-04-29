@@ -145,6 +145,11 @@ in
                   icon = "https://scholar.google.com/favicon.ico";
                   definedAliases = [ "@gs" ];
                 };
+                "Thesaurus" = {
+                  urls = [ { template = "https://www.thesaurus.com/browse/{searchTerms}"; } ];
+                  icon = "https://www.thesaurus.com/favicon.ico";
+                  definedAliases = [ "@th" ];
+                };
               };
             };
           };

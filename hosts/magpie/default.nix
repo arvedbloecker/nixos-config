@@ -26,6 +26,7 @@
     ausweisapp
     bitwarden-desktop
     element-desktop
+    freecad
     fwupd # install Firmware updates
     marktext # markdown editor
     nextcloud-client

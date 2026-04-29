@@ -13,7 +13,6 @@
     hardware.lenovo-amd.enable = true;
 
     services.storage.enable = true;
-    # programs.udiskie.enable = true;
 
     apps = {
       android-studio.enable = true;
