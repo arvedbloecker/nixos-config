@@ -4,6 +4,21 @@
   username,
   ...
 }:
+let
+  # Wrapper shell that kills any zellij sessions when kitty closes.
+  # When niri's close-window (Super+X) closes kitty, kitty sends SIGHUP to
+  # its child (this wrapper). The trap ensures zellij is killed cleanly.
+  kittyShell = pkgs.writeShellScript "kitty-shell" ''
+    _cleanup() {
+      # Kill zellij processes that are descendants of this shell (child tree)
+      pkill -P $$ zellij 2>/dev/null || true
+      # Kill any zellij in the same session as this shell
+      pkill -s $$ zellij 2>/dev/null || true
+    }
+    trap _cleanup EXIT HUP TERM
+    exec ${pkgs.fish}/bin/fish "$@"
+  '';
+in
 {
   home-manager.users.${username} =
     { config, ... }:
@@ -19,6 +34,8 @@
           # Remote control für Theme-Toggle über alle Instanzen
           allow_remote_control = "yes";
           listen_on = "unix:/tmp/kitty-{kitty_pid}";
+          # Use wrapper shell so closing kitty also kills zellij
+          shell = "${kittyShell}";
         };
         extraConfig = ''
           # Dark als Default
