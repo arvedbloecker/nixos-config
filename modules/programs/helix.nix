@@ -5,6 +5,7 @@ let
     theme = "ayu_mirage_transparent"
 
     [editor]
+    lsp.display-inlay-hints = true
     line-number = "relative"
     bufferline = "always"
 
@@ -26,7 +27,7 @@ let
   '';
 in
 {
-  environment.systemPackages = with pkgs; [ lazygit ];
+  environment.systemPackages = with pkgs; [ lazygit rust-analyzer ];
   environment.variables.EDITOR = "hx";
   environment.variables.VISUAL = "hx";
 
@@ -47,6 +48,42 @@ in
               auto-format = true;
             }
           ];
+          language-server = {
+            rust-analyzer = {
+              config = {
+                inlayHints = {
+                  typeHints.enable = true;
+                  parameterHints.enable = true;
+                  chainingHints.enable = true;
+                };
+              };
+            };
+            gopls = {
+              config = {
+                hints = {
+                  assignVariableTypes = true;
+                  compositeLiteralFields = true;
+                  compositeLiteralTypes = true;
+                  constantValues = true;
+                  functionTypeParameters = true;
+                  parameterNames = true;
+                  rangeVariableTypes = true;
+                };
+              };
+            };
+            pyright = {
+              config = {
+                python.analysis.inlayHints = {
+                  callArgumentNames = true;
+                  functionReturnTypes = true;
+                  variableTypes = true;
+                };
+              };
+            };
+            clangd = {
+              args = [ "--inlay-hints" ];
+            };
+          };
         };
 
         themes = {
@@ -57,6 +94,9 @@ in
             "ui.linenr.selected" = "foreground";
             "ui.whitespace" = {
               fg = "gray";
+            };
+            "ui.virtual.inlay-hint" = {
+              fg = "#5c6773";
             };
             "ui.selection" = {
               bg = "#264563";
@@ -71,12 +111,15 @@ in
             "ui.whitespace" = {
               fg = "gray";
             };
+            "ui.virtual.inlay-hint" = {
+              fg = "#8692a0ff";
+            };
             "ui.selection" = {
               bg = "#b0c4b1";
             };
 
             palette = {
-              orange = "#e67a26";
+              orange = "#ce6d22ff";
               yellow = "#ff9500";
             };
           };
