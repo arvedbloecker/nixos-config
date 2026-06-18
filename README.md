@@ -20,10 +20,6 @@ A modular NixOS configuration based on [Géza Ahsendorf's setup](https://codeber
 | Status Bar | [Waybar](https://github.com/Alexays/Waybar) |
 | App Launcher | [Walker](https://github.com/abenz1267/walker) |
 | Greeter | [Noctalia](https://github.com/noctalia-dev/noctalia-shell) + greetd |
-| System Monitor | btop |
-| Browser | [Zen Browser](https://zen-browser.app/) |
-| Secrets | [sops-nix](https://github.com/Mic92/sops-nix) |
-| Framework | NixOS 26.05 + Home Manager |
 
 ## Quickstart
 
@@ -105,14 +101,3 @@ Module options are documented in `options.md`. To use them, create `hosts/config
 | `[` / `]` | Stack windows |
 
 Full bindings in `modules/desktop/niri/niri.nix`.
-
-### Zellij (`Alt + ...`, inside terminal)
-
-Zellij starts in **locked mode** to avoid conflicts with Helix.
-
-| Key | Action |
-|---|---|
-| `F` | Floating shell |
-| `T` | New tab |
-| `N` | Split window |
-| `Ctrl + G` | Exit locked mode |
